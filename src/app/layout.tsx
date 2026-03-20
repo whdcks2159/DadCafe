@@ -1,11 +1,18 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+import dynamic from 'next/dynamic';
 import './globals.css';
-import { AuthProvider } from '@/context/AuthContext';
+
+const AuthProvider = dynamic(
+  () => import('@/context/AuthContext').then((m) => m.AuthProvider),
+  { ssr: false }
+);
 
 export const metadata: Metadata = {
   title: '애는 우리 함께 키워 — DadCafe',
   description: '남편을 위한 임신·출산·육아 가이드 플랫폼',
-  manifest: '/manifest.json',
+};
+
+export const viewport: Viewport = {
   themeColor: '#f97316',
 };
 
