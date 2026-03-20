@@ -71,7 +71,7 @@ export const QUIZ_RESULTS: Record<DadLevel, QuizResult> = {
     level: 'beginner',
     titleKo: '준비 중인 아빠',
     descriptionKo: '아직 배움이 필요하지만, 여기 있다는 것 자체가 시작입니다. DadCafe와 함께 하나씩 배워가요!',
-    badgeEmoji: '🌱',
+    badgeEmoji: '📖',
     tips: [
       '매일 10분, 아내와 "오늘 어땠어?" 대화 나누기',
       '이 앱의 가이드를 처음부터 읽어보기',
@@ -82,7 +82,7 @@ export const QUIZ_RESULTS: Record<DadLevel, QuizResult> = {
     level: 'ready',
     titleKo: '준비된 아빠',
     descriptionKo: '기본기는 갖추고 있어요! 조금 더 깊이 배우면 진짜 든든한 아빠가 됩니다.',
-    badgeEmoji: '💪',
+    badgeEmoji: '👊',
     tips: [
       '산전 교육 프로그램에 파트너와 함께 등록하기',
       '커뮤니티에서 다른 아빠들과 경험 나누기',
@@ -93,7 +93,7 @@ export const QUIZ_RESULTS: Record<DadLevel, QuizResult> = {
     level: 'experienced',
     titleKo: '베테랑 아빠',
     descriptionKo: '대단해요! 이미 멋진 아빠의 자질을 갖추고 있습니다. 커뮤니티에서 다른 아빠들을 도와주세요!',
-    badgeEmoji: '⭐',
+    badgeEmoji: '🏆',
     tips: [
       '커뮤니티에 경험담 나누기',
       '주변 예비 아빠에게 DadCafe 추천하기',

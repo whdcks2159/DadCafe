@@ -10,19 +10,20 @@ const FEATURES = [
 ];
 
 const STAGES = [
-  { emoji: '🌱', label: '임신 전' },
-  { emoji: '🤰', label: '임신 중' },
-  { emoji: '👶', label: '신생아' },
-  { emoji: '🧒', label: '영아기' },
+  { emoji: '💍', label: '임신 전' },
+  { emoji: '📋', label: '임신 중' },
+  { emoji: '🍼', label: '신생아' },
+  { emoji: '👟', label: '영아기' },
 ];
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-slate-50 md:items-center md:justify-center md:py-12">
+      <div className="w-full md:max-w-lg md:bg-white md:rounded-3xl md:shadow-xl md:overflow-hidden">
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-brand-500 to-orange-600 px-6 pt-16 pb-12 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-4 right-4 text-9xl">👨‍👩‍👧</div>
+          <div className="absolute top-4 right-4 text-9xl">🍼</div>
         </div>
         <div className="relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-3 py-1 mb-4">
@@ -101,6 +102,7 @@ export default function LandingPage() {
           © 2024 DadCafe — 애는 우리 함께 키워
         </p>
       </footer>
+      </div>
     </div>
   );
 }

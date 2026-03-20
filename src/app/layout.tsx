@@ -21,9 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko">
       <body>
         <AuthProvider>
-          <div className="max-w-md mx-auto min-h-screen bg-white shadow-sm relative">
-            {children}
-          </div>
+          {children}
         </AuthProvider>
       </body>
     </html>
