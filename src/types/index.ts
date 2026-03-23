@@ -110,6 +110,39 @@ export interface QuizResult {
   tips: string[];
 }
 
+// Tips
+export type TipCategory = 'preparation' | 'pregnancy' | 'birth' | 'newborn';
+
+export interface TipItem {
+  slug: string;
+  titleKo: string;
+  summaryKo: string;
+  category: TipCategory;
+  icon: string;
+  body: string[];           // 행동 중심 본문 bullet
+  dadActions: string[];     // 남편이 해야 할 것
+  relatedSlugs?: string[];  // 연관 꿀팁
+  viewCount?: number;
+}
+
+// Fertility
+export interface FertilityStep {
+  order: number;
+  labelKo: string;
+  descriptionKo: string;
+}
+
+export interface FertilitySection {
+  slug: string;
+  titleKo: string;
+  summaryKo: string;
+  icon: string;
+  body: string[];
+  steps?: FertilityStep[];
+  dadActions: string[];
+  govSupportSlug?: string;  // 연관 정부지원
+}
+
 export type GovStage = 'pre-pregnancy' | 'pregnant' | 'newborn' | 'infant';
 export type GovCategory = 'health' | 'finance' | 'leave' | 'care';
 

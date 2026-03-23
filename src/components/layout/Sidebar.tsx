@@ -2,15 +2,18 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, CheckSquare, Lightbulb, Users, User, Baby, Landmark } from 'lucide-react';
+import { BookOpen, CheckSquare, Lightbulb, Users, User, Baby, Landmark, Sparkles, Heart, Bot } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { href: '/guide',       icon: BookOpen,   label: '단계별 가이드' },
+  { href: '/guide',       icon: BookOpen,    label: '단계별 가이드' },
   { href: '/checklist',   icon: CheckSquare, label: '체크리스트' },
-  { href: '/situations',  icon: Lightbulb,  label: '상황별 가이드' },
-  { href: '/gov-support', icon: Landmark,   label: '정부 지원', badge: '2026' },
-  { href: '/community',   icon: Users,      label: '커뮤니티' },
-  { href: '/profile',     icon: User,       label: '내 정보' },
+  { href: '/tips',        icon: Sparkles,    label: '임신 꿀팁' },
+  { href: '/fertility',   icon: Heart,       label: '난임 가이드' },
+  { href: '/situations',  icon: Lightbulb,   label: '상황별 가이드' },
+  { href: '/gov-support', icon: Landmark,    label: '정부 지원', badge: '2026' },
+  { href: '/ai-guide',    icon: Bot,         label: 'AI 맞춤 플랜', badge: 'AI' },
+  { href: '/community',   icon: Users,       label: '커뮤니티' },
+  { href: '/profile',     icon: User,        label: '내 정보' },
 ];
 
 export default function Sidebar() {

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, CheckSquare, Users, Lightbulb, Landmark, Zap, BookOpen } from 'lucide-react';
+import { ArrowRight, CheckSquare, Users, Lightbulb, Landmark, Zap, BookOpen, Sparkles, Heart, Bot } from 'lucide-react';
 
 const FEATURES = [
   { icon: BookOpen,   title: '단계별 가이드',    desc: '임신 전부터 영아기까지 아빠 행동 매뉴얼', href: '/guide' },
@@ -131,6 +131,41 @@ export default function LandingPage() {
               </Link>
             ))}
           </div>
+        </section>
+
+        {/* 새 기능: 꿀팁 + 난임 + AI */}
+        <section className="px-5 py-4 bg-white border-b border-slate-100 space-y-2">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3">새로운 기능</p>
+          <Link href="/tips" className="flex items-center gap-3 bg-amber-50 border border-amber-100 rounded-2xl px-4 py-3 hover:border-amber-200 transition-all active:scale-[0.98]">
+            <div className="w-9 h-9 bg-amber-500 rounded-xl flex items-center justify-center flex-shrink-0">
+              <Sparkles size={18} className="text-white" />
+            </div>
+            <div className="flex-1">
+              <p className="font-black text-sm text-slate-800">임신 꿀팁</p>
+              <p className="text-xs text-slate-500">바로 써먹는 아빠 실전 가이드 16선</p>
+            </div>
+            <ArrowRight size={16} className="text-slate-300" />
+          </Link>
+          <Link href="/fertility" className="flex items-center gap-3 bg-rose-50 border border-rose-100 rounded-2xl px-4 py-3 hover:border-rose-200 transition-all active:scale-[0.98]">
+            <div className="w-9 h-9 bg-rose-500 rounded-xl flex items-center justify-center flex-shrink-0">
+              <Heart size={18} className="text-white" />
+            </div>
+            <div className="flex-1">
+              <p className="font-black text-sm text-slate-800">난임 가이드</p>
+              <p className="text-xs text-slate-500">검사부터 치료까지 — 남편이 할 일</p>
+            </div>
+            <ArrowRight size={16} className="text-slate-300" />
+          </Link>
+          <Link href="/ai-guide" className="flex items-center gap-3 bg-brand-50 border border-brand-100 rounded-2xl px-4 py-3 hover:border-brand-200 transition-all active:scale-[0.98]">
+            <div className="w-9 h-9 bg-gradient-to-br from-brand-700 to-brand-500 rounded-xl flex items-center justify-center flex-shrink-0">
+              <Bot size={18} className="text-white" />
+            </div>
+            <div className="flex-1">
+              <p className="font-black text-sm text-slate-800">AI 맞춤 플랜</p>
+              <p className="text-xs text-slate-500">내 상황에 맞는 가이드를 AI가 알려줘</p>
+            </div>
+            <span className="text-[9px] font-black bg-brand-500 text-white px-1.5 py-0.5 rounded-full">AI</span>
+          </Link>
         </section>
 
         {/* 아빠 레벨 테스트 배너 */}
