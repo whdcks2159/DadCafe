@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Baby, CheckSquare, Users, Lightbulb } from 'lucide-react';
+import { ArrowRight, Baby, CheckSquare, Users, Lightbulb, Landmark, Zap } from 'lucide-react';
 
 const FEATURES = [
   { icon: CheckSquare, title: '단계별 체크리스트', desc: '지금 당장 해야 할 일만 알려드려요' },
@@ -82,6 +82,29 @@ export default function LandingPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* 정부 지원 배너 */}
+      <section className="mx-6 mb-4">
+        <Link
+          href="/gov-support"
+          className="flex items-center gap-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-4 text-white hover:opacity-95 transition-opacity active:scale-[0.98]"
+        >
+          <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+            <Landmark size={20} className="text-white" />
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-0.5">
+              <p className="font-black text-sm">정부 지원 한눈에 보기</p>
+              <span className="text-[9px] font-black bg-white/20 px-1.5 py-0.5 rounded-full">2026</span>
+            </div>
+            <p className="text-xs text-blue-100">신청 안 하면 못 받는다 — 지금 확인해라</p>
+          </div>
+          <div className="flex items-center gap-1">
+            <Zap size={12} className="text-yellow-300" />
+            <ArrowRight size={16} />
+          </div>
+        </Link>
       </section>
 
       {/* CTA Banner */}

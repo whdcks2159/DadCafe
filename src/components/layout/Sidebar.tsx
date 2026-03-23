@@ -2,14 +2,15 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, CheckSquare, Lightbulb, Users, User, Baby } from 'lucide-react';
+import { BookOpen, CheckSquare, Lightbulb, Users, User, Baby, Landmark } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { href: '/guide',      icon: BookOpen,    label: '단계별 가이드' },
-  { href: '/checklist',  icon: CheckSquare, label: '체크리스트' },
-  { href: '/situations', icon: Lightbulb,   label: '상황별 가이드' },
-  { href: '/community',  icon: Users,       label: '커뮤니티' },
-  { href: '/profile',    icon: User,        label: '내 정보' },
+  { href: '/guide',       icon: BookOpen,   label: '단계별 가이드' },
+  { href: '/checklist',   icon: CheckSquare, label: '체크리스트' },
+  { href: '/situations',  icon: Lightbulb,  label: '상황별 가이드' },
+  { href: '/gov-support', icon: Landmark,   label: '정부 지원', badge: '2026' },
+  { href: '/community',   icon: Users,      label: '커뮤니티' },
+  { href: '/profile',     icon: User,       label: '내 정보' },
 ];
 
 export default function Sidebar() {
@@ -30,7 +31,7 @@ export default function Sidebar() {
 
       {/* Nav */}
       <nav className="flex-1 px-3 py-4 space-y-1">
-        {NAV_ITEMS.map(({ href, icon: Icon, label }) => {
+        {NAV_ITEMS.map(({ href, icon: Icon, label, badge }) => {
           const active = pathname === href || pathname.startsWith(href + '/');
           return (
             <Link
@@ -44,9 +45,14 @@ export default function Sidebar() {
             >
               <Icon size={18} strokeWidth={active ? 2.5 : 1.8} />
               <span className="text-sm">{label}</span>
-              {active && (
-                <div className="ml-auto w-1.5 h-1.5 rounded-full bg-brand-500" />
-              )}
+              <div className="ml-auto flex items-center gap-1">
+                {badge && !active && (
+                  <span className="text-[9px] font-black bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded-full">
+                    {badge}
+                  </span>
+                )}
+                {active && <div className="w-1.5 h-1.5 rounded-full bg-brand-500" />}
+              </div>
             </Link>
           );
         })}

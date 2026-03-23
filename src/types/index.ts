@@ -109,3 +109,32 @@ export interface QuizResult {
   badgeEmoji: string;
   tips: string[];
 }
+
+export type GovStage = 'pre-pregnancy' | 'pregnant' | 'newborn' | 'infant';
+export type GovCategory = 'health' | 'finance' | 'leave' | 'care';
+
+export interface GovFlowStep {
+  order: number;
+  labelKo: string;
+}
+
+export interface GovSupportItem {
+  slug: string;
+  titleKo: string;
+  summaryKo: string;
+  icon: string;
+  stage: GovStage[];
+  category: GovCategory;
+  amount: string;
+  targetKo: string;
+  howToKo: string;
+  documents: string[];
+  applyUrl: string;
+  applyLabel: string;
+  deadline?: string;
+  flow: GovFlowStep[];
+  dadActions: string[];
+  isUrgent?: boolean;
+  minWeek?: number;
+  maxWeek?: number;
+}
