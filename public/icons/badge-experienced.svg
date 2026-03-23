@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Crown base -->
+  <path d="M8 34 L8 24 L16 30 L24 14 L32 30 L40 24 L40 34 Z"/>
+  <!-- Crown base bar -->
+  <rect x="8" y="34" width="32" height="6" rx="2"/>
+  <!-- Gems -->
+  <circle cx="24" cy="34" r="2" fill="#334155" stroke="none"/>
+  <circle cx="14" cy="34" r="1.5" fill="#334155" stroke="none"/>
+  <circle cx="34" cy="34" r="1.5" fill="#334155" stroke="none"/>
+  <!-- Top pearls -->
+  <circle cx="24" cy="12" r="2"/>
+  <circle cx="16" cy="28" r="1.5"/>
+  <circle cx="32" cy="28" r="1.5"/>
+</svg>

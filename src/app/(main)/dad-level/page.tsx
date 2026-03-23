@@ -46,7 +46,7 @@ export default function DadLevelPage() {
       <>
         <TopHeader title="아빠 레벨 테스트" />
         <div className="px-5 py-10 flex flex-col items-center text-center">
-          <span className="text-7xl mb-5">🧪</span>
+          <img src="/icons/badge-beginner.svg" alt="아빠 레벨 테스트" className="w-20 h-20 mb-5 mx-auto" />
           <h1 className="text-2xl font-black text-slate-800 mb-3">
             나는 어떤 아빠일까?
           </h1>
@@ -55,9 +55,14 @@ export default function DadLevelPage() {
             솔직하게 답할수록 도움이 됩니다.
           </p>
           <div className="w-full space-y-3 mb-8 text-left">
-            {['준비 중인 아빠 🌱', '준비된 아빠 💪', '베테랑 아빠 ⭐'].map((level) => (
-              <div key={level} className="flex items-center gap-3 bg-slate-50 rounded-2xl px-4 py-3">
-                <span className="text-sm font-bold text-slate-700">{level}</span>
+            {[
+              { label: '준비 중인 아빠', icon: '/icons/badge-beginner.svg' },
+              { label: '준비된 아빠', icon: '/icons/badge-ready.svg' },
+              { label: '베테랑 아빠', icon: '/icons/badge-experienced.svg' },
+            ].map(({ label, icon }) => (
+              <div key={label} className="flex items-center gap-3 bg-slate-50 rounded-2xl px-4 py-3">
+                <img src={icon} alt={label} className="w-8 h-8 flex-shrink-0" />
+                <span className="text-sm font-bold text-slate-700">{label}</span>
               </div>
             ))}
           </div>
@@ -112,7 +117,7 @@ export default function DadLevelPage() {
       <>
         <TopHeader title="결과" />
         <div className="px-5 py-10 flex flex-col items-center text-center">
-          <div className="text-8xl mb-4 animate-pop">{res.badgeEmoji}</div>
+          <div className="mb-4 animate-pop"><img src={res.badgeEmoji} alt={res.titleKo} className="w-28 h-28 mx-auto" /></div>
           <p className="text-xs font-bold text-brand-500 mb-2 uppercase tracking-wide">
             나의 아빠 레벨
           </p>

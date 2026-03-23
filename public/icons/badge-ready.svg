@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Flexed arm bicep -->
+  <path d="M10 32 C8 28 10 22 14 20 L18 18 C20 16 24 12 28 10 C32 8 36 10 36 14 C36 18 32 20 30 22"/>
+  <!-- Lower arm -->
+  <path d="M30 22 C32 26 32 30 30 34 C28 38 24 40 20 40 C16 40 12 38 10 34 C8 30 8 28 10 26 L14 24"/>
+  <!-- Fist/hand -->
+  <path d="M14 24 C16 22 18 22 20 24 C22 26 22 28 20 30 C18 32 16 32 14 30 C12 28 12 26 14 24Z"/>
+  <!-- Muscle bump -->
+  <path d="M20 14 C22 12 26 12 28 16 C30 20 28 24 24 24"/>
+</svg>

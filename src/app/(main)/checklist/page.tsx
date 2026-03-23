@@ -138,7 +138,7 @@ export default function ChecklistPage() {
                 className="w-full flex items-center justify-between px-4 py-3"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-lg">{stage?.emoji}</span>
+                  {stage?.emoji && <img src={stage.emoji} alt={stage.labelKo} className="w-6 h-6" />}
                   <div className="text-left">
                     <p className="font-bold text-sm text-slate-800">{category.titleKo}</p>
                     <p className="text-xs text-slate-400">

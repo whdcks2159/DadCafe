@@ -48,7 +48,7 @@ export default function SituationsPage() {
               href={`/situations/${situation.slug}`}
               className="bg-white rounded-2xl border border-slate-100 p-4 hover:border-brand-200 hover:shadow-sm transition-all active:scale-95"
             >
-              <span className="text-3xl block mb-2">{situation.emoji}</span>
+              <img src={situation.emoji} alt={situation.titleKo} className="w-10 h-10 mb-2" />
               <p className="font-bold text-sm text-slate-800 leading-snug mb-1">
                 {situation.titleKo}
               </p>

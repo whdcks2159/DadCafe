@@ -19,7 +19,7 @@ export default function StageDetailPage({ params }: { params: { stage: string } 
       {/* Stage Hero */}
       <div className={`${stage.bgClass} border-b-2 px-5 py-6`}>
         <div className="flex items-center gap-3">
-          <span className="text-5xl">{stage.emoji}</span>
+          <img src={stage.emoji} alt={stage.labelKo} className="w-14 h-14" />
           <div>
             <p className="text-xl font-black text-slate-800">{stage.labelKo}</p>
             <p className="text-sm text-slate-600 mt-0.5">{stage.descriptionKo}</p>

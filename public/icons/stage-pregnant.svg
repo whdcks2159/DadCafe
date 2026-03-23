@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Head -->
+  <circle cx="24" cy="10" r="6"/>
+  <!-- Pregnant body silhouette -->
+  <path d="M18 16 C14 18 13 22 13 26 C13 32 15 36 18 38 L30 38 C33 36 35 32 35 26 C35 20 31 16 27 16"/>
+  <!-- Baby bump curve -->
+  <path d="M18 22 C18 28 22 34 28 34"/>
+  <!-- Small heart for baby -->
+  <path d="M23 27c0-1.5-2-1.5-2 0 0 1.5 2 3 2 3s2-1.5 2-3c0-1.5-2-1.5-2 0z" stroke-width="1.5"/>
+</svg>

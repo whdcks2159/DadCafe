@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Sprout stem -->
+  <line x1="24" y1="38" x2="24" y2="22"/>
+  <!-- Left leaf -->
+  <path d="M24 28 C20 26 14 22 16 16 C18 20 22 24 24 28Z"/>
+  <!-- Right leaf -->
+  <path d="M24 24 C28 22 34 18 32 12 C30 16 26 20 24 24Z"/>
+  <!-- Ground -->
+  <path d="M16 38 Q24 36 32 38"/>
+  <!-- Soil mound -->
+  <path d="M14 40 Q24 38 34 40"/>
+</svg>

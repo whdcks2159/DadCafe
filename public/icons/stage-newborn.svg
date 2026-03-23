@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Swaddle wrap -->
+  <path d="M12 28 C12 20 16 14 24 14 C32 14 36 20 36 28 L34 38 C34 40 32 42 30 42 L18 42 C16 42 14 40 14 38 Z"/>
+  <!-- Baby face -->
+  <circle cx="24" cy="20" r="8"/>
+  <!-- Eyes -->
+  <circle cx="21" cy="19" r="1" fill="#334155" stroke="none"/>
+  <circle cx="27" cy="19" r="1" fill="#334155" stroke="none"/>
+  <!-- Smile -->
+  <path d="M21 23 Q24 26 27 23"/>
+  <!-- Swaddle folds -->
+  <path d="M14 30 C17 28 20 30 24 30 C28 30 31 28 34 30"/>
+</svg>

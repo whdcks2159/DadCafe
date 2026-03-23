@@ -5,7 +5,7 @@ export const STAGES: Stage[] = [
     slug: 'pre-pregnancy',
     labelKo: '임신 전',
     descriptionKo: '아빠가 되기 위한 첫 걸음',
-    emoji: '💍',
+    emoji: '/icons/stage-pre-pregnancy.svg',
     colorClass: 'text-green-700',
     bgClass: 'bg-green-50 border-green-200',
     topics: [
@@ -85,7 +85,7 @@ export const STAGES: Stage[] = [
     slug: 'pregnant',
     labelKo: '임신 중',
     descriptionKo: '10개월 동안 아빠의 역할',
-    emoji: '📋',
+    emoji: '/icons/stage-pregnant.svg',
     colorClass: 'text-amber-700',
     bgClass: 'bg-amber-50 border-amber-200',
     topics: [
@@ -200,7 +200,7 @@ export const STAGES: Stage[] = [
     slug: 'newborn',
     labelKo: '신생아',
     descriptionKo: '출생 후 100일까지',
-    emoji: '🍼',
+    emoji: '/icons/stage-newborn.svg',
     colorClass: 'text-pink-700',
     bgClass: 'bg-pink-50 border-pink-200',
     topics: [
@@ -318,7 +318,7 @@ export const STAGES: Stage[] = [
     slug: 'toddler',
     labelKo: '영아기 (0~24개월)',
     descriptionKo: '걷고 말하는 아이와 함께',
-    emoji: '👟',
+    emoji: '/icons/stage-toddler.svg',
     colorClass: 'text-purple-700',
     bgClass: 'bg-purple-50 border-purple-200',
     topics: [

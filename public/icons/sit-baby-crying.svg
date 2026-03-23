@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Baby face -->
+  <circle cx="24" cy="22" r="14"/>
+  <!-- Closed crying eyes -->
+  <path d="M18 19 Q20 17 22 19"/>
+  <path d="M26 19 Q28 17 30 19"/>
+  <!-- Frowning mouth -->
+  <path d="M18 28 Q24 24 30 28"/>
+  <!-- Tears -->
+  <path d="M18 22 L16 28 Q16 30 18 30"/>
+  <path d="M30 22 L32 28 Q32 30 30 30"/>
+  <!-- Sound waves -->
+  <path d="M8 14 Q6 18 8 22" stroke-width="1.5"/>
+  <path d="M40 14 Q42 18 40 22" stroke-width="1.5"/>
+</svg>

@@ -5,7 +5,7 @@ export const SITUATIONS: SituationGuide[] = [
     slug: 'morning-sickness',
     titleKo: '아내가 입덧이 심해요',
     summaryKo: '입덧으로 힘들어하는 아내를 위해 아빠가 할 수 있는 것들',
-    emoji: '💊',
+    emoji: '/icons/sit-morning-sickness.svg',
     tag: 'pregnancy',
     steps: [
       { order: 1, titleKo: '입덧 유발 요인 파악', descriptionKo: '기름진 음식, 강한 냄새가 입덧을 악화시킵니다. 아내에게 어떤 냄새·음식이 힘든지 직접 물어보세요.' },
@@ -30,7 +30,7 @@ export const SITUATIONS: SituationGuide[] = [
     slug: 'hospital-bag',
     titleKo: '입원 가방 어떻게 싸요?',
     summaryKo: '출산 당일 당황하지 않기 위한 입원 가방 완벽 가이드',
-    emoji: '🎒',
+    emoji: '/icons/sit-hospital-bag.svg',
     tag: 'hospital',
     steps: [
       { order: 1, titleKo: '36주부터 준비 시작', descriptionKo: '예정일보다 일찍 진통이 올 수 있습니다. 36주부터 가방을 미리 싸두고 현관 옆에 놓으세요.' },
@@ -54,7 +54,7 @@ export const SITUATIONS: SituationGuide[] = [
     slug: 'baby-crying',
     titleKo: '아기가 이유 없이 울어요',
     summaryKo: '신생아 울음의 이유와 5S 달래기 기법',
-    emoji: '🍼',
+    emoji: '/icons/sit-baby-crying.svg',
     tag: 'newborn',
     steps: [
       { order: 1, titleKo: '기저귀 먼저 확인', descriptionKo: '가장 먼저 기저귀를 확인하세요. 대소변 여부를 체크합니다.' },
@@ -77,7 +77,7 @@ export const SITUATIONS: SituationGuide[] = [
     slug: 'postpartum-depression',
     titleKo: '아내가 산후우울증 같아요',
     summaryKo: '산후우울증을 이해하고 아빠가 할 수 있는 실질적인 지원',
-    emoji: '💬',
+    emoji: '/icons/sit-postpartum.svg',
     tag: 'relationship',
     steps: [
       { order: 1, titleKo: '증상 인지하기', descriptionKo: '출산 후 2주 이상 지속되는 무기력, 잦은 눈물, 아기에 대한 무관심, 수면 장애는 전문 도움이 필요합니다.' },
@@ -101,7 +101,7 @@ export const SITUATIONS: SituationGuide[] = [
     slug: 'first-fever',
     titleKo: '아기에게 처음 열이 났어요',
     summaryKo: '소아 발열 대응법과 응급 판단 기준',
-    emoji: '🌡️',
+    emoji: '/icons/sit-fever.svg',
     tag: 'newborn',
     steps: [
       { order: 1, titleKo: '체온 정확히 재기', descriptionKo: '귀 체온계로 측정합니다. 38도 이상이면 발열입니다.' },
@@ -125,7 +125,7 @@ export const SITUATIONS: SituationGuide[] = [
     slug: 'sleep-deprivation',
     titleKo: '둘 다 잠을 못 자고 있어요',
     summaryKo: '신생아 수면 부족 상황에서 부부가 함께 버티는 법',
-    emoji: '⏰',
+    emoji: '/icons/sit-sleep.svg',
     tag: 'newborn',
     steps: [
       { order: 1, titleKo: '교대 담당 시스템 만들기', descriptionKo: '예) 저녁 9시~새벽 2시는 아빠 담당, 새벽 2시~아침은 엄마 담당. 블록 단위로 수면을 확보하세요.' },

@@ -20,7 +20,7 @@ export default function GuidePage() {
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <span className="text-4xl">{stage.emoji}</span>
+                  <img src={stage.emoji} alt={stage.labelKo} className="w-10 h-10" />
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <span className={`text-xs font-bold px-2 py-0.5 rounded-full bg-white ${stage.colorClass}`}>

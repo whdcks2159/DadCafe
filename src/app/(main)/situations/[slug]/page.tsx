@@ -17,7 +17,7 @@ export default function SituationDetailPage({ params }: { params: { slug: string
 
       {/* Header */}
       <div className="px-5 py-6 border-b border-slate-100">
-        <div className="text-5xl mb-3">{situation.emoji}</div>
+        <div className="mb-3"><img src={situation.emoji} alt={situation.titleKo} className="w-14 h-14" /></div>
         <span className="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-medium">
           {SITUATION_TAG_LABELS[situation.tag]}
         </span>

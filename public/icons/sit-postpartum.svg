@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Left person head -->
+  <circle cx="16" cy="10" r="5"/>
+  <!-- Right person head -->
+  <circle cx="32" cy="10" r="5"/>
+  <!-- Hugging arms -->
+  <path d="M11 15 C8 18 8 24 10 28 C12 32 16 34 24 34 C32 34 36 32 38 28 C40 24 40 18 37 15"/>
+  <!-- Embrace lines -->
+  <path d="M16 15 C16 20 20 26 24 28 C28 26 32 20 32 15"/>
+  <!-- Heart in center -->
+  <path d="M24 20c0-2-3-2-3 0 0 2 3 4 3 4s3-2 3-4c0-2-3-2-3 0z"/>
+</svg>

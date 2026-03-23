@@ -6,9 +6,9 @@ import Link from 'next/link';
 import { LogIn, LogOut, ChevronRight, Star, Trophy, BookOpen, BarChart2 } from 'lucide-react';
 
 const LEVEL_LABELS = {
-  beginner:    { label: '준비 중인 아빠', emoji: '🌱', color: 'text-green-600 bg-green-50' },
-  ready:       { label: '준비된 아빠',    emoji: '💪', color: 'text-blue-600 bg-blue-50' },
-  experienced: { label: '베테랑 아빠',    emoji: '⭐', color: 'text-amber-600 bg-amber-50' },
+  beginner:    { label: '준비 중인 아빠', emoji: '/icons/badge-beginner.svg',    color: 'text-green-600 bg-green-50' },
+  ready:       { label: '준비된 아빠',    emoji: '/icons/badge-ready.svg',       color: 'text-blue-600 bg-blue-50' },
+  experienced: { label: '베테랑 아빠',    emoji: '/icons/badge-experienced.svg', color: 'text-amber-600 bg-amber-50' },
 };
 
 const MENU_ITEMS = [
@@ -88,8 +88,9 @@ export default function ProfilePage() {
             </p>
             <p className="text-xs text-slate-400">{user.email}</p>
             {levelInfo && (
-              <span className={`inline-block mt-1 text-xs font-bold px-2 py-0.5 rounded-full ${levelInfo.color}`}>
-                {levelInfo.emoji} {levelInfo.label}
+              <span className={`inline-flex items-center gap-1 mt-1 text-xs font-bold px-2 py-0.5 rounded-full ${levelInfo.color}`}>
+                <img src={levelInfo.emoji} alt={levelInfo.label} className="w-4 h-4" />
+                {levelInfo.label}
               </span>
             )}
           </div>
@@ -100,7 +101,7 @@ export default function ProfilePage() {
           {[
             { label: '활동일', value: `${joinedDays}일` },
             { label: '작성글', value: `${userProfile?.postCount ?? 0}개` },
-            { label: '레벨', value: levelInfo?.emoji ?? '미측정' },
+            { label: '레벨', value: levelInfo?.label ?? '미측정' },
           ].map(({ label, value }) => (
             <div key={label} className="bg-slate-50 rounded-2xl p-3 text-center">
               <p className="font-black text-slate-800">{value}</p>
