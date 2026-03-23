@@ -24,8 +24,8 @@ export default function Sidebar() {
           <Baby size={18} className="text-white" />
         </div>
         <div>
-          <p className="font-black text-sm text-slate-800 leading-tight">DadCafe</p>
-          <p className="text-[10px] text-slate-400">애는 우리 함께 키워</p>
+          <p className="font-black text-sm text-slate-800 leading-tight">파파플랜</p>
+          <p className="text-[10px] text-slate-400">아빠의 육아 플랜, 여기서 시작</p>
         </div>
       </Link>
 
@@ -60,7 +60,7 @@ export default function Sidebar() {
 
       {/* Footer */}
       <div className="px-6 py-4 border-t border-slate-100">
-        <p className="text-[10px] text-slate-400">© 2024 DadCafe</p>
+        <p className="text-[10px] text-slate-400">© 2026 파파플랜</p>
       </div>
     </aside>
   );

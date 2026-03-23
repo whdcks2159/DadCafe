@@ -88,7 +88,7 @@ export default function ChecklistPage() {
       <TopHeader title="체크리스트" />
 
       {/* Progress Summary */}
-      <div className="px-4 py-4 bg-gradient-to-r from-brand-500 to-orange-500 text-white">
+      <div className="px-4 py-4 bg-gradient-to-r from-brand-700 to-brand-500 text-white">
         <div className="flex items-end justify-between mb-2">
           <div>
             <p className="text-xs text-white/80">전체 진행률</p>

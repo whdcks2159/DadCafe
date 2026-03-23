@@ -8,12 +8,12 @@ const AuthProvider = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: '애는 우리 함께 키워 — DadCafe',
+  title: '파파플랜 — 아빠의 육아 플랜, 여기서 시작',
   description: '남편을 위한 임신·출산·육아 가이드 플랫폼',
 };
 
 export const viewport: Viewport = {
-  themeColor: '#f97316',
+  themeColor: '#1d4ed8',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

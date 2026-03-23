@@ -62,7 +62,7 @@ export default function GovSupportDetailPage({ params }: { params: { slug: strin
       <div className="px-5 py-5 space-y-6">
 
         {/* 남편 행동 가이드 — 최상단 노출 */}
-        <section className="bg-gradient-to-br from-brand-500 to-orange-500 rounded-2xl p-4 text-white">
+        <section className="bg-gradient-to-br from-brand-700 to-brand-500 rounded-2xl p-4 text-white">
           <div className="flex items-center gap-2 mb-3">
             <User size={16} />
             <p className="font-black text-sm">남편이 지금 해야 할 행동</p>

@@ -70,7 +70,7 @@ export const QUIZ_RESULTS: Record<DadLevel, QuizResult> = {
   beginner: {
     level: 'beginner',
     titleKo: '준비 중인 아빠',
-    descriptionKo: '아직 배움이 필요하지만, 여기 있다는 것 자체가 시작입니다. DadCafe와 함께 하나씩 배워가요!',
+    descriptionKo: '아직 배움이 필요하지만, 여기 있다는 것 자체가 시작입니다. 파파플랜와 함께 하나씩 배워가요!',
     badgeEmoji: '/icons/badge-beginner.svg',
     tips: [
       '매일 10분, 아내와 "오늘 어땠어?" 대화 나누기',
@@ -96,7 +96,7 @@ export const QUIZ_RESULTS: Record<DadLevel, QuizResult> = {
     badgeEmoji: '/icons/badge-experienced.svg',
     tips: [
       '커뮤니티에 경험담 나누기',
-      '주변 예비 아빠에게 DadCafe 추천하기',
+      '주변 예비 아빠에게 파파플랜 추천하기',
       '다음 단계 가이드로 계속 성장하기',
     ],
   },

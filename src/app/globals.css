@@ -4,12 +4,12 @@
 @tailwind utilities;
 
 :root {
-  --brand: #f97316;
+  --brand: #1d4ed8;
 }
 
 body {
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: #f8fafc;
+  background-color: #f1f5f9;
   color: #1e293b;
   -webkit-font-smoothing: antialiased;
 }
