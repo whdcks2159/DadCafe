@@ -24,8 +24,8 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
     questionKo: '배우자 출산휴가는 며칠인가요?',
     options: [
       { id: 'q3a', textKo: '3일', score: 0 },
-      { id: 'q3b', textKo: '5일', score: 1 },
-      { id: 'q3c', textKo: '10일 (유급)', score: 2 },
+      { id: 'q3b', textKo: '10일', score: 1 },
+      { id: 'q3c', textKo: '20일 (유급)', score: 2 },
     ],
   },
   {

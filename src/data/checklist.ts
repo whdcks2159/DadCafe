@@ -21,7 +21,7 @@ export const CHECKLIST_CATEGORIES: ChecklistCategory[] = [
       { id: 'c6', textKo: '출산 예상 비용 파악하기', priority: 'high' },
       { id: 'c7', textKo: '육아 예산 계획 세우기', priority: 'high' },
       { id: 'c8', textKo: '생명보험 / 실손보험 점검', priority: 'medium' },
-      { id: 'c9', textKo: '정부 지원금 제도 알아보기', priority: 'medium', noteKo: '아동수당, 영아수당, 첫만남이용권 등' },
+      { id: 'c9', textKo: '정부 지원금 제도 알아보기', priority: 'medium', noteKo: '아동수당, 부모급여, 첫만남이용권 등' },
     ],
   },
   {
@@ -59,8 +59,8 @@ export const CHECKLIST_CATEGORIES: ChecklistCategory[] = [
       { id: 'n2', textKo: '건강보험 피부양자 등록', priority: 'high' },
       { id: 'n3', textKo: '첫만남이용권 신청 (200만원)', priority: 'high' },
       { id: 'n4', textKo: '아동수당 신청 (월 10만원)', priority: 'high' },
-      { id: 'n5', textKo: '영아수당 신청 (월 30만원)', priority: 'high' },
-      { id: 'n6', textKo: '배우자 출산휴가 사용', priority: 'high' },
+      { id: 'n5', textKo: '부모급여 신청 (0세 월 100만원)', priority: 'high' },
+      { id: 'n6', textKo: '배우자 출산휴가 사용 (20일)', priority: 'high' },
     ],
   },
   {
