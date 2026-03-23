@@ -9,8 +9,8 @@ import type { DiaryEntry } from '@/types';
 import { Plus, BookHeart, ChevronRight, Camera, Video, Sparkles } from 'lucide-react';
 
 const EMOTION_LABELS: Record<string, string> = {
-  love: '❤️ 사랑스러워', proud: '🏆 뿌듯해', tired: '😴 지쳐',
-  worried: '😟 걱정돼', happy: '😄 행복해', grateful: '🙏 감사해',
+  love: '사랑스러워', proud: '뿌듯해', tired: '지쳐',
+  worried: '걱정돼', happy: '행복해', grateful: '감사해',
 };
 
 const ACTION_LABELS: Record<string, string> = {

@@ -7,7 +7,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '배란일 계산, 남편도 알아야 한다',
     summaryKo: '생리 주기만 알면 5분 안에 계산 가능',
     category: 'preparation',
-    icon: '📅',
+    icon: '',
     body: [
       '배란일 = 다음 생리 예정일에서 14일을 뺀 날',
       '가임기는 배란일 기준 전후 2~3일 포함 총 5~6일',
@@ -25,7 +25,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '엽산은 아빠도 먹어야 한다',
     summaryKo: '임신 3개월 전부터 아빠도 복용 — 정자 DNA 보호',
     category: 'preparation',
-    icon: '💊',
+    icon: '',
     body: [
       '엽산은 태아 신경관 결손을 예방하는 필수 영양소다',
       '아내뿐 아니라 남편도 하루 400mcg 복용 권장 (임신 전 3개월~)',
@@ -43,7 +43,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '임신 전 3개월이 결정한다',
     summaryKo: '정자는 생성까지 72일 — 지금 생활습관이 아이 건강을 바꾼다',
     category: 'preparation',
-    icon: '🏃',
+    icon: '',
     body: [
       '정자 생성 주기는 약 72일 — 지금 금연·금주 시작해야 임신 시점에 효과가 있다',
       '사우나·탕목욕·타이트한 속옷은 고환 온도를 높여 정자 질을 떨어뜨린다',
@@ -61,7 +61,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '임신 준비 중 아내 스트레스가 제일 위험하다',
     summaryKo: '스트레스 호르몬은 배란을 억제한다 — 남편이 환경을 만들어야 한다',
     category: 'preparation',
-    icon: '🧘',
+    icon: '',
     body: [
       '코르티솔(스트레스 호르몬) 과다는 배란 주기를 불규칙하게 만든다',
       '"왜 아직 안 돼?"라는 말은 절대 금지 — 압박이 스트레스를 준다',
@@ -81,7 +81,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '입덧 심하면 이렇게 해라',
     summaryKo: '아내가 참는 게 아니다 — 남편이 환경을 바꿔야 한다',
     category: 'pregnancy',
-    icon: '🤢',
+    icon: '',
     body: [
       '입덧은 호르몬 반응이다 — 의지로 참을 수 없다. "조금만 참아"는 절대 금지',
       '강한 냄새(음식·향수)가 입덧을 악화시킨다 — 집에서 강한 냄새 음식 요리 자제',
@@ -100,7 +100,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '병원 동행, 이 타이밍은 절대 빠지지 마라',
     summaryKo: '14번 검진 중 남편이 꼭 함께해야 할 3번이 있다',
     category: 'pregnancy',
-    icon: '🏥',
+    icon: '',
     body: [
       '1순위: 첫 초음파 (5~6주) — 심장 소리 처음 듣는 순간, 아내에게 가장 필요한 타이밍',
       '2순위: 정밀 초음파 (20주) — 태아 기형 여부 확인, 결과 함께 이해해야 한다',
@@ -118,7 +118,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '임신 중 아내가 갑자기 울면 이렇게 해라',
     summaryKo: '호르몬 롤러코스터 — 공감이 정답이다',
     category: 'pregnancy',
-    icon: '🫂',
+    icon: '',
     body: [
       '임신 중 호르몬 변화로 감정 기복이 심해지는 것은 정상이다',
       '"왜 울어?" "별것도 아닌데" — 이 말이 가장 위험하다',
@@ -136,7 +136,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '임신 중 먹으면 안 되는 것 vs 먹어야 하는 것',
     summaryKo: '남편이 식단 관리를 대신 챙겨야 한다',
     category: 'pregnancy',
-    icon: '🥗',
+    icon: '',
     body: [
       '금지: 날 것(회·육회), 알코올, 카페인 과다(하루 200mg 이하), 리스테리아균 위험 델리미트·훈제 연어',
       '권장: 철분 (적색육·시금치), 칼슘 (우유·두부), DHA (등 푸른 생선 주 2회)',
@@ -156,7 +156,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '입원 가방은 36주에 현관 옆에 두어야 한다',
     summaryKo: '진통은 예고 없이 온다 — 준비 안 하면 당황한다',
     category: 'birth',
-    icon: '🧳',
+    icon: '',
     body: [
       '36주부터 가방을 완성해서 현관 바로 옆에 비치해라',
       '산모 필수: 수유 브라 2개, 산후 패드, 슬리퍼, 세면도구, 충전기, 간식',
@@ -175,7 +175,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '진통 시작 신호, 남편이 먼저 알아야 한다',
     summaryKo: '이 신호가 오면 병원으로 — 헷갈리면 전화해라',
     category: 'birth',
-    icon: '🚨',
+    icon: '',
     body: [
       '규칙적 진통: 10분 간격으로 자궁수축 — 병원 전화하고 이동 준비',
       '파수(양수 터짐): 따뜻한 물이 흘러내리는 느낌 — 즉시 병원으로',
@@ -194,7 +194,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '분만실에서 남편이 할 수 있는 것',
     summaryKo: '옆에 있는 것만으로 충분하지 않다 — 역할이 있다',
     category: 'birth',
-    icon: '👨‍⚕️',
+    icon: '',
     body: [
       '진통 중 손 잡고 호흡 함께하기 — 라마즈 호흡법 미리 연습해라',
       '"잘 하고 있어, 나 여기 있어"를 반복해서 말해라',
@@ -213,7 +213,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '출산휴가 20일, 다 써야 아내가 산다',
     summaryKo: '법적 권리다 — 회사 눈치 보다가 아내 무너진다',
     category: 'birth',
-    icon: '📋',
+    icon: '',
     body: [
       '2026년 기준 배우자 출산휴가 20일 전액 유급 — 출산일로부터 120일 이내 사용',
       '출산 직후 2주가 가장 중요하다 — 이 시기에 집에 있어야 한다',
@@ -233,7 +233,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '신생아 수면 패턴 — 이걸 모르면 미친다',
     summaryKo: '신생아는 2~3시간마다 깬다 — 교대 시스템이 답이다',
     category: 'newborn',
-    icon: '😴',
+    icon: '',
     body: [
       '신생아는 위가 작아 2~3시간마다 배고파 깬다 — 통잠은 4개월 이후 가능',
       '야간 담당을 블록 단위로 나눠라 (예: 밤 10시~새벽 2시 아빠 / 2시~아침 엄마)',
@@ -251,7 +251,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '아기가 이유 없이 울 때 5S 기법',
     summaryKo: '순서대로 하면 80%는 해결된다',
     category: 'newborn',
-    icon: '😭',
+    icon: '',
     body: [
       '먼저 체크: 기저귀(소변/대변) → 배고픔(마지막 수유 시간) → 트림 필요 여부',
       '5S 기법: ①Swaddle(속싸개) → ②Side(옆으로 눕히기) → ③Shush(쉬~ 소리) → ④Swing(가볍게 흔들기) → ⑤Suck(공갈젖꼭지)',
@@ -269,7 +269,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '분유 타는 법, 남편이 완벽하게 익혀라',
     summaryKo: '밤중 수유 아빠가 담당하려면 기본은 알아야 한다',
     category: 'newborn',
-    icon: '🍼',
+    icon: '',
     body: [
       '물 온도: 70도 이상 끓인 물을 40도로 식힌 후 사용 (분유 캔 기준 따르기)',
       '비율: 제품마다 다르다 — 설명서 반드시 확인, 임의로 濃度 조절 금지',
@@ -288,7 +288,7 @@ export const TIP_ITEMS: TipItem[] = [
     titleKo: '기저귀 교체, 아빠가 능숙해지면 아내가 산다',
     summaryKo: '하루 8~12번 — 남편이 절반 담당해야 한다',
     category: 'newborn',
-    icon: '👶',
+    icon: '',
     body: [
       '소변 후 30분 이내, 대변은 즉시 교체',
       '닦는 방향: 앞에서 뒤로 (여아 특히 중요 — 요도 감염 예방)',
@@ -305,22 +305,22 @@ export const TIP_ITEMS: TipItem[] = [
 ];
 
 export const TIP_CATEGORY_LABELS: Record<string, string> = {
-  preparation: '임신 준비',
-  pregnancy:   '임신 중',
-  birth:       '출산 준비',
-  newborn:     '육아 초기',
+  preparation: '',
+  pregnancy: '',
+  birth: '',
+  newborn: '',
 };
 
 export const TIP_CATEGORY_COLORS: Record<string, string> = {
-  preparation: 'bg-green-100 text-green-700',
-  pregnancy:   'bg-purple-100 text-purple-700',
-  birth:       'bg-red-100 text-red-700',
-  newborn:     'bg-amber-100 text-amber-700',
+  preparation: '',
+  pregnancy: '',
+  birth: '',
+  newborn: '',
 };
 
 export const TIP_CATEGORY_ICONS: Record<string, string> = {
-  preparation: '🌱',
-  pregnancy:   '🤰',
-  birth:       '🏥',
-  newborn:     '👶',
+  preparation: '',
+  pregnancy: '',
+  birth: '',
+  newborn: '',
 };

@@ -56,9 +56,7 @@ export default function FertilityPage() {
                 onClick={() => toggle(section.slug)}
                 className="w-full flex items-center gap-3 px-4 py-4"
               >
-                <div className="w-8 h-8 bg-brand-50 rounded-xl flex items-center justify-center text-lg flex-shrink-0">
-                  {section.icon}
-                </div>
+
                 <div className="flex-1 text-left">
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-black text-brand-500 bg-brand-50 px-1.5 py-0.5 rounded-full">
@@ -130,7 +128,6 @@ export default function FertilityPage() {
                       href={`/gov-support/${section.govSupportSlug}`}
                       className="flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-xl px-3 py-2.5 hover:border-blue-200 transition-colors"
                     >
-                      <span className="text-sm">💰</span>
                       <p className="flex-1 text-xs font-bold text-blue-700">난임 시술비 정부 지원 확인하기</p>
                       <ExternalLink size={12} className="text-blue-400" />
                     </Link>

@@ -22,7 +22,6 @@ export default function TipDetailPage({ params }: { params: { slug: string } }) 
 
       {/* 헤더 */}
       <div className="px-5 py-6 border-b border-slate-100">
-        <span className="text-4xl block mb-3">{tip.icon}</span>
         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${TIP_CATEGORY_COLORS[tip.category]}`}>
           {TIP_CATEGORY_LABELS[tip.category]}
         </span>
@@ -74,7 +73,6 @@ export default function TipDetailPage({ params }: { params: { slug: string } }) 
                   href={`/tips/${r.slug}`}
                   className="flex items-center gap-3 bg-slate-50 rounded-xl px-3 py-2.5 hover:bg-brand-50 transition-colors active:scale-[0.99]"
                 >
-                  <span className="text-xl">{r.icon}</span>
                   <p className="flex-1 text-sm font-medium text-slate-700">{r.titleKo}</p>
                   <ChevronRight size={14} className="text-slate-300" />
                 </Link>

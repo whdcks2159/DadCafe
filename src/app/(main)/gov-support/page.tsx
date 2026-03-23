@@ -97,7 +97,7 @@ export default function GovSupportPage() {
                   href={`/gov-support/${item.slug}`}
                   className="flex items-center gap-3 bg-red-50 border border-red-100 rounded-2xl px-4 py-3 hover:border-red-200 transition-all active:scale-[0.99]"
                 >
-                  <span className="text-2xl flex-shrink-0">{item.icon}</span>
+
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
                       <p className="font-bold text-sm text-slate-800">{item.titleKo}</p>
@@ -126,7 +126,7 @@ export default function GovSupportPage() {
                   href={`/gov-support/${item.slug}`}
                   className="flex items-center gap-3 bg-white border border-slate-100 rounded-2xl px-4 py-3 hover:border-blue-200 hover:shadow-sm transition-all active:scale-[0.99]"
                 >
-                  <span className="text-2xl flex-shrink-0">{item.icon}</span>
+
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
                       <p className="font-bold text-sm text-slate-800">{item.titleKo}</p>

@@ -24,7 +24,6 @@ export default function GovSupportDetailPage({ params }: { params: { slug: strin
       {/* 헤더 */}
       <div className="px-5 py-6 border-b border-slate-100">
         <div className="flex items-start gap-4 mb-3">
-          <span className="text-4xl">{item.icon}</span>
           <div className="flex-1">
             <div className="flex flex-wrap gap-1.5 mb-2">
               <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${GOV_CATEGORY_COLORS[item.category]}`}>

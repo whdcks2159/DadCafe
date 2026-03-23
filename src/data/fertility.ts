@@ -5,7 +5,7 @@ export const FERTILITY_SECTIONS: FertilitySection[] = [
     slug: 'understanding',
     titleKo: '난임이란 무엇인가',
     summaryKo: '1년 이상 시도했는데 안 된다면 — 검사받아야 할 때다',
-    icon: '🔍',
+    icon: '',
     body: [
       '난임: 피임 없이 정상적인 부부관계를 1년 이상 지속했음에도 임신이 안 되는 상태',
       '35세 이상 여성이라면 6개월 시도 후 검사 권장',
@@ -24,7 +24,7 @@ export const FERTILITY_SECTIONS: FertilitySection[] = [
     slug: 'male-exam',
     titleKo: '남성 난임 검사 — 두렵지 않다',
     summaryKo: '정액 검사 15분이면 끝난다 — 아내 혼자 다니게 하지 마라',
-    icon: '🧪',
+    icon: '',
     body: [
       '정액 검사: 정자 수·운동성·형태 확인 — 전날 금욕 2~5일 필요',
       '호르몬 검사(혈액): 남성 호르몬(테스토스테론) 수치 확인',
@@ -48,7 +48,7 @@ export const FERTILITY_SECTIONS: FertilitySection[] = [
     slug: 'female-exam',
     titleKo: '여성 난임 검사 — 남편이 같이 가야 하는 이유',
     summaryKo: '혼자 가면 무섭다 — 검사 결과를 함께 이해해야 한다',
-    icon: '🩺',
+    icon: '',
     body: [
       '호르몬 검사(혈액): AMH(난소 나이), FSH, E2, LH — 생리 2~3일 차에 검사',
       '초음파: 자궁·난소 구조 확인, 난포 수 측정',
@@ -72,7 +72,7 @@ export const FERTILITY_SECTIONS: FertilitySection[] = [
     slug: 'treatment-stages',
     titleKo: '난임 치료 3단계 — 단계별로 진행한다',
     summaryKo: '바로 IVF 하지 않는다 — 상태에 따라 순서대로',
-    icon: '📈',
+    icon: '',
     body: [
       '1단계 배란 유도: 약물로 배란을 정확히 맞추는 방법. 자연 임신이 가능한 상태에서 시작',
       '2단계 IUI(인공수정): 정자를 직접 자궁 내 주입. 성공률 10~20%/회차, 3~4회 시도',
@@ -96,7 +96,7 @@ export const FERTILITY_SECTIONS: FertilitySection[] = [
     slug: 'husband-mental',
     titleKo: '난임 치료 중 남편이 해야 할 가장 중요한 것',
     summaryKo: '검사·치료보다 아내 곁에 있는 것이 먼저다',
-    icon: '🫂',
+    icon: '',
     body: [
       '난임 치료는 몸뿐 아니라 정신적으로도 매우 힘든 과정이다 — 아내의 정서가 성공률에 영향을 준다',
       '"괜찮아질 거야"보다 "힘들지, 같이 버텨보자"가 낫다',

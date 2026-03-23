@@ -9,13 +9,13 @@ import type { DiaryEntry } from '@/types';
 import { Trash2, Sparkles, ChevronLeft, ChevronRight, Video, Loader2 } from 'lucide-react';
 
 const EMOTION_LABELS: Record<string, string> = {
-  love: '❤️ 사랑스러워', proud: '🏆 뿌듯해', tired: '😴 지쳐',
-  worried: '😟 걱정돼', happy: '😄 행복해', grateful: '🙏 감사해',
+  love: '사랑스러워', proud: '뿌듯해', tired: '지쳐',
+  worried: '걱정돼', happy: '행복해', grateful: '감사해',
 };
 
 const ACTION_LABELS: Record<string, string> = {
-  feeding: '🍼 수유', bath: '🛁 목욕', walk: '🚶 산책', play: '🎮 놀이',
-  sleep: '😴 재우기', hospital: '🏥 병원', milestone: '⭐ 첫 순간',
+  feeding: '수유', bath: '목욕', walk: '산책', play: '놀이',
+  sleep: '재우기', hospital: '병원', milestone: '첫 순간',
 };
 
 function formatFullDate(dateStr: string) {

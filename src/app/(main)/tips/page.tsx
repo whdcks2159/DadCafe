@@ -7,17 +7,16 @@ import {
   TIP_ITEMS,
   TIP_CATEGORY_LABELS,
   TIP_CATEGORY_COLORS,
-  TIP_CATEGORY_ICONS,
 } from '@/data/tips';
 import { ChevronRight, Sparkles } from 'lucide-react';
 import type { TipCategory } from '@/types';
 
-const FILTERS: { slug: TipCategory | 'all'; label: string; icon: string }[] = [
-  { slug: 'all',         label: '전체',    icon: '✨' },
-  { slug: 'preparation', label: '임신 준비', icon: '🌱' },
-  { slug: 'pregnancy',   label: '임신 중',  icon: '🤰' },
-  { slug: 'birth',       label: '출산 준비', icon: '🏥' },
-  { slug: 'newborn',     label: '육아 초기', icon: '👶' },
+const FILTERS: { slug: TipCategory | 'all'; label: string }[] = [
+  { slug: 'all',         label: '전체' },
+  { slug: 'preparation', label: '임신 준비' },
+  { slug: 'pregnancy',   label: '임신 중' },
+  { slug: 'birth',       label: '출산 준비' },
+  { slug: 'newborn',     label: '육아 초기' },
 ];
 
 export default function TipsPage() {
@@ -50,17 +49,16 @@ export default function TipsPage() {
       <div className="px-4 py-4">
         {/* 카테고리 필터 */}
         <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar mb-5">
-          {FILTERS.map(({ slug, label, icon }) => (
+          {FILTERS.map(({ slug, label }) => (
             <button
               key={slug}
               onClick={() => setActive(slug)}
-              className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${
+              className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${
                 active === slug
                   ? 'bg-brand-500 text-white'
                   : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
               }`}
             >
-              <span>{icon}</span>
               {label}
             </button>
           ))}
@@ -80,7 +78,6 @@ export default function TipsPage() {
                   href={`/tips/${tip.slug}`}
                   className="bg-brand-50 border border-brand-100 rounded-2xl p-3 hover:border-brand-300 transition-all active:scale-95"
                 >
-                  <span className="text-2xl block mb-2">{tip.icon}</span>
                   <p className="font-bold text-xs text-slate-800 leading-snug mb-1">{tip.titleKo}</p>
                   <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${TIP_CATEGORY_COLORS[tip.category]}`}>
                     {TIP_CATEGORY_LABELS[tip.category]}
@@ -95,7 +92,7 @@ export default function TipsPage() {
         <section>
           {active !== 'all' && (
             <h2 className="text-sm font-black text-slate-800 mb-3">
-              {TIP_CATEGORY_ICONS[active]} {TIP_CATEGORY_LABELS[active]} 꿀팁
+              {TIP_CATEGORY_LABELS[active]} 꿀팁
             </h2>
           )}
           {active === 'all' && (
@@ -108,7 +105,6 @@ export default function TipsPage() {
                 href={`/tips/${tip.slug}`}
                 className="flex items-center gap-3 bg-white border border-slate-100 rounded-2xl px-4 py-3 hover:border-brand-200 hover:shadow-sm transition-all active:scale-[0.99]"
               >
-                <span className="text-2xl flex-shrink-0">{tip.icon}</span>
                 <div className="flex-1 min-w-0">
                   <p className="font-bold text-sm text-slate-800 leading-snug">{tip.titleKo}</p>
                   <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{tip.summaryKo}</p>

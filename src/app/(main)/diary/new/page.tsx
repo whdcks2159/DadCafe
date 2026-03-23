@@ -9,23 +9,23 @@ import { uploadDiaryMedia } from '@/lib/firebase/storage';
 import type { DiaryEmotion, DiaryAction, DiaryMedia } from '@/types';
 import { Camera, Video, X, Loader2, CheckCircle2 } from 'lucide-react';
 
-const EMOTIONS: { value: DiaryEmotion; emoji: string; label: string }[] = [
-  { value: 'love',     emoji: '❤️',  label: '사랑스러워' },
-  { value: 'proud',    emoji: '🏆', label: '뿌듯해' },
-  { value: 'happy',    emoji: '😄', label: '행복해' },
-  { value: 'grateful', emoji: '🙏', label: '감사해' },
-  { value: 'tired',    emoji: '😴', label: '지쳐' },
-  { value: 'worried',  emoji: '😟', label: '걱정돼' },
+const EMOTIONS: { value: DiaryEmotion; label: string }[] = [
+  { value: 'love',     label: '사랑스러워' },
+  { value: 'proud',    label: '뿌듯해' },
+  { value: 'happy',    label: '행복해' },
+  { value: 'grateful', label: '감사해' },
+  { value: 'tired',    label: '지쳐' },
+  { value: 'worried',  label: '걱정돼' },
 ];
 
 const ACTIONS: { value: DiaryAction; label: string }[] = [
-  { value: 'feeding',   label: '🍼 수유' },
-  { value: 'bath',      label: '🛁 목욕' },
-  { value: 'walk',      label: '🚶 산책' },
-  { value: 'play',      label: '🎮 놀이' },
-  { value: 'sleep',     label: '😴 재우기' },
-  { value: 'hospital',  label: '🏥 병원' },
-  { value: 'milestone', label: '⭐ 첫 순간' },
+  { value: 'feeding',   label: '수유' },
+  { value: 'bath',      label: '목욕' },
+  { value: 'walk',      label: '산책' },
+  { value: 'play',      label: '놀이' },
+  { value: 'sleep',     label: '재우기' },
+  { value: 'hospital',  label: '병원' },
+  { value: 'milestone', label: '첫 순간' },
 ];
 
 const MAX_PHOTOS = 10;
@@ -175,7 +175,7 @@ export default function NewDiaryPage() {
         <div>
           <label className="text-xs font-black text-slate-500 block mb-1.5">오늘 어떤 감정이었어요?</label>
           <div className="flex flex-wrap gap-2">
-            {EMOTIONS.map(({ value, emoji, label }) => (
+            {EMOTIONS.map(({ value, label }) => (
               <button
                 key={value}
                 onClick={() => toggleEmotion(value)}
@@ -185,7 +185,7 @@ export default function NewDiaryPage() {
                     : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
                 }`}
               >
-                <span>{emoji}</span> {label}
+                {label}
               </button>
             ))}
           </div>
