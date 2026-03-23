@@ -10,10 +10,10 @@ const FEATURES = [
 ];
 
 const STAGES = [
-  { emoji: '💍', label: '임신 전' },
-  { emoji: '📋', label: '임신 중' },
-  { emoji: '🍼', label: '신생아' },
-  { emoji: '👟', label: '영아기' },
+  { icon: '/icons/stage-pre-pregnancy.svg', label: '임신 전' },
+  { icon: '/icons/stage-pregnant.svg',      label: '임신 중' },
+  { icon: '/icons/stage-newborn.svg',       label: '신생아' },
+  { icon: '/icons/stage-toddler.svg',       label: '영아기' },
 ];
 
 export default function LandingPage() {
@@ -23,7 +23,7 @@ export default function LandingPage() {
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-brand-500 to-orange-600 px-6 pt-16 pb-12 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-4 right-4 text-9xl">🍼</div>
+          <img src="/icons/stage-newborn.svg" alt="" className="absolute top-4 right-4 w-32 h-32" />
         </div>
         <div className="relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-3 py-1 mb-4">
@@ -53,13 +53,13 @@ export default function LandingPage() {
       <section className="px-6 py-8">
         <h2 className="text-lg font-bold text-slate-800 mb-4">단계별 가이드</h2>
         <div className="grid grid-cols-4 gap-3">
-          {STAGES.map(({ emoji, label }) => (
+          {STAGES.map(({ icon, label }) => (
             <Link
               key={label}
               href="/guide"
               className="flex flex-col items-center gap-2 bg-slate-50 rounded-2xl p-3 hover:bg-orange-50 transition-colors"
             >
-              <span className="text-2xl">{emoji}</span>
+              <img src={icon} alt={label} className="w-8 h-8" />
               <span className="text-xs font-medium text-slate-600 text-center">{label}</span>
             </Link>
           ))}
