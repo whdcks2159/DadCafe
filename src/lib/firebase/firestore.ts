@@ -3,6 +3,7 @@ import {
   setDoc,
   getDoc,
   updateDoc,
+  deleteDoc,
   collection,
   addDoc,
   query,
@@ -17,7 +18,7 @@ import {
   type DocumentSnapshot,
 } from 'firebase/firestore';
 import { db } from './client';
-import type { UserProfile, Post, Comment } from '@/types';
+import type { UserProfile, Post, Comment, DiaryEntry } from '@/types';
 
 function requireDb() {
   if (!db) throw new Error('Firebase not initialized');
@@ -152,4 +153,64 @@ export async function getComments(postId: string): Promise<Comment[]> {
     ...doc.data(),
     createdAt: (doc.data().createdAt as Timestamp)?.toDate() ?? new Date(),
   })) as Comment[];
+}
+
+// ── Diary ──────────────────────────────────────────────────────
+
+function toDiaryEntry(id: string, data: Record<string, unknown>): DiaryEntry {
+  return {
+    ...data,
+    id,
+    createdAt: (data.createdAt as Timestamp)?.toDate() ?? new Date(),
+    updatedAt: (data.updatedAt as Timestamp)?.toDate() ?? new Date(),
+  } as DiaryEntry;
+}
+
+export async function createDiaryEntry(
+  uid: string,
+  entry: Omit<DiaryEntry, 'id' | 'uid' | 'createdAt' | 'updatedAt'>
+): Promise<string> {
+  const d = requireDb();
+  const ref = await addDoc(collection(d, 'users', uid, 'diary'), {
+    ...entry,
+    uid,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+  });
+  return ref.id;
+}
+
+export async function getDiaryEntries(uid: string, pageSize = 20): Promise<DiaryEntry[]> {
+  const d = requireDb();
+  const q = query(
+    collection(d, 'users', uid, 'diary'),
+    orderBy('date', 'desc'),
+    limit(pageSize)
+  );
+  const snap = await getDocs(q);
+  return snap.docs.map((doc) => toDiaryEntry(doc.id, doc.data() as Record<string, unknown>));
+}
+
+export async function getDiaryEntry(uid: string, entryId: string): Promise<DiaryEntry | null> {
+  const d = requireDb();
+  const snap = await getDoc(doc(d, 'users', uid, 'diary', entryId));
+  if (!snap.exists()) return null;
+  return toDiaryEntry(snap.id, snap.data() as Record<string, unknown>);
+}
+
+export async function updateDiaryEntry(
+  uid: string,
+  entryId: string,
+  data: Partial<Omit<DiaryEntry, 'id' | 'uid' | 'createdAt'>>
+): Promise<void> {
+  const d = requireDb();
+  await updateDoc(doc(d, 'users', uid, 'diary', entryId), {
+    ...data,
+    updatedAt: serverTimestamp(),
+  });
+}
+
+export async function deleteDiaryEntry(uid: string, entryId: string): Promise<void> {
+  const d = requireDb();
+  await deleteDoc(doc(d, 'users', uid, 'diary', entryId));
 }

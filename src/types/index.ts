@@ -143,6 +143,31 @@ export interface FertilitySection {
   govSupportSlug?: string;  // 연관 정부지원
 }
 
+// Diary
+export type DiaryEmotion = 'love' | 'proud' | 'tired' | 'worried' | 'happy' | 'grateful';
+export type DiaryAction = 'feeding' | 'bath' | 'walk' | 'play' | 'hospital' | 'sleep' | 'milestone';
+
+export interface DiaryMedia {
+  type: 'photo' | 'video';
+  url: string;
+  path: string;
+  thumbnailUrl?: string;
+}
+
+export interface DiaryEntry {
+  id: string;
+  uid: string;
+  date: string; // YYYY-MM-DD
+  babyAgeMonths: number;
+  text: string;
+  emotions: DiaryEmotion[];
+  actions: DiaryAction[];
+  mediaList: DiaryMedia[];
+  aiSummary?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export type GovStage = 'pre-pregnancy' | 'pregnant' | 'newborn' | 'infant';
 export type GovCategory = 'health' | 'finance' | 'leave' | 'care';
 

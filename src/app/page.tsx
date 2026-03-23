@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, CheckSquare, Users, Lightbulb, Landmark, Zap, BookOpen, Sparkles, Heart, Bot } from 'lucide-react';
+import { ArrowRight, CheckSquare, Users, Lightbulb, Landmark, Zap, BookOpen, Sparkles, Heart, Bot, BookHeart } from 'lucide-react';
 
 const FEATURES = [
   { icon: BookOpen,   title: '단계별 가이드',    desc: '임신 전부터 영아기까지 아빠 행동 매뉴얼', href: '/guide' },
@@ -165,6 +165,16 @@ export default function LandingPage() {
               <p className="text-xs text-slate-500">내 상황에 맞는 가이드를 AI가 알려줘</p>
             </div>
             <span className="text-[9px] font-black bg-brand-500 text-white px-1.5 py-0.5 rounded-full">AI</span>
+          </Link>
+          <Link href="/diary" className="flex items-center gap-3 bg-green-50 border border-green-100 rounded-2xl px-4 py-3 hover:border-green-200 transition-all active:scale-[0.98]">
+            <div className="w-9 h-9 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+              <BookHeart size={18} className="text-white" />
+            </div>
+            <div className="flex-1">
+              <p className="font-black text-sm text-slate-800">육아일기</p>
+              <p className="text-xs text-slate-500">사진·영상과 함께 아이의 순간 기록</p>
+            </div>
+            <ArrowRight size={16} className="text-slate-300" />
           </Link>
         </section>
 

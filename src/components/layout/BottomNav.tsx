@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, CheckSquare, Landmark, Users, User } from 'lucide-react';
+import { BookOpen, CheckSquare, Landmark, BookHeart, User } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { href: '/guide',       icon: BookOpen,   label: '가이드' },
+  { href: '/guide',       icon: BookOpen,    label: '가이드' },
   { href: '/checklist',   icon: CheckSquare, label: '체크리스트' },
-  { href: '/gov-support', icon: Landmark,   label: '정부지원' },
-  { href: '/community',   icon: Users,      label: '커뮤니티' },
-  { href: '/profile',     icon: User,       label: '내 정보' },
+  { href: '/gov-support', icon: Landmark,    label: '정부지원' },
+  { href: '/diary',       icon: BookHeart,   label: '육아일기' },
+  { href: '/profile',     icon: User,        label: '내 정보' },
 ];
 
 export default function BottomNav() {
