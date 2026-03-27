@@ -10,6 +10,8 @@ export interface UserProfile {
   currentStage: StageSlug | null;
   joinedAt: Date;
   postCount: number;
+  nickname: string;             // 표시 닉네임 (커뮤니티·일기 노출)
+  nicknameManuallySet: boolean; // 직접 수정했으면 true → 아기이름 자동완성 차단
 }
 
 export interface GuideSection {

@@ -84,7 +84,7 @@ export default function ProfilePage() {
           </div>
           <div>
             <p className="font-black text-lg text-slate-800">
-              {userProfile?.displayName ?? user.displayName ?? '아빠'}
+              {userProfile?.nickname || userProfile?.displayName || user.displayName || '아빠'}
             </p>
             <p className="text-xs text-slate-400">{user.email}</p>
             {levelInfo && (

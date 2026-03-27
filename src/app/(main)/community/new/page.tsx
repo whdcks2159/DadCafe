@@ -34,7 +34,7 @@ export default function NewPostPage() {
     try {
       await createPost({
         authorUid: user.uid,
-        authorName: userProfile?.displayName ?? user.displayName ?? '아빠',
+        authorName: userProfile?.nickname || userProfile?.displayName || user.displayName || '아빠',
         authorPhotoURL: user.photoURL,
         titleKo: title.trim(),
         bodyKo: body.trim(),

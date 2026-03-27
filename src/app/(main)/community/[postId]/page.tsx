@@ -46,7 +46,7 @@ export default function PostDetailPage() {
     const id = await addComment({
       postId: post.id,
       authorUid: user.uid,
-      authorName: userProfile?.displayName ?? user.displayName ?? '아빠',
+      authorName: userProfile?.nickname || userProfile?.displayName || user.displayName || '아빠',
       authorPhotoURL: user.photoURL,
       bodyKo: commentText.trim(),
     });
@@ -56,7 +56,7 @@ export default function PostDetailPage() {
         id,
         postId: post.id,
         authorUid: user.uid,
-        authorName: userProfile?.displayName ?? user.displayName ?? '아빠',
+        authorName: userProfile?.nickname || userProfile?.displayName || user.displayName || '아빠',
         authorPhotoURL: user.photoURL,
         bodyKo: commentText.trim(),
         createdAt: new Date(),

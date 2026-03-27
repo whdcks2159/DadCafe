@@ -5,13 +5,13 @@ import { useRouter } from 'next/navigation';
 import TopHeader from '@/components/layout/TopHeader';
 import { useAuth } from '@/context/AuthContext';
 import { useBaby } from '@/context/BabyContext';
-import { createBaby, setActiveBabyId } from '@/lib/firebase/firestore';
+import { createBaby, setActiveBabyId, upsertUserProfile } from '@/lib/firebase/firestore';
 import { Baby, CircleDot, Heart } from 'lucide-react';
 import type { BabyStatus } from '@/types';
 
 export default function BabyRegisterPage() {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, userProfile, refreshProfile } = useAuth();
   const { refreshBabies } = useBaby();
 
   const [status, setStatus] = useState<BabyStatus | null>(null);
@@ -36,6 +36,18 @@ export default function BabyRegisterPage() {
       const babyId = await createBaby(user.uid, babyData);
       await setActiveBabyId(user.uid, babyId);
       await refreshBabies();
+
+      // 아기 이름 있고, 닉네임을 직접 수정한 적 없으면 자동완성
+      const babyName = name.trim();
+      if (babyName && !userProfile?.nicknameManuallySet) {
+        await upsertUserProfile({
+          uid: user.uid,
+          nickname: `${babyName}아빠`,
+          nicknameManuallySet: false,
+        });
+        await refreshProfile();
+      }
+
       router.push('/');
     } catch {
       setError('저장 중 오류가 발생했어요. 다시 시도해주세요.');
