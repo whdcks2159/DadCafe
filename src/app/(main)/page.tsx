@@ -1,22 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, CheckSquare, Users, Lightbulb, Landmark, Zap, BookOpen, Sparkles, Heart, Bot, BookHeart } from 'lucide-react';
+import { ArrowRight, CheckSquare, Users, Landmark, BookHeart } from 'lucide-react';
 import BabyCard from '@/components/BabyCard';
-import TopHeader from '@/components/layout/TopHeader';
-
-const STAGES = [
-  { icon: '/icons/stage-pre-pregnancy.svg', label: '임신 전',  bg: 'bg-accent-50',       border: 'border-accent-100' },
-  { icon: '/icons/stage-pregnant.svg',      label: '임신 중',  bg: 'bg-brand-50',         border: 'border-brand-100' },
-  { icon: '/icons/stage-newborn.svg',       label: '신생아',   bg: 'bg-pastel-pink',      border: 'border-rose-100' },
-  { icon: '/icons/stage-toddler.svg',       label: '영아기',   bg: 'bg-pastel-lavender',  border: 'border-purple-100' },
-];
 
 const FEATURES = [
-  { icon: BookOpen,    title: '단계별 가이드',  desc: '임신 전부터 영아기까지\n아빠 행동 가이드',    href: '/guide',      iconBg: 'bg-brand-400',   cardBg: 'bg-brand-50',        border: 'border-brand-100' },
-  { icon: CheckSquare, title: '체크리스트',     desc: '지금 해야 할 일을\n단계별로 확인해보세요',    href: '/checklist',  iconBg: 'bg-emerald-400',  cardBg: 'bg-pastel-mint',     border: 'border-green-100' },
-  { icon: Lightbulb,   title: '상황별 가이드',  desc: '입덧, 밤 울음,\n산후우울증 대처 방법',       href: '/situations', iconBg: 'bg-accent-500',   cardBg: 'bg-accent-50',       border: 'border-accent-100' },
-  { icon: Users,       title: '아빠 커뮤니티',  desc: '같은 처지의 아빠들과\n경험을 나눠보세요',     href: '/community',  iconBg: 'bg-violet-400',   cardBg: 'bg-pastel-lavender', border: 'border-purple-100' },
+  { icon: CheckSquare, title: '체크리스트',   desc: '지금 해야 할 일을\n단계별로 확인해보세요', href: '/checklist',  iconBg: 'bg-emerald-400', cardBg: 'bg-pastel-mint',     border: 'border-green-100' },
+  { icon: Users,       title: '아빠 커뮤니티', desc: '같은 처지의 아빠들과\n경험을 나눠보세요',  href: '/community',  iconBg: 'bg-violet-400',  cardBg: 'bg-pastel-lavender', border: 'border-purple-100' },
 ];
 
 export default function HomePage() {
@@ -61,23 +51,6 @@ export default function HomePage() {
         <BabyCard />
       </section>
 
-      {/* ── 단계별 가이드 ────────────────────── */}
-      <section className="px-5 py-5 bg-warm-50">
-        <p className="text-xs font-bold text-neutral-400 tracking-wide mb-3">단계별 가이드</p>
-        <div className="grid grid-cols-4 gap-2">
-          {STAGES.map(({ icon, label, bg, border }) => (
-            <Link
-              key={label}
-              href="/guide"
-              className={`flex flex-col items-center gap-2 ${bg} border ${border} rounded-2xl p-3 hover:shadow-card transition-all active:scale-95`}
-            >
-              <img src={icon} alt={label} className="w-8 h-8" />
-              <span className="text-[11px] font-bold text-slate-600 text-center leading-tight">{label}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
       {/* ── 정부 지원 배너 ───────────────────── */}
       <section className="px-5 pb-4 bg-warm-50">
         <Link
@@ -120,43 +93,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 새로운 기능 ────────────────────── */}
-      <section className="px-5 py-4 bg-warm-50 space-y-2.5">
-        <p className="text-xs font-bold text-neutral-400 tracking-wide mb-1">새로운 기능</p>
-
-        <Link href="/tips" className="flex items-center gap-3 bg-amber-100 border border-amber-200 rounded-2xl px-4 py-3.5 hover:shadow-card transition-all active:scale-[0.98]">
-          <div className="w-10 h-10 bg-amber-400 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
-            <Sparkles size={18} className="text-white" />
-          </div>
-          <div className="flex-1">
-            <p className="font-bold text-sm text-neutral-900">임신 꿀팁</p>
-            <p className="text-xs text-neutral-500 mt-0.5">바로 써먹는 아빠 실전 가이드 16선</p>
-          </div>
-          <ArrowRight size={16} className="text-neutral-300 flex-shrink-0" />
-        </Link>
-
-        <Link href="/fertility" className="flex items-center gap-3 bg-rose-100 border border-rose-200 rounded-2xl px-4 py-3.5 hover:shadow-card transition-all active:scale-[0.98]">
-          <div className="w-10 h-10 bg-rose-400 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
-            <Heart size={18} className="text-white" />
-          </div>
-          <div className="flex-1">
-            <p className="font-bold text-sm text-neutral-900">난임 가이드</p>
-            <p className="text-xs text-neutral-500 mt-0.5">검사부터 치료까지 — 남편이 도울 수 있어요</p>
-          </div>
-          <ArrowRight size={16} className="text-neutral-300 flex-shrink-0" />
-        </Link>
-
-        <Link href="/ai-guide" className="flex items-center gap-3 bg-sky-100 border border-sky-200 rounded-2xl px-4 py-3.5 hover:shadow-card transition-all active:scale-[0.98]">
-          <div className="w-10 h-10 bg-brand-300 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
-            <Bot size={18} className="text-white" />
-          </div>
-          <div className="flex-1">
-            <p className="font-bold text-sm text-neutral-900">AI 맞춤 플랜</p>
-            <p className="text-xs text-neutral-500 mt-0.5">내 상황에 맞는 가이드를 AI가 도와드려요</p>
-          </div>
-          <span className="text-[9px] font-black bg-brand-500 text-white px-1.5 py-0.5 rounded-full flex-shrink-0">AI</span>
-        </Link>
-
+      {/* ── 육아일기 배너 ────────────────────── */}
+      <section className="px-5 py-4 bg-warm-50">
         <Link href="/diary" className="flex items-center gap-3 bg-emerald-100 border border-emerald-200 rounded-2xl px-4 py-3.5 hover:shadow-card transition-all active:scale-[0.98]">
           <div className="w-10 h-10 bg-emerald-400 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
             <BookHeart size={18} className="text-white" />
