@@ -1,12 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, CheckSquare, Users, Landmark, BookHeart } from 'lucide-react';
+import { ArrowRight, CheckSquare, Users, Landmark, BookHeart, BookOpen } from 'lucide-react';
 import BabyCard from '@/components/BabyCard';
 
 const FEATURES = [
+  { icon: BookOpen,    title: '가이드',       desc: '단계별·상황별\n모든 가이드 보기',         href: '/guide',      iconBg: 'bg-brand-400',   cardBg: 'bg-brand-50',        border: 'border-brand-100' },
   { icon: CheckSquare, title: '체크리스트',   desc: '지금 해야 할 일을\n단계별로 확인해보세요', href: '/checklist',  iconBg: 'bg-emerald-400', cardBg: 'bg-pastel-mint',     border: 'border-green-100' },
-  { icon: Users,       title: '아빠 커뮤니티', desc: '같은 처지의 아빠들과\n경험을 나눠보세요',  href: '/community',  iconBg: 'bg-violet-400',  cardBg: 'bg-pastel-lavender', border: 'border-purple-100' },
+  { icon: BookHeart,   title: '육아일기',     desc: '소중한 순간을\n사진과 함께 기록해요',      href: '/diary',      iconBg: 'bg-rose-400',    cardBg: 'bg-rose-50',         border: 'border-rose-100' },
+  { icon: Users,       title: '커뮤니티',     desc: '같은 처지의 아빠들과\n경험을 나눠보세요',  href: '/community',  iconBg: 'bg-violet-400',  cardBg: 'bg-pastel-lavender', border: 'border-purple-100' },
 ];
 
 export default function HomePage() {
@@ -93,19 +95,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 육아일기 배너 ────────────────────── */}
-      <section className="px-5 py-4 bg-warm-50">
-        <Link href="/diary" className="flex items-center gap-3 bg-emerald-100 border border-emerald-200 rounded-2xl px-4 py-3.5 hover:shadow-card transition-all active:scale-[0.98]">
-          <div className="w-10 h-10 bg-emerald-400 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
-            <BookHeart size={18} className="text-white" />
-          </div>
-          <div className="flex-1">
-            <p className="font-bold text-sm text-neutral-900">육아일기</p>
-            <p className="text-xs text-neutral-500 mt-0.5">사진과 함께 아이의 소중한 순간을 기록해요</p>
-          </div>
-          <ArrowRight size={16} className="text-neutral-300 flex-shrink-0" />
-        </Link>
-      </section>
 
       {/* ── 아빠 레벨 테스트 ─────────────────── */}
       <section className="px-5 py-4 bg-warm-50">
