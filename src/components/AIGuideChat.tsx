@@ -112,7 +112,7 @@ export default function AIGuideChat({ stage }: AIGuideChatProps) {
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
               {messages.length === 0 && (
                 <div className="text-center py-8">
-                  <span className="text-4xl block mb-2">💬</span>
+                  <div className="flex justify-center mb-2"><MessageCircle size={36} className="text-slate-300" /></div>
                   <p className="text-sm text-slate-500">
                     입덧, 출산 준비, 육아 고민 등<br />
                     무엇이든 물어보세요.

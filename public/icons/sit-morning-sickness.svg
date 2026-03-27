@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Head -->
-  <circle cx="24" cy="10" r="6"/>
-  <!-- Body leaning forward -->
-  <path d="M24 16 C24 20 22 24 18 28"/>
-  <!-- Arm on belly -->
-  <path d="M22 22 C20 24 19 26 20 28"/>
-  <!-- Wavy nausea lines -->
-  <path d="M28 30 Q31 28 34 30 Q37 32 40 30"/>
-  <path d="M28 34 Q31 32 34 34 Q37 36 40 34"/>
-  <!-- Legs sitting -->
-  <path d="M18 28 L14 38"/>
-  <path d="M18 28 L22 36"/>
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Bucket/basin body -->
+    <path d="M12 22 L15 40 Q15 43 24 43 Q33 43 33 40 L36 22 Z"/>
+    <!-- Bucket rim -->
+    <line x1="10" y1="22" x2="38" y2="22"/>
+    <!-- Handle arc -->
+    <path d="M16 22 C16 15 32 15 32 22" stroke-width="1.5"/>
+    <!-- Nausea wave 1 -->
+    <path d="M14 14 Q18 11 22 14 Q26 17 30 14 Q34 11 38 14" stroke-width="1.5"/>
+    <!-- Nausea wave 2 -->
+    <path d="M18 8 Q21 5 24 8 Q27 11 30 8" stroke-width="1.5"/>
+  </g>
 </svg>

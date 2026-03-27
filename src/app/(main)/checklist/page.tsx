@@ -6,15 +6,15 @@ import { CHECKLIST_CATEGORIES } from '@/data/checklist';
 import { STAGES } from '@/data/stages';
 import { useAuth } from '@/context/AuthContext';
 import { getCompletedItems, saveCompletedItems } from '@/lib/firebase/firestore';
-import { Heart, Circle, ChevronDown, ChevronUp, Lock } from 'lucide-react';
+import { Heart, Circle, ChevronDown, ChevronUp, Lock, LayoutGrid, Leaf, Baby, User, type LucideIcon } from 'lucide-react';
 import type { StageSlug } from '@/types';
 
-const STAGE_FILTERS: { slug: StageSlug | 'all'; label: string; emoji: string }[] = [
-  { slug: 'all',           label: '전체',   emoji: '✨' },
-  { slug: 'pre-pregnancy', label: '임신 전', emoji: '🌱' },
-  { slug: 'pregnant',      label: '임신 중', emoji: '🤰' },
-  { slug: 'newborn',       label: '신생아',  emoji: '👶' },
-  { slug: 'toddler',       label: '영아기',  emoji: '🧒' },
+const STAGE_FILTERS: { slug: StageSlug | 'all'; label: string; icon: LucideIcon }[] = [
+  { slug: 'all',           label: '전체',   icon: LayoutGrid },
+  { slug: 'pre-pregnancy', label: '임신 전', icon: Leaf },
+  { slug: 'pregnant',      label: '임신 중', icon: Heart },
+  { slug: 'newborn',       label: '신생아',  icon: Baby },
+  { slug: 'toddler',       label: '영아기',  icon: User },
 ];
 
 /* 진행률에 따른 응원 메시지 */
@@ -127,7 +127,7 @@ export default function ChecklistPage() {
 
       {/* ── 단계 필터 ────────────────────────── */}
       <div className="flex gap-2 px-4 py-3 overflow-x-auto no-scrollbar bg-warm-50">
-        {STAGE_FILTERS.map(({ slug, label, emoji }) => (
+        {STAGE_FILTERS.map(({ slug, label, icon: Icon }) => (
           <button
             key={slug}
             onClick={() => setFilter(slug)}
@@ -137,7 +137,7 @@ export default function ChecklistPage() {
                 : 'bg-white border border-warm-200 text-slate-500 hover:border-brand-200'
             }`}
           >
-            <span>{emoji}</span>
+            <Icon size={11} />
             {label}
           </button>
         ))}

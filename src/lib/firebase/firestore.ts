@@ -18,7 +18,7 @@ import {
   type DocumentSnapshot,
 } from 'firebase/firestore';
 import { db } from './client';
-import type { UserProfile, Post, Comment, DiaryEntry } from '@/types';
+import type { UserProfile, Post, Comment, DiaryEntry, Baby } from '@/types';
 
 function requireDb() {
   if (!db) throw new Error('Firebase not initialized');
@@ -213,4 +213,65 @@ export async function updateDiaryEntry(
 export async function deleteDiaryEntry(uid: string, entryId: string): Promise<void> {
   const d = requireDb();
   await deleteDoc(doc(d, 'users', uid, 'diary', entryId));
+}
+
+// ── Babies ────────────────────────────────────────────────────
+
+export async function getBabies(uid: string): Promise<Baby[]> {
+  const d = requireDb();
+  const q = query(collection(d, 'users', uid, 'babies'), orderBy('createdAt', 'asc'));
+  const snap = await getDocs(q);
+  return snap.docs.map((docSnap) => ({
+    id: docSnap.id,
+    ...docSnap.data(),
+    createdAt: (docSnap.data().createdAt as Timestamp)?.toDate() ?? new Date(),
+    updatedAt: (docSnap.data().updatedAt as Timestamp)?.toDate() ?? new Date(),
+  })) as Baby[];
+}
+
+export async function createBaby(
+  uid: string,
+  data: Omit<Baby, 'id' | 'uid' | 'createdAt' | 'updatedAt'>
+): Promise<string> {
+  const d = requireDb();
+  const ref = await addDoc(collection(d, 'users', uid, 'babies'), {
+    ...data,
+    uid,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+  });
+  return ref.id;
+}
+
+export async function updateBaby(
+  uid: string,
+  babyId: string,
+  data: Partial<Omit<Baby, 'id' | 'uid' | 'createdAt'>>
+): Promise<void> {
+  const d = requireDb();
+  await updateDoc(doc(d, 'users', uid, 'babies', babyId), {
+    ...data,
+    updatedAt: serverTimestamp(),
+  });
+}
+
+export async function deleteBaby(uid: string, babyId: string): Promise<void> {
+  const d = requireDb();
+  await deleteDoc(doc(d, 'users', uid, 'babies', babyId));
+}
+
+export async function getActiveBabyId(uid: string): Promise<string | null> {
+  const d = requireDb();
+  const snap = await getDoc(doc(d, 'users', uid, 'settings', 'baby'));
+  if (!snap.exists()) return null;
+  return (snap.data().activeBabyId as string) ?? null;
+}
+
+export async function setActiveBabyId(uid: string, babyId: string): Promise<void> {
+  const d = requireDb();
+  await setDoc(
+    doc(d, 'users', uid, 'settings', 'baby'),
+    { activeBabyId: babyId, updatedAt: serverTimestamp() },
+    { merge: true }
+  );
 }

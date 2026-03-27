@@ -4,13 +4,20 @@
 @tailwind utilities;
 
 :root {
-  --brand: #5b90e0;
+  --brand:          #3567C8;
+  --brand-light:    #EEF4FF;
+  --bg-page:        #FFFBF7;
+  --bg-surface:     #FFFFFF;
+  --text-primary:   #2A1F18;
+  --text-secondary: #4A3F36;
+  --text-muted:     #7D7167;
+  --border:         #E8DFD5;
 }
 
 body {
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: #fffbf7;   /* 따뜻한 크림 화이트 */
-  color: #1e293b;
+  background-color: var(--bg-page);   /* 따뜻한 크림 화이트 */
+  color: var(--text-secondary);
   -webkit-font-smoothing: antialiased;
 }
 

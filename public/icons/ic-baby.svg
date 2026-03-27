@@ -1,0 +1,14 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Nipple -->
+    <path d="M22 8 C22 5 26 5 26 8"/>
+    <!-- Bottle neck -->
+    <rect x="20" y="8" width="8" height="5" rx="1"/>
+    <!-- Bottle body -->
+    <path d="M18 13 L15 40 C15 42 17 44 24 44 C31 44 33 42 33 40 L30 13 Z"/>
+    <!-- Measurement lines -->
+    <line x1="19" y1="24" x2="16" y2="24"/>
+    <line x1="19" y1="32" x2="16" y2="32"/>
+    <line x1="20" y1="28" x2="17" y2="28"/>
+  </g>
+</svg>

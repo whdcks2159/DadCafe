@@ -3,12 +3,12 @@
 import TopHeader from '@/components/layout/TopHeader';
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
-import { LogIn, LogOut, ChevronRight, Star, Trophy, BookOpen, BarChart2 } from 'lucide-react';
+import { LogIn, LogOut, ChevronRight, Star, Trophy, BookOpen, BarChart2, User } from 'lucide-react';
 
 const LEVEL_LABELS = {
   beginner:    { label: '준비 중인 아빠', emoji: '/icons/badge-beginner.svg',    color: 'text-green-600 bg-green-50' },
-  ready:       { label: '준비된 아빠',    emoji: '/icons/badge-ready.svg',       color: 'text-blue-600 bg-blue-50' },
-  experienced: { label: '베테랑 아빠',    emoji: '/icons/badge-experienced.svg', color: 'text-amber-600 bg-amber-50' },
+  ready:       { label: '준비된 아빠',    emoji: '/icons/ic-goal.png',   color: 'text-blue-600 bg-blue-50' },
+  experienced: { label: '베테랑 아빠',    emoji: '/icons/ic-stats.png',  color: 'text-amber-600 bg-amber-50' },
 };
 
 const MENU_ITEMS = [
@@ -37,7 +37,7 @@ export default function ProfilePage() {
         <TopHeader title="내 정보" />
         <div className="px-5 py-10 flex flex-col items-center text-center">
           <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-4">
-            <span className="text-4xl">👨</span>
+            <User size={36} className="text-slate-400" />
           </div>
           <h2 className="font-black text-xl text-slate-800 mb-2">로그인하세요</h2>
           <p className="text-sm text-slate-500 mb-8 leading-relaxed">
@@ -74,12 +74,12 @@ export default function ProfilePage() {
       {/* Profile Header */}
       <div className="px-5 pt-6 pb-5 border-b border-slate-100">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-full bg-brand-100 flex items-center justify-center text-3xl overflow-hidden">
+          <div className="w-16 h-16 rounded-full bg-brand-100 flex items-center justify-center overflow-hidden">
             {user.photoURL ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={user.photoURL} alt="프로필" className="w-full h-full object-cover" />
             ) : (
-              '👨'
+              <User size={28} className="text-brand-400" />
             )}
           </div>
           <div>

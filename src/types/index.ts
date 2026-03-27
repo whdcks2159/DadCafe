@@ -168,6 +168,20 @@ export interface DiaryEntry {
   updatedAt: Date;
 }
 
+// ── Baby ──────────────────────────────────────────────────────
+export type BabyStatus = 'pregnant' | 'born';
+
+export interface Baby {
+  id: string;
+  uid: string;
+  name?: string;       // 미입력 시 "우리 아기"
+  status: BabyStatus;
+  dueDate?: string;    // YYYY-MM-DD (임신 중)
+  birthDate?: string;  // YYYY-MM-DD (출생 후)
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export type GovStage = 'pre-pregnancy' | 'pregnant' | 'newborn' | 'infant';
 export type GovCategory = 'health' | 'finance' | 'leave' | 'care';
 

@@ -57,8 +57,8 @@ export default function DadLevelPage() {
           <div className="w-full space-y-3 mb-8 text-left">
             {[
               { label: '준비 중인 아빠', icon: '/icons/badge-beginner.svg' },
-              { label: '준비된 아빠', icon: '/icons/badge-ready.svg' },
-              { label: '베테랑 아빠', icon: '/icons/badge-experienced.svg' },
+              { label: '준비된 아빠', icon: '/icons/ic-goal.png' },
+              { label: '베테랑 아빠', icon: '/icons/ic-stats.png' },
             ].map(({ label, icon }) => (
               <div key={label} className="flex items-center gap-3 bg-slate-50 rounded-2xl px-4 py-3">
                 <img src={icon} alt={label} className="w-8 h-8 flex-shrink-0" />
