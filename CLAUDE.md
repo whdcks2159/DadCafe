@@ -137,6 +137,15 @@ interface SearchItem {
 | 10초 체크리스트 모드 | `ChecklistMode.tsx` / `SituationDetail.tsx` | 상황 상세에서 토글, 에스컬레이션 분리 |
 | 하단 검색 버튼 | `BottomNav.tsx` | 가운데 brand-500 원형 플로팅 버튼 |
 
+### PWA / 앱 배포
+| 기능 | 파일 | 설명 |
+|------|------|------|
+| PWA manifest | `public/manifest.json` | 앱 이름/아이콘/shortcuts/display:standalone |
+| Service Worker | `public/sw.js` | 오프라인 캐싱, Network First 전략 |
+| SW 등록 | `ServiceWorkerRegistrar.tsx` | 클라이언트 사이드 SW 등록 |
+| TWA 인증 파일 | `public/.well-known/assetlinks.json` | Android TWA 도메인 인증 |
+| PWA 아이콘 | `public/icons/icon-*x*.png` | 72~512px 8종 |
+
 ### 사용자 기능
 | 기능 | 경로 | 비고 |
 |------|------|------|
@@ -189,10 +198,46 @@ bash deploy.sh   # Vercel 프로덕션 배포 + dadcafe.vercel.app alias
 
 ---
 
+## TWA APK 생성 방법 (로컬에서 실행)
+
+PWA 배포 후 Android APK를 생성하려면 **본인 PC**에서 진행:
+
+```bash
+# 1. Bubblewrap 설치
+npm install -g @bubblewrap/cli
+
+# 2. TWA 프로젝트 초기화
+mkdir papaplan-twa && cd papaplan-twa
+bubblewrap init --manifest https://dadcafe.vercel.app/manifest.json
+
+# 3. 설정값 입력
+#    - Package ID: com.dadcafe.papaplan
+#    - App name: 파파플랜
+#    - Start URL: https://dadcafe.vercel.app/
+#    - Display: standalone
+
+# 4. APK 빌드
+bubblewrap build
+
+# 5. SHA256 fingerprint 추출 (assetlinks.json 업데이트용)
+keytool -list -v -keystore android.keystore | grep SHA256
+```
+
+SHA256 fingerprint를 받아서 `public/.well-known/assetlinks.json`의
+`PLACEHOLDER_SHA256_FINGERPRINT` 자리에 교체 후 재배포하면 TWA 완성.
+
+### Play Store 등록 순서
+1. `bubblewrap build` → `app-release-signed.apk` 생성
+2. Google Play Console 계정 생성 (1회 $25)
+3. 새 앱 등록 → APK/AAB 업로드
+4. 심사 제출
+
+---
+
 ## 앞으로 구현 예정
 
 - [ ] 10초 체크리스트 완료 기록 저장 (Firebase)
 - [ ] 검색 히스토리 (localStorage)
 - [ ] 아기 성장 추적 대시보드
 - [ ] 푸시 알림 (예방접종 / 검진 일정)
-- [ ] 오프라인 모드 (PWA)
+- [ ] TWA SHA256 fingerprint 교체 후 Play Store 제출
