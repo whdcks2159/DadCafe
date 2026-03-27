@@ -4,10 +4,11 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import {
-  ArrowLeft, Home, Menu, X,
+  ArrowLeft, Home, Menu, X, Search,
   BookOpen, CheckSquare, Lightbulb, Users, User,
   Landmark, Sparkles, Heart, Bot, BookHeart, Baby,
 } from 'lucide-react';
+import SearchOverlay from '@/components/SearchOverlay';
 
 const NAV_ITEMS = [
   { href: '/guide',       icon: BookOpen,    label: '단계별 가이드' },
@@ -32,6 +33,7 @@ export default function TopHeader({ title, showBack = false, right }: TopHeaderP
   const router = useRouter();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
     <>
@@ -55,9 +57,16 @@ export default function TopHeader({ title, showBack = false, right }: TopHeaderP
           <h1 className="text-base font-bold text-slate-800 ml-1">{title}</h1>
         </div>
 
-        {/* 오른쪽: custom right + 햄버거 */}
+        {/* 오른쪽: custom right + 검색 + 햄버거 */}
         <div className="flex items-center gap-1">
           {right}
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="p-1.5 rounded-lg hover:bg-slate-100 transition-colors"
+            aria-label="검색"
+          >
+            <Search size={20} className="text-slate-600" />
+          </button>
           <button
             onClick={() => setMenuOpen(true)}
             className="p-1.5 rounded-lg hover:bg-slate-100 transition-colors"
@@ -66,6 +75,9 @@ export default function TopHeader({ title, showBack = false, right }: TopHeaderP
           </button>
         </div>
       </header>
+
+      {/* 검색 오버레이 */}
+      <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
 
       {/* 드로어 오버레이 */}
       {menuOpen && (

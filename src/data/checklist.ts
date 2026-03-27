@@ -38,6 +38,20 @@ export const CHECKLIST_CATEGORIES: ChecklistCategory[] = [
     ],
   },
   {
+    id: 'cat-postpartum-prep',
+    titleKo: '산후조리원 예약 및 준비',
+    stage: 'pregnant',
+    items: [
+      { id: 'pc1', textKo: '산후조리원 3~5곳 투어 신청', priority: 'high', noteKo: '임신 20~24주 권장 — 이미 마감된 곳 많음' },
+      { id: 'pc2', textKo: '계약서 위약금·환불 조항 직접 확인', priority: 'high' },
+      { id: 'pc3', textKo: '비용 세부 항목 파악 (기본료 + 추가 서비스 분리)', priority: 'high' },
+      { id: 'pc4', textKo: '계약금·잔금 납부일 캘린더 등록', priority: 'medium' },
+      { id: 'pc5', textKo: '조리원 담당자 연락처 저장', priority: 'medium' },
+      { id: 'pc6', textKo: '산모 입소 가방 사전 준비', priority: 'high', noteKo: '수유 브라, 산후 팬티, 슬리퍼, 세면도구, 개인 베개' },
+      { id: 'pc7', textKo: '아기 입소 용품 준비', priority: 'high', noteKo: '배냇저고리, 손발싸개, 모자, 속싸개' },
+    ],
+  },
+  {
     id: 'cat-hospital-bag',
     titleKo: '입원 준비 (36주~)',
     stage: 'pregnant',
@@ -48,6 +62,21 @@ export const CHECKLIST_CATEGORIES: ChecklistCategory[] = [
       { id: 'p10', textKo: '병원 가는 경로 및 주차 확인', priority: 'high' },
       { id: 'p11', textKo: '산후조리원 최종 예약 확인', priority: 'high' },
       { id: 'p12', textKo: '배우자 출산휴가 신청 준비', priority: 'medium' },
+    ],
+  },
+  {
+    id: 'cat-postpartum-admission',
+    titleKo: '산후조리원 입소 · 퇴소',
+    stage: 'newborn',
+    items: [
+      { id: 'pa1', textKo: '퇴원 전날 조리원에 입소 예정 시간 통보', priority: 'high' },
+      { id: 'pa2', textKo: '퇴원 수속 남편이 직접 처리 (진료비 정산 + 서류 수령)', priority: 'high' },
+      { id: 'pa3', textKo: '아기 안고 이동 — 아내는 빈손으로', priority: 'high' },
+      { id: 'pa4', textKo: '조리원 도착 즉시 입소 서류 제출 + 잔금 결제', priority: 'high' },
+      { id: 'pa5', textKo: '매일 방문 — 아내 심리 상태 직접 확인', priority: 'high', noteKo: '2주 이상 무기력·울음 지속 시 산후우울 가능성' },
+      { id: 'pa6', textKo: '수유 어려움 발생 시 조리원 수유 상담사 요청 도와주기', priority: 'medium' },
+      { id: 'pa7', textKo: '퇴소 2~3일 전 집 청소 + 아기 방 세팅 완료', priority: 'high' },
+      { id: 'pa8', textKo: '퇴소 전 기저귀·물티슈·분유 2주치 구매', priority: 'high' },
     ],
   },
   {

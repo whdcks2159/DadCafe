@@ -4,22 +4,20 @@
 @tailwind utilities;
 
 :root {
-  --brand: #1d4ed8;
+  --brand: #5b90e0;
 }
 
 body {
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: #f1f5f9;
+  background-color: #fffbf7;   /* 따뜻한 크림 화이트 */
   color: #1e293b;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Remove tap highlight on mobile */
 * {
   -webkit-tap-highlight-color: transparent;
 }
@@ -33,11 +31,11 @@ html {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #e2d9f3;
   border-radius: 9999px;
 }
 
-/* Line clamp utilities */
+/* Line clamp */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -51,22 +49,56 @@ html {
   overflow: hidden;
 }
 
-/* Animation */
+/* ─── Animations ──────────────────────────── */
+
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
 .animate-fade-in-up {
-  animation: fadeInUp 0.3s ease-out forwards;
+  animation: fadeInUp 0.35s ease-out forwards;
 }
 
 @keyframes pop {
   0%   { transform: scale(1); }
-  50%  { transform: scale(1.15); }
+  50%  { transform: scale(1.18); }
   100% { transform: scale(1); }
 }
-
 .animate-pop {
-  animation: pop 0.2s ease-out;
+  animation: pop 0.22s ease-out;
 }
+
+/* 하트 완료 애니메이션 */
+@keyframes heartBeat {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.35); }
+  60%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+.animate-heart {
+  animation: heartBeat 0.4s ease-out;
+}
+
+/* 부드럽게 떠오르는 느낌 */
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-5px); }
+}
+.animate-float {
+  animation: floatUp 3s ease-in-out infinite;
+}
+
+/* 부드러운 shimmer (일일 카드 등) */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, #fff5ee 25%, #ffe8d4 50%, #fff5ee 75%);
+  background-size: 200% auto;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* 숨기기 유틸리티 */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
