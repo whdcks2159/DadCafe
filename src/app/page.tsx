@@ -1,218 +1,109 @@
 'use client';
 
-import Link from 'next/link';
-import { ArrowRight, CheckSquare, Users, Lightbulb, Landmark, Zap, BookOpen, Sparkles, Heart, Bot, BookHeart } from 'lucide-react';
-import BabyCard from '@/components/BabyCard';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { BookOpen, ListChecks, Sparkles, ArrowRight } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
 
-/* 단계별 파스텔 배경 */
-const STAGES = [
-  { icon: '/icons/stage-pre-pregnancy.svg', label: '임신 전',  bg: 'bg-accent-50',   border: 'border-accent-100' },
-  { icon: '/icons/stage-pregnant.svg',      label: '임신 중',  bg: 'bg-brand-50',    border: 'border-brand-100' },
-  { icon: '/icons/stage-newborn.svg',       label: '신생아',   bg: 'bg-pastel-pink', border: 'border-rose-100' },
-  { icon: '/icons/stage-toddler.svg',       label: '영아기',   bg: 'bg-pastel-lavender', border: 'border-purple-100' },
-];
-
-/* 주요 기능 카드 */
 const FEATURES = [
-  { icon: BookOpen,    title: '단계별 가이드',  desc: '임신 전부터 영아기까지\n아빠 행동 가이드',    href: '/guide',      iconBg: 'bg-brand-400',   cardBg: 'bg-brand-50',      border: 'border-brand-100' },
-  { icon: CheckSquare, title: '체크리스트',     desc: '지금 해야 할 일을\n단계별로 확인해보세요',    href: '/checklist',  iconBg: 'bg-emerald-400',  cardBg: 'bg-pastel-mint',   border: 'border-green-100' },
-  { icon: Lightbulb,   title: '상황별 가이드',  desc: '입덧, 밤 울음,\n산후우울증 대처 방법',       href: '/situations', iconBg: 'bg-accent-500',   cardBg: 'bg-accent-50',     border: 'border-accent-100' },
-  { icon: Users,       title: '아빠 커뮤니티',  desc: '같은 처지의 아빠들과\n경험을 나눠보세요',     href: '/community',  iconBg: 'bg-violet-400',   cardBg: 'bg-pastel-lavender', border: 'border-purple-100' },
+  {
+    icon: BookOpen,
+    title: '단계별 가이드',
+    desc: '임신 전부터 영아기까지, 아빠가 해야 할 행동을 순서대로',
+  },
+  {
+    icon: ListChecks,
+    title: '10초 체크리스트',
+    desc: '아기 울음, 발열, 잠투정 — 읽지 않고 탭만 해도 해결',
+  },
+  {
+    icon: Sparkles,
+    title: 'AI 맞춤 플랜',
+    desc: '지금 상황을 말하면 AI가 아빠 맞춤 가이드를 드려요',
+  },
 ];
 
 export default function LandingPage() {
+  const { user, loading, signInWithGoogle } = useAuth();
+  const router = useRouter();
+
+  // 이미 로그인된 경우 바로 앱으로
+  useEffect(() => {
+    if (!loading && user) {
+      router.replace('/guide');
+    }
+  }, [user, loading, router]);
+
+  if (loading || user) return null;
+
   return (
-    <div className="min-h-screen flex flex-col bg-warm-50 md:items-center md:justify-center md:py-12">
-      <div className="w-full md:max-w-lg md:bg-white md:rounded-3xl md:shadow-soft md:overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-brand-50 via-blue-50 to-pastel-lavender px-6 py-12">
+      {/* 배경 장식 */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-20 -right-20 w-72 h-72 bg-brand-100/50 rounded-full" />
+        <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-pastel-lavender/60 rounded-full" />
+        <div className="absolute top-1/2 right-8 w-24 h-24 bg-brand-100/30 rounded-full" />
+      </div>
 
-        {/* ── Hero ──────────────────────────────── */}
-        <section className="relative bg-gradient-to-br from-brand-50 via-blue-50 to-pastel-lavender px-6 pt-14 pb-12 overflow-hidden">
-          {/* 배경 장식 원 */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute -top-10 -right-10 w-52 h-52 bg-brand-100/60 rounded-full" />
-            <div className="absolute top-20 -right-4  w-28 h-28 bg-brand-100/40 rounded-full" />
-            <div className="absolute -bottom-8 -left-8 w-36 h-36 bg-pastel-lavender/80 rounded-full" />
-            <div className="absolute bottom-12 right-12 w-16 h-16 bg-brand-200/30 rounded-full" />
-          </div>
+      <div className="relative z-10 w-full max-w-sm flex flex-col items-center">
 
-          <div className="relative z-10">
-            {/* 로고 */}
-            <div className="flex items-center gap-2.5 mb-8">
-              <img src="/favicon.png" alt="" className="w-10 h-10" />
+        {/* 로고 */}
+        <div className="flex flex-col items-center mb-10">
+          <img
+            src="/favicon.png"
+            alt="파파플랜"
+            className="w-20 h-20 mb-4 drop-shadow-md"
+          />
+          <h1 className="font-black text-2xl text-neutral-900 tracking-tight">파파플랜</h1>
+          <p className="text-sm text-neutral-400 mt-1">아빠의 육아 플랜, 여기서 시작</p>
+        </div>
+
+        {/* 핵심 기능 3줄 */}
+        <div className="w-full space-y-3 mb-10">
+          {FEATURES.map(({ icon: Icon, title, desc }) => (
+            <div
+              key={title}
+              className="flex items-center gap-3.5 bg-white/70 backdrop-blur-sm border border-white rounded-2xl px-4 py-3.5 shadow-sm"
+            >
+              <div className="w-9 h-9 bg-brand-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Icon size={16} className="text-white" />
+              </div>
               <div>
-                <p className="font-black text-lg text-neutral-900 leading-none">파파플랜</p>
-                <p className="text-[10px] text-neutral-400">PapaPlan · 아빠 육아 가이드</p>
+                <p className="font-bold text-sm text-neutral-800">{title}</p>
+                <p className="text-[11px] text-neutral-400 leading-snug mt-0.5">{desc}</p>
               </div>
             </div>
+          ))}
+        </div>
 
-            <p className="text-brand-400 text-xs font-medium mb-2 tracking-wider uppercase">아빠를 위한 따뜻한 육아 플랜</p>
-            <h1 className="text-3xl font-black leading-tight mb-3 text-neutral-900">
-              함께 키우는<br />
-              아이 이야기,<br />
-              <span className="text-brand-500">파파플랜에서</span>
-            </h1>
-            <p className="text-neutral-500 text-sm leading-relaxed mb-8">
-              맘카페 말고 <strong className="text-brand-600">파파플랜</strong>.<br />
-              임신부터 영아기까지 아빠가 해야 할 일을<br />
-              단계별로 친절하게 안내해드려요.
-            </p>
-
-            <div className="flex gap-3">
-              <Link
-                href="/guide"
-                className="flex items-center gap-2 bg-brand-500 text-white font-black px-5 py-3 rounded-2xl shadow-warm hover:bg-brand-600 transition-all active:scale-95 text-sm"
-              >
-                가이드 시작하기
-                <ArrowRight size={16} />
-              </Link>
-              <Link
-                href="/gov-support"
-                className="flex items-center gap-2 bg-white border border-brand-200 text-brand-600 font-bold px-4 py-3 rounded-2xl hover:bg-brand-50 transition-all active:scale-95 text-sm"
-              >
-                <Zap size={14} className="text-accent-500" />
-                정부 지원
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* ── 오늘 우리 아기 ──────────────────────── */}
-        <section className="pb-2 bg-warm-50">
-          <BabyCard />
-        </section>
-
-        {/* ── 단계별 가이드 ────────────────────── */}
-        <section className="px-5 py-5 bg-warm-50">
-          <p className="text-xs font-bold text-neutral-400 tracking-wide mb-3">단계별 가이드</p>
-          <div className="grid grid-cols-4 gap-2">
-            {STAGES.map(({ icon, label, bg, border }) => (
-              <Link
-                key={label}
-                href="/guide"
-                className={`flex flex-col items-center gap-2 ${bg} border ${border} rounded-2xl p-3 hover:shadow-card transition-all active:scale-95`}
-              >
-                <img src={icon} alt={label} className="w-8 h-8" />
-                <span className="text-[11px] font-bold text-slate-600 text-center leading-tight">{label}</span>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* ── 정부 지원 배너 ───────────────────── */}
-        <section className="px-5 pb-4 bg-warm-50">
-          <Link
-            href="/gov-support"
-            className="flex items-center gap-4 bg-indigo-100 border border-indigo-200 rounded-3xl p-4 hover:bg-indigo-200 transition-all active:scale-[0.98] shadow-card"
+        {/* CTA 버튼 */}
+        <div className="w-full space-y-3">
+          <button
+            onClick={signInWithGoogle}
+            className="w-full flex items-center justify-center gap-3 bg-white border border-slate-200 text-neutral-800 font-bold py-3.5 rounded-2xl shadow-sm hover:shadow-md active:scale-[0.98] transition-all text-sm"
           >
-            <div className="w-11 h-11 bg-brand-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-              <Landmark size={20} className="text-brand-500" />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-0.5">
-                <p className="font-black text-sm text-neutral-900">정부 지원 한눈에 보기</p>
-                <span className="text-[9px] font-black bg-brand-200 text-brand-700 px-1.5 py-0.5 rounded-full">2026</span>
-              </div>
-              <p className="text-xs text-neutral-500">신청하지 않으면 받을 수 없어요 — 지금 확인해보세요</p>
-            </div>
-            <ArrowRight size={16} className="text-brand-400 flex-shrink-0" />
-          </Link>
-        </section>
+            <svg width="18" height="18" viewBox="0 0 48 48">
+              <path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.2l6.8-6.8C35.8 2.5 30.2 0 24 0 14.8 0 6.9 5.4 3 13.3l7.9 6.1C12.8 13.1 17.9 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.1z"/>
+              <path fill="#FBBC05" d="M10.9 28.6A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.6L2.4 13.3A24 24 0 0 0 0 24c0 3.9.9 7.5 2.5 10.8l8.4-6.2z"/>
+              <path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.6-5.9c-2 1.4-4.7 2.2-7.6 2.2-6.1 0-11.2-3.6-13.1-9l-7.9 6.1C6.9 42.6 14.8 48 24 48z"/>
+            </svg>
+            Google로 시작하기
+          </button>
 
-        {/* ── 주요 기능 ──────────────────────── */}
-        <section className="px-5 py-4 bg-warm-50">
-          <p className="text-xs font-bold text-neutral-400 tracking-wide mb-3">주요 기능</p>
-          <div className="grid grid-cols-2 gap-2.5">
-            {FEATURES.map(({ icon: Icon, title, desc, href, iconBg, cardBg, border }) => (
-              <Link
-                key={title}
-                href={href}
-                className={`flex flex-col gap-3 ${cardBg} border ${border} rounded-3xl p-4 hover:shadow-card transition-all active:scale-95`}
-              >
-                <div className={`w-10 h-10 ${iconBg} rounded-2xl flex items-center justify-center shadow-sm`}>
-                  <Icon size={18} className="text-white" />
-                </div>
-                <div>
-                  <p className="font-bold text-sm text-neutral-900">{title}</p>
-                  <p className="text-[11px] text-neutral-500 mt-0.5 leading-snug whitespace-pre-line">{desc}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+          <button
+            onClick={() => router.push('/guide')}
+            className="w-full flex items-center justify-center gap-1.5 text-neutral-400 text-sm py-2 hover:text-neutral-600 transition-colors"
+          >
+            로그인 없이 둘러보기
+            <ArrowRight size={14} />
+          </button>
+        </div>
 
-        {/* ── 새로운 기능 ────────────────────── */}
-        <section className="px-5 py-4 bg-warm-50 space-y-2.5">
-          <p className="text-xs font-bold text-neutral-400 tracking-wide mb-1">새로운 기능</p>
-
-          <Link href="/tips" className="flex items-center gap-3 bg-amber-100 border border-amber-200 rounded-2xl px-4 py-3.5 hover:shadow-card transition-all active:scale-[0.98]">
-            <div className="w-10 h-10 bg-amber-400 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
-              <Sparkles size={18} className="text-white" />
-            </div>
-            <div className="flex-1">
-              <p className="font-bold text-sm text-neutral-900">임신 꿀팁</p>
-              <p className="text-xs text-neutral-500 mt-0.5">바로 써먹는 아빠 실전 가이드 16선</p>
-            </div>
-            <ArrowRight size={16} className="text-neutral-300 flex-shrink-0" />
-          </Link>
-
-          <Link href="/fertility" className="flex items-center gap-3 bg-rose-100 border border-rose-200 rounded-2xl px-4 py-3.5 hover:shadow-card transition-all active:scale-[0.98]">
-            <div className="w-10 h-10 bg-rose-400 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
-              <Heart size={18} className="text-white" />
-            </div>
-            <div className="flex-1">
-              <p className="font-bold text-sm text-neutral-900">난임 가이드</p>
-              <p className="text-xs text-neutral-500 mt-0.5">검사부터 치료까지 — 남편이 도울 수 있어요</p>
-            </div>
-            <ArrowRight size={16} className="text-neutral-300 flex-shrink-0" />
-          </Link>
-
-          <Link href="/ai-guide" className="flex items-center gap-3 bg-sky-100 border border-sky-200 rounded-2xl px-4 py-3.5 hover:shadow-card transition-all active:scale-[0.98]">
-            <div className="w-10 h-10 bg-brand-300 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
-              <Bot size={18} className="text-white" />
-            </div>
-            <div className="flex-1">
-              <p className="font-bold text-sm text-neutral-900">AI 맞춤 플랜</p>
-              <p className="text-xs text-neutral-500 mt-0.5">내 상황에 맞는 가이드를 AI가 도와드려요</p>
-            </div>
-            <span className="text-[9px] font-black bg-brand-500 text-white px-1.5 py-0.5 rounded-full flex-shrink-0">AI</span>
-          </Link>
-
-          <Link href="/diary" className="flex items-center gap-3 bg-emerald-100 border border-emerald-200 rounded-2xl px-4 py-3.5 hover:shadow-card transition-all active:scale-[0.98]">
-            <div className="w-10 h-10 bg-emerald-400 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
-              <BookHeart size={18} className="text-white" />
-            </div>
-            <div className="flex-1">
-              <p className="font-bold text-sm text-neutral-900">육아일기</p>
-              <p className="text-xs text-neutral-500 mt-0.5">사진과 함께 아이의 소중한 순간을 기록해요</p>
-            </div>
-            <ArrowRight size={16} className="text-neutral-300 flex-shrink-0" />
-          </Link>
-        </section>
-
-        {/* ── 아빠 레벨 테스트 ─────────────────── */}
-        <section className="px-5 py-4 bg-warm-50">
-          <div className="bg-gradient-to-br from-pastel-lavender via-brand-50 to-pastel-blue border border-brand-100 rounded-3xl p-5 shadow-card">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="text-xs text-brand-400 mb-1 font-medium">아빠 레벨 테스트</p>
-                <p className="font-black text-sm mb-4 leading-snug text-neutral-900">나는 어떤 아빠일까요?<br />7가지 질문으로 알아보세요.</p>
-                <Link
-                  href="/dad-level"
-                  className="inline-flex items-center gap-1.5 bg-brand-500 text-white text-sm font-black px-4 py-2.5 rounded-2xl hover:bg-brand-600 transition-colors active:scale-[0.98] shadow-warm"
-                >
-                  테스트 시작하기 <ArrowRight size={14} />
-                </Link>
-              </div>
-              <img src="/icons/ic-stats.png" alt="" className="w-16 h-16 opacity-30" />
-            </div>
-          </div>
-        </section>
-
-        {/* ── Footer ──────────────────────────── */}
-        <footer className="px-5 py-6 bg-warm-50 text-center">
-          <p className="text-xs text-neutral-400">© 2026 파파플랜 · 아이와 함께하는 모든 순간</p>
-        </footer>
-
+        {/* 하단 문구 */}
+        <p className="text-[10px] text-neutral-300 mt-10 text-center">
+          © 2026 파파플랜 · 아이와 함께하는 모든 순간
+        </p>
       </div>
     </div>
   );
