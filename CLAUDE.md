@@ -129,6 +129,10 @@ interface SearchItem {
 | 난임 가이드 | `/fertility` | |
 | 정부 지원 | `/gov-support/[slug]` | 2026 정책 기준 |
 | 아빠 레벨 퀴즈 | `/dad-level` | beginner/ready/experienced |
+| 블로그 | `/blog` / `/blog/[slug]` | 1000자+ 심층 아티클, JSON-LD Article 스키마 |
+| 서비스 소개 | `/about` | 미션·기능·연락처 |
+| 개인정보처리방침 | `/privacy` | 애드센스/앱스토어 필수 |
+| 이용약관 | `/terms` | 앱스토어 심사 필수 |
 
 ### UX 기능
 | 기능 | 구현 파일 | 설명 |
@@ -136,6 +140,7 @@ interface SearchItem {
 | 상황 키워드 검색 | `SearchOverlay.tsx` / `searchIndex.ts` | fuse.js 퍼지 검색, 오타·유사어 대응 |
 | 10초 체크리스트 모드 | `ChecklistMode.tsx` / `SituationDetail.tsx` | 상황 상세에서 토글, 에스컬레이션 분리 |
 | 하단 검색 버튼 | `BottomNav.tsx` | 가운데 brand-500 원형 플로팅 버튼 |
+| 사이트 푸터 | `SiteFooter.tsx` | 법적 링크(privacy/terms/about) + 서비스 네비게이션 |
 
 ### PWA / 앱 배포
 | 기능 | 파일 | 설명 |
@@ -241,3 +246,39 @@ SHA256 fingerprint를 받아서 `public/.well-known/assetlinks.json`의
 - [ ] 아기 성장 추적 대시보드
 - [ ] 푸시 알림 (예방접종 / 검진 일정)
 - [ ] TWA SHA256 fingerprint 교체 후 Play Store 제출
+- [ ] 블로그 포스트 추가 (현재 4개 → 20개+ 목표)
+- [ ] 블로그에 Firebase 기반 CMS 또는 MDX 파일 방식 도입 검토
+- [ ] Google Search Console에서 sitemap.xml 재제출 (dadcafe.vercel.app 도메인으로 변경됨)
+
+## gstack
+
+Use the `/browse` skill from gstack for all web browsing. Never use `mcp__claude-in-chrome__*` tools.
+
+If gstack skills aren't working, run `cd .claude/skills/gstack && ./setup` to build the binary and register skills.
+
+### Available skills
+
+/office-hours, /plan-ceo-review, /plan-eng-review, /plan-design-review, /design-consultation,
+/review, /ship, /land-and-deploy, /canary, /benchmark, /browse, /qa, /qa-only, /design-review,
+/setup-browser-cookies, /setup-deploy, /retro, /investigate, /document-release, /codex, /cso,
+/autoplan, /careful, /freeze, /guard, /unfreeze, /gstack-upgrade
+
+## Skill routing
+
+When the user's request matches an available skill, ALWAYS invoke it using the Skill
+tool as your FIRST action. Do NOT answer directly, do NOT use other tools first.
+The skill has specialized workflows that produce better results than ad-hoc answers.
+
+Key routing rules:
+- Product ideas, "is this worth building", brainstorming → invoke office-hours
+- Bugs, errors, "why is this broken", 500 errors → invoke investigate
+- Ship, deploy, push, create PR → invoke ship
+- QA, test the site, find bugs → invoke qa
+- Code review, check my diff → invoke review
+- Update docs after shipping → invoke document-release
+- Weekly retro → invoke retro
+- Design system, brand → invoke design-consultation
+- Visual audit, design polish → invoke design-review
+- Architecture review → invoke plan-eng-review
+- Save progress, checkpoint, resume → invoke checkpoint
+- Code quality, health check → invoke health
