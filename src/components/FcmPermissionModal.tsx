@@ -36,7 +36,7 @@ export default function FcmPermissionModal({ uid, onClose }: FcmPermissionModalP
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 px-4 pb-8">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 px-4 pb-24">
       <div className="w-full max-w-sm bg-white rounded-3xl p-6 shadow-xl animate-fade-in-up">
 
         {done ? (
