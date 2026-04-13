@@ -23,6 +23,7 @@ export default function BabyHeroCard({ currentMonth, babyName, log }: BabyHeroCa
     milestones: string[];
     heightCm?: number | null;
     weightKg?: number | null;
+    photoUrls?: string[];
   }) {
     await saveMonthlyLog(currentMonth, data);
   }
@@ -103,6 +104,20 @@ export default function BabyHeroCard({ currentMonth, babyName, log }: BabyHeroCa
           </div>
         </div>
 
+        {/* 사진 썸네일 */}
+        {log?.photoUrls && log.photoUrls.length > 0 && (
+          <div className="flex gap-2 mb-3">
+            {log.photoUrls.slice(0, 3).map((url) => (
+              <img
+                key={url}
+                src={url}
+                alt="이번 달 사진"
+                className="w-16 h-16 rounded-xl object-cover"
+              />
+            ))}
+          </div>
+        )}
+
         {/* 기록 버튼 */}
         <button
           onClick={() => setSheetOpen(true)}
@@ -138,10 +153,12 @@ export default function BabyHeroCard({ currentMonth, babyName, log }: BabyHeroCa
         <RecordBottomSheet
           mode="baby"
           periodLabel={info.ageLabel}
+          periodNumber={currentMonth}
           initialMemo={log?.memo ?? ''}
           initialMilestones={log?.milestones ?? []}
           initialHeightCm={log?.heightCm ?? null}
           initialWeightKg={log?.weightKg ?? null}
+          initialPhotoUrls={log?.photoUrls ?? []}
           onSave={handleSave}
           onClose={() => setSheetOpen(false)}
         />

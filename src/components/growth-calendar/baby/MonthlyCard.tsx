@@ -28,6 +28,7 @@ export default function MonthlyCard({ monthNumber, log }: MonthlyCardProps) {
     milestones: string[];
     heightCm?: number | null;
     weightKg?: number | null;
+    photoUrls?: string[];
   }) {
     await saveMonthlyLog(monthNumber, data);
   }
@@ -74,6 +75,18 @@ export default function MonthlyCard({ monthNumber, log }: MonthlyCardProps) {
 
             {hasRecord ? (
               <>
+                {log?.photoUrls && log.photoUrls.length > 0 && (
+                  <div className="flex gap-1.5 mb-2">
+                    {log.photoUrls.slice(0, 3).map((url) => (
+                      <img
+                        key={url}
+                        src={url}
+                        alt=""
+                        className="w-14 h-14 rounded-lg object-cover"
+                      />
+                    ))}
+                  </div>
+                )}
                 {log?.memo && (
                   <p className="text-sm text-slate-600 line-clamp-2 mb-2">{log.memo}</p>
                 )}
@@ -101,10 +114,12 @@ export default function MonthlyCard({ monthNumber, log }: MonthlyCardProps) {
         <RecordBottomSheet
           mode="baby"
           periodLabel={info.ageLabel}
+          periodNumber={monthNumber}
           initialMemo={log?.memo ?? ''}
           initialMilestones={log?.milestones ?? []}
           initialHeightCm={log?.heightCm ?? null}
           initialWeightKg={log?.weightKg ?? null}
+          initialPhotoUrls={log?.photoUrls ?? []}
           onSave={handleSave}
           onClose={() => setSheetOpen(false)}
         />

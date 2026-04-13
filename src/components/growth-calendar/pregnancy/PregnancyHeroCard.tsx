@@ -37,6 +37,7 @@ export default function PregnancyHeroCard({
   async function handleSave(data: {
     memo: string;
     milestones: string[];
+    photoUrls?: string[];
   }) {
     await saveWeeklyLog(currentWeek, data);
   }
@@ -143,6 +144,20 @@ export default function PregnancyHeroCard({
           </div>
         </div>
 
+        {/* 사진 썸네일 */}
+        {log?.photoUrls && log.photoUrls.length > 0 && (
+          <div className="flex gap-2 mb-3">
+            {log.photoUrls.slice(0, 3).map((url) => (
+              <img
+                key={url}
+                src={url}
+                alt="이번 주 사진"
+                className="w-16 h-16 rounded-xl object-cover"
+              />
+            ))}
+          </div>
+        )}
+
         {/* 기록 버튼 */}
         <button
           onClick={() => setSheetOpen(true)}
@@ -178,8 +193,10 @@ export default function PregnancyHeroCard({
         <RecordBottomSheet
           mode="pregnancy"
           periodLabel={`${currentWeek}주차`}
+          periodNumber={currentWeek}
           initialMemo={log?.memo ?? ''}
           initialMilestones={log?.milestones ?? []}
+          initialPhotoUrls={log?.photoUrls ?? []}
           onSave={handleSave}
           onClose={() => setSheetOpen(false)}
         />

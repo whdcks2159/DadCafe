@@ -18,7 +18,7 @@ export default function WeeklyCard({ weekNumber, log }: WeeklyCardProps) {
   const info = getWeekInfo(weekNumber);
   const hasRecord = !!(log?.memo || (log?.milestones?.length ?? 0) > 0);
 
-  async function handleSave(data: { memo: string; milestones: string[] }) {
+  async function handleSave(data: { memo: string; milestones: string[]; photoUrls?: string[] }) {
     await saveWeeklyLog(weekNumber, data);
   }
 
@@ -61,6 +61,19 @@ export default function WeeklyCard({ weekNumber, log }: WeeklyCardProps) {
 
             {hasRecord ? (
               <>
+                {/* 사진 썸네일 */}
+                {log?.photoUrls && log.photoUrls.length > 0 && (
+                  <div className="flex gap-1.5 mb-2">
+                    {log.photoUrls.slice(0, 3).map((url) => (
+                      <img
+                        key={url}
+                        src={url}
+                        alt=""
+                        className="w-14 h-14 rounded-lg object-cover"
+                      />
+                    ))}
+                  </div>
+                )}
                 {log?.memo && (
                   <p className="text-sm text-slate-600 line-clamp-2 mb-2">{log.memo}</p>
                 )}
@@ -93,8 +106,10 @@ export default function WeeklyCard({ weekNumber, log }: WeeklyCardProps) {
         <RecordBottomSheet
           mode="pregnancy"
           periodLabel={`${weekNumber}주차`}
+          periodNumber={weekNumber}
           initialMemo={log?.memo ?? ''}
           initialMilestones={log?.milestones ?? []}
+          initialPhotoUrls={log?.photoUrls ?? []}
           onSave={handleSave}
           onClose={() => setSheetOpen(false)}
         />

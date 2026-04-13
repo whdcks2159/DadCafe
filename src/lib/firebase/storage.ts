@@ -73,3 +73,38 @@ export async function deleteBabyPhoto(path: string): Promise<void> {
   const st = requireStorage();
   await deleteObject(ref(st, path));
 }
+
+export async function uploadGrowthPhoto(
+  uid: string,
+  babyId: string,
+  period: number,
+  file: File,
+  onProgress?: (pct: number) => void
+): Promise<{ url: string; path: string }> {
+  const st = requireStorage();
+  const ext = file.name.split('.').pop() ?? 'jpg';
+  const timestamp = Date.now();
+  const path = `growth/${uid}/${babyId}/${period}/${timestamp}.${ext}`;
+  const storageRef = ref(st, path);
+
+  return new Promise((resolve, reject) => {
+    const task = uploadBytesResumable(storageRef, file);
+    task.on(
+      'state_changed',
+      (snapshot: UploadTaskSnapshot) => {
+        const pct = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        onProgress?.(Math.round(pct));
+      },
+      reject,
+      async () => {
+        const url = await getDownloadURL(task.snapshot.ref);
+        resolve({ url, path });
+      }
+    );
+  });
+}
+
+export async function deleteGrowthPhoto(path: string): Promise<void> {
+  const st = requireStorage();
+  await deleteObject(ref(st, path));
+}
