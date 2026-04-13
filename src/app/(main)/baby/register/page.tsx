@@ -6,6 +6,7 @@ import TopHeader from '@/components/layout/TopHeader';
 import { useAuth } from '@/context/AuthContext';
 import { useBaby } from '@/context/BabyContext';
 import { createBaby, setActiveBabyId, upsertUserProfile } from '@/lib/firebase/firestore';
+import FcmPermissionModal from '@/components/FcmPermissionModal';
 import { Baby, CircleDot, Heart } from 'lucide-react';
 import type { BabyStatus } from '@/types';
 
@@ -19,6 +20,7 @@ export default function BabyRegisterPage() {
   const [name, setName]     = useState('');
   const [saving, setSaving] = useState(false);
   const [error, setError]   = useState('');
+  const [showFcmModal, setShowFcmModal] = useState(false);
 
   const canSubmit = status !== null && date !== '';
 
@@ -48,7 +50,12 @@ export default function BabyRegisterPage() {
         await refreshProfile();
       }
 
-      router.push('/');
+      // 임신 중인 경우 FCM 알림 권유
+      if (status === 'pregnant') {
+        setShowFcmModal(true);
+      } else {
+        router.push('/');
+      }
     } catch {
       setError('저장 중 오류가 발생했어요. 다시 시도해주세요.');
     } finally {
@@ -63,6 +70,9 @@ export default function BabyRegisterPage() {
 
   return (
     <>
+      {showFcmModal && user && (
+        <FcmPermissionModal uid={user.uid} onClose={() => router.push('/')} />
+      )}
       <TopHeader title="아이 등록" showBack />
 
       <div className="px-5 pt-6 pb-10 space-y-8">

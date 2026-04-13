@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, CheckSquare, Users, Landmark, BookHeart, BookOpen } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, CheckSquare, Users, Landmark, BookHeart, BookOpen, Newspaper, CalendarDays } from 'lucide-react';
 import BabyCard from '@/components/BabyCard';
+import { BLOG_POSTS } from '@/data/blogPosts';
 
 const FEATURES = [
   { icon: BookOpen,    title: '가이드',       desc: '단계별·상황별\n모든 가이드 보기',         href: '/guide',      iconBg: 'bg-brand-400',   cardBg: 'bg-brand-50',        border: 'border-brand-100' },
@@ -25,26 +27,28 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-10">
-          {/* 로고 */}
-          <div className="flex items-center gap-2.5 mb-8">
-            <img src="/favicon.png" alt="" className="w-10 h-10" />
-            <div>
-              <p className="font-black text-lg text-neutral-900 leading-none">파파플랜</p>
-              <p className="text-[10px] text-neutral-400">PapaPlan · 아빠 육아 가이드</p>
+          <div>
+            {/* 로고 */}
+            <div className="flex items-center gap-2.5 mb-8">
+              <Image src="/icons/mainLogo.png" alt="파파플랜 로고" width={40} height={40} className="w-10 h-10" />
+              <div>
+                <p className="font-black text-lg text-neutral-900 leading-none">파파플랜</p>
+                <p className="text-[10px] text-neutral-400">PapaPlan · 아빠 육아 가이드</p>
+              </div>
             </div>
-          </div>
 
-          <p className="text-brand-400 text-xs font-medium mb-2 tracking-wider uppercase">아빠를 위한 따뜻한 육아 플랜</p>
-          <h1 className="text-3xl font-black leading-tight mb-3 text-neutral-900">
-            함께 키우는<br />
-            아이 이야기,<br />
-            <span className="text-brand-500">파파플랜에서</span>
-          </h1>
-          <p className="text-neutral-500 text-sm leading-relaxed">
-            맘카페 말고 <strong className="text-brand-600">파파플랜</strong>.<br />
-            임신부터 영아기까지 아빠가 해야 할 일을<br />
-            단계별로 친절하게 안내해드려요.
-          </p>
+            <p className="text-brand-400 text-xs font-medium mb-2 tracking-wider uppercase">아빠를 위한 따뜻한 육아 플랜</p>
+            <h1 className="text-3xl font-black leading-tight mb-3 text-neutral-900">
+              함께 키우는<br />
+              아이 이야기,<br />
+              <span className="text-brand-500">파파플랜에서</span>
+            </h1>
+            <p className="text-neutral-500 text-sm leading-relaxed">
+              맘카페 말고 <strong className="text-brand-600">파파플랜</strong>.<br />
+              임신부터 영아기까지 아빠가 해야 할 일을<br />
+              단계별로 친절하게 안내해드려요.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -96,6 +100,23 @@ export default function HomePage() {
       </section>
 
 
+      {/* ── 성장 캘린더 배너 ─────────────────── */}
+      <section className="px-5 pb-4 bg-warm-50">
+        <Link
+          href="/growth-calendar"
+          className="flex items-center gap-4 bg-gradient-to-r from-brand-50 to-blue-50 border border-brand-100 rounded-3xl p-4 hover:shadow-card transition-all active:scale-[0.98]"
+        >
+          <div className="w-11 h-11 bg-brand-500 rounded-2xl flex items-center justify-center flex-shrink-0">
+            <CalendarDays size={20} className="text-white" />
+          </div>
+          <div className="flex-1">
+            <p className="font-black text-sm text-neutral-900 mb-0.5">성장 캘린더</p>
+            <p className="text-xs text-neutral-500">임신 주차부터 출산 후까지 아이의 이야기를 기록해요</p>
+          </div>
+          <ArrowRight size={16} className="text-brand-400 flex-shrink-0" />
+        </Link>
+      </section>
+
       {/* ── 아빠 레벨 테스트 ─────────────────── */}
       <section className="px-5 py-4 bg-warm-50">
         <div className="bg-gradient-to-br from-pastel-lavender via-brand-50 to-pastel-blue border border-brand-100 rounded-3xl p-5 shadow-card">
@@ -115,10 +136,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Footer ──────────────────────────── */}
-      <footer className="px-5 py-6 bg-warm-50 text-center">
-        <p className="text-xs text-neutral-400">© 2026 파파플랜 · 아이와 함께하는 모든 순간</p>
-      </footer>
+      {/* ── 최신 블로그 아티클 ────────────────── */}
+      <section className="px-5 py-4 bg-warm-50">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-1.5">
+            <Newspaper size={14} className="text-neutral-400" />
+            <p className="text-xs font-bold text-neutral-400 tracking-wide">아빠 육아 아티클</p>
+          </div>
+          <Link href="/blog" className="text-xs font-bold text-brand-500 hover:text-brand-600">
+            전체 보기
+          </Link>
+        </div>
+        <div className="space-y-2.5">
+          {BLOG_POSTS.slice(0, 2).map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="flex flex-col gap-0.5 p-4 bg-white border border-slate-100 rounded-2xl hover:border-brand-200 hover:bg-brand-50/30 transition-all active:scale-[0.98] shadow-card"
+            >
+              <p className="font-bold text-sm text-neutral-900 leading-snug">{post.title}</p>
+              <p className="text-xs text-neutral-500 line-clamp-1">{post.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
     </div>
   );

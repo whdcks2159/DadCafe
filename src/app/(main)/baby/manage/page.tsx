@@ -1,18 +1,45 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import TopHeader from '@/components/layout/TopHeader';
 import { useAuth } from '@/context/AuthContext';
 import { useBaby } from '@/context/BabyContext';
-import { deleteBaby } from '@/lib/firebase/firestore';
+import { deleteBaby, updateBaby } from '@/lib/firebase/firestore';
+import { uploadBabyPhoto } from '@/lib/firebase/storage';
 import { getBabyAgeLabel, getBabyDisplayName } from '@/lib/baby';
-import { CheckCircle2, Trash2, Plus, Baby, Heart } from 'lucide-react';
+import { CheckCircle2, Trash2, Plus, Baby, Heart, Camera } from 'lucide-react';
 
 export default function BabyManagePage() {
   const { user } = useAuth();
   const { babies, activeBaby, setActiveBaby, refreshBabies } = useBaby();
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [uploading, setUploading] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const uploadTargetRef = useRef<string | null>(null);
+
+  const handlePhotoClick = (babyId: string) => {
+    uploadTargetRef.current = babyId;
+    fileInputRef.current?.click();
+  };
+
+  const handlePhotoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    const babyId = uploadTargetRef.current;
+    if (!file || !babyId || !user) return;
+    e.target.value = '';
+
+    setUploading(babyId);
+    try {
+      const { url } = await uploadBabyPhoto(user.uid, babyId, file);
+      await updateBaby(user.uid, babyId, { photoUrl: url });
+      await refreshBabies();
+    } catch {
+      alert('사진 업로드에 실패했어요. 다시 시도해주세요.');
+    } finally {
+      setUploading(null);
+    }
+  };
 
   const handleDelete = async (babyId: string) => {
     if (!user || !confirm('이 아이 정보를 삭제할까요?')) return;
@@ -37,6 +64,15 @@ export default function BabyManagePage() {
     <>
       <TopHeader title="아이 관리" showBack />
 
+      {/* 숨긴 파일 입력 */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handlePhotoChange}
+      />
+
       <div className="px-4 pt-5 pb-10 space-y-4">
 
         {/* 아이 목록 */}
@@ -51,6 +87,7 @@ export default function BabyManagePage() {
         ) : (
           babies.map((baby) => {
             const isActive = activeBaby?.id === baby.id;
+            const isUploading = uploading === baby.id;
             return (
               <div
                 key={baby.id}
@@ -59,12 +96,36 @@ export default function BabyManagePage() {
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  {/* 아이콘 */}
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${
-                    isActive ? 'bg-brand-100' : 'bg-warm-100'
-                  }`}>
-                    <StatusIcon status={baby.status} />
-                  </div>
+                  {/* 프로필 사진 */}
+                  <button
+                    onClick={() => handlePhotoClick(baby.id)}
+                    disabled={isUploading}
+                    className="relative w-14 h-14 flex-shrink-0 group"
+                  >
+                    {baby.photoUrl ? (
+                      <img
+                        src={baby.photoUrl}
+                        alt={getBabyDisplayName(baby)}
+                        className="w-14 h-14 rounded-full object-cover ring-2 ring-brand-100"
+                      />
+                    ) : (
+                      <div className={`w-14 h-14 rounded-full flex items-center justify-center ring-2 ${
+                        isActive ? 'bg-brand-50 ring-brand-200' : 'bg-warm-100 ring-warm-200'
+                      }`}>
+                        <StatusIcon status={baby.status} />
+                      </div>
+                    )}
+                    {/* 카메라 오버레이 */}
+                    <div className={`absolute inset-0 rounded-full flex items-center justify-center transition-opacity ${
+                      isUploading ? 'bg-black/30 opacity-100' : 'bg-black/0 opacity-0 group-hover:opacity-100 group-hover:bg-black/25'
+                    }`}>
+                      {isUploading ? (
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      ) : (
+                        <Camera size={16} className="text-white" />
+                      )}
+                    </div>
+                  </button>
 
                   {/* 정보 */}
                   <div className="flex-1 min-w-0">
@@ -79,6 +140,7 @@ export default function BabyManagePage() {
                     <p className="text-xs text-slate-500 mt-0.5">
                       {statusLabel(baby.status)} · {getBabyAgeLabel(baby)}
                     </p>
+                    <p className="text-[10px] text-slate-400 mt-1">사진을 눌러 변경</p>
                   </div>
 
                   {/* 액션 */}

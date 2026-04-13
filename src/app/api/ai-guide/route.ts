@@ -29,14 +29,29 @@ export async function POST(req: NextRequest) {
   const userMessage = stage ? `[${stage} 단계 아빠의 질문] ${question}` : question;
 
   try {
-    const stream = await client.messages.stream({
-      model: 'claude-opus-4-5',
-      max_tokens: 512,
-      system: SYSTEM_PROMPT,
-      messages: [{ role: 'user', content: userMessage }],
+    const encoder = new TextEncoder();
+    const readable = new ReadableStream({
+      async start(controller) {
+        try {
+          const stream = client.messages.stream({
+            model: 'claude-haiku-4-5-20251001',
+            max_tokens: 512,
+            system: SYSTEM_PROMPT,
+            messages: [{ role: 'user', content: userMessage }],
+          });
+          for await (const event of stream) {
+            controller.enqueue(encoder.encode(`data: ${JSON.stringify(event)}\n\n`));
+          }
+        } catch (err) {
+          const errEvent = { type: 'error', error: String(err) };
+          controller.enqueue(encoder.encode(`data: ${JSON.stringify(errEvent)}\n\n`));
+        } finally {
+          controller.close();
+        }
+      },
     });
 
-    return new Response(stream.toReadableStream(), {
+    return new Response(readable, {
       headers: {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',

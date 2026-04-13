@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
+import { getAllBlogSlugs } from '@/data/blogPosts';
 
-const BASE_URL = 'https://papaplan.kr';
+const BASE_URL = 'https://dadcafe.vercel.app';
 
 const SITUATION_SLUGS = [
   'morning-sickness', 'hospital-bag', 'baby-crying', 'postpartum-depression',
@@ -73,18 +74,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: BASE_URL,               lastModified: now, changeFrequency: 'weekly',  priority: 1.0 },
-    { url: `${BASE_URL}/guide`,    lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
-    { url: `${BASE_URL}/situations`,lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/tips`,     lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/gov-support`,lastModified: now,changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/checklist`,lastModified: now, changeFrequency: 'weekly',  priority: 0.7 },
-    { url: `${BASE_URL}/dad-level`,lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${BASE_URL}/fertility`,lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${BASE_URL}/ai-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${BASE_URL}/community`,lastModified: now, changeFrequency: 'daily',   priority: 0.6 },
-    { url: `${BASE_URL}/diary`,    lastModified: now, changeFrequency: 'daily',   priority: 0.5 },
-    { url: `${BASE_URL}/profile`,  lastModified: now, changeFrequency: 'monthly', priority: 0.4 },
+    { url: BASE_URL,                  lastModified: now, changeFrequency: 'weekly',  priority: 1.0 },
+    { url: `${BASE_URL}/guide`,       lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
+    { url: `${BASE_URL}/blog`,        lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
+    { url: `${BASE_URL}/situations`,  lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/tips`,        lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/gov-support`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/checklist`,   lastModified: now, changeFrequency: 'weekly',  priority: 0.7 },
+    { url: `${BASE_URL}/dad-level`,   lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/fertility`,   lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/about`,       lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE_URL}/ai-guide`,    lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE_URL}/community`,   lastModified: now, changeFrequency: 'daily',   priority: 0.6 },
+    { url: `${BASE_URL}/diary`,       lastModified: now, changeFrequency: 'daily',   priority: 0.5 },
+    { url: `${BASE_URL}/privacy`,        lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
+    { url: `${BASE_URL}/terms`,          lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
+    { url: `${BASE_URL}/data-deletion`,  lastModified: now, changeFrequency: 'yearly',  priority: 0.2 },
   ];
 
   const guideStageRoutes: MetadataRoute.Sitemap = [
@@ -124,6 +129,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const blogRoutes: MetadataRoute.Sitemap = getAllBlogSlugs().map((slug) => ({
+    url: `${BASE_URL}/blog/${slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+
   return [
     ...staticRoutes,
     ...guideStageRoutes,
@@ -131,5 +143,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...situationRoutes,
     ...tipRoutes,
     ...govSupportRoutes,
+    ...blogRoutes,
   ];
 }

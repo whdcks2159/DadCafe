@@ -16,9 +16,10 @@ import {
   Timestamp,
   startAfter,
   type DocumentSnapshot,
+  type QueryDocumentSnapshot,
 } from 'firebase/firestore';
 import { db } from './client';
-import type { UserProfile, Post, Comment, DiaryEntry, Baby } from '@/types';
+import type { UserProfile, Post, Comment, DiaryEntry, Baby, WeeklyLog, MonthlyLog, MilestoneRecord } from '@/types';
 
 function requireDb() {
   if (!db) throw new Error('Firebase not initialized');
@@ -81,10 +82,10 @@ export async function getPosts(pageSize = 10, lastDoc?: DocumentSnapshot) {
     q = query(collection(d, 'posts'), orderBy('createdAt', 'desc'), startAfter(lastDoc), limit(pageSize));
   }
   const snap = await getDocs(q);
-  const posts = snap.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-    createdAt: (doc.data().createdAt as Timestamp)?.toDate() ?? new Date(),
+  const posts = snap.docs.map((s: QueryDocumentSnapshot) => ({
+    id: s.id,
+    ...s.data(),
+    createdAt: (s.data().createdAt as Timestamp)?.toDate() ?? new Date(),
   })) as Post[];
   return { posts, lastDoc: snap.docs[snap.docs.length - 1] };
 }
@@ -148,10 +149,10 @@ export async function getComments(postId: string): Promise<Comment[]> {
     orderBy('createdAt', 'asc')
   );
   const snap = await getDocs(q);
-  return snap.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-    createdAt: (doc.data().createdAt as Timestamp)?.toDate() ?? new Date(),
+  return snap.docs.map((s: QueryDocumentSnapshot) => ({
+    id: s.id,
+    ...s.data(),
+    createdAt: (s.data().createdAt as Timestamp)?.toDate() ?? new Date(),
   })) as Comment[];
 }
 
@@ -188,7 +189,7 @@ export async function getDiaryEntries(uid: string, pageSize = 20): Promise<Diary
     limit(pageSize)
   );
   const snap = await getDocs(q);
-  return snap.docs.map((doc) => toDiaryEntry(doc.id, doc.data() as Record<string, unknown>));
+  return snap.docs.map((s: QueryDocumentSnapshot) => toDiaryEntry(s.id, s.data() as Record<string, unknown>));
 }
 
 export async function getDiaryEntry(uid: string, entryId: string): Promise<DiaryEntry | null> {
@@ -221,11 +222,11 @@ export async function getBabies(uid: string): Promise<Baby[]> {
   const d = requireDb();
   const q = query(collection(d, 'users', uid, 'babies'), orderBy('createdAt', 'asc'));
   const snap = await getDocs(q);
-  return snap.docs.map((docSnap) => ({
-    id: docSnap.id,
-    ...docSnap.data(),
-    createdAt: (docSnap.data().createdAt as Timestamp)?.toDate() ?? new Date(),
-    updatedAt: (docSnap.data().updatedAt as Timestamp)?.toDate() ?? new Date(),
+  return snap.docs.map((s: QueryDocumentSnapshot) => ({
+    id: s.id,
+    ...s.data(),
+    createdAt: (s.data().createdAt as Timestamp)?.toDate() ?? new Date(),
+    updatedAt: (s.data().updatedAt as Timestamp)?.toDate() ?? new Date(),
   })) as Baby[];
 }
 
@@ -274,4 +275,146 @@ export async function setActiveBabyId(uid: string, babyId: string): Promise<void
     { activeBabyId: babyId, updatedAt: serverTimestamp() },
     { merge: true }
   );
+}
+
+// ── FCM Token ─────────────────────────────────────────────────
+
+export async function saveFcmToken(uid: string, token: string): Promise<void> {
+  const d = requireDb();
+  await setDoc(
+    doc(d, 'users', uid),
+    { fcmToken: token, fcmUpdatedAt: serverTimestamp() },
+    { merge: true }
+  );
+}
+
+// ── Growth Calendar ────────────────────────────────────────────
+
+function toWeeklyLog(weekNumber: number, data: Record<string, unknown>): WeeklyLog {
+  return {
+    ...data,
+    weekNumber,
+    createdAt: (data.createdAt as Timestamp)?.toDate() ?? new Date(),
+    updatedAt: (data.updatedAt as Timestamp)?.toDate() ?? new Date(),
+  } as WeeklyLog;
+}
+
+function toMonthlyLog(monthNumber: number, data: Record<string, unknown>): MonthlyLog {
+  return {
+    ...data,
+    monthNumber,
+    createdAt: (data.createdAt as Timestamp)?.toDate() ?? new Date(),
+    updatedAt: (data.updatedAt as Timestamp)?.toDate() ?? new Date(),
+  } as MonthlyLog;
+}
+
+export async function upsertWeeklyLog(
+  uid: string,
+  babyId: string,
+  weekNumber: number,
+  data: Partial<Omit<WeeklyLog, 'weekNumber' | 'createdAt' | 'updatedAt'>>
+): Promise<void> {
+  const d = requireDb();
+  await setDoc(
+    doc(d, 'users', uid, 'babies', babyId, 'weeklyLogs', String(weekNumber)),
+    { ...data, weekNumber, updatedAt: serverTimestamp() },
+    { merge: true }
+  );
+}
+
+export async function getWeeklyLog(
+  uid: string,
+  babyId: string,
+  weekNumber: number
+): Promise<WeeklyLog | null> {
+  const d = requireDb();
+  const snap = await getDoc(
+    doc(d, 'users', uid, 'babies', babyId, 'weeklyLogs', String(weekNumber))
+  );
+  if (!snap.exists()) return null;
+  return toWeeklyLog(weekNumber, snap.data() as Record<string, unknown>);
+}
+
+export async function getWeeklyLogs(uid: string, babyId: string): Promise<WeeklyLog[]> {
+  const d = requireDb();
+  const snap = await getDocs(
+    collection(d, 'users', uid, 'babies', babyId, 'weeklyLogs')
+  );
+  return snap.docs.map((s: QueryDocumentSnapshot) =>
+    toWeeklyLog(
+      Number(s.id),
+      s.data() as Record<string, unknown>
+    )
+  );
+}
+
+export async function upsertMonthlyLog(
+  uid: string,
+  babyId: string,
+  monthNumber: number,
+  data: Partial<Omit<MonthlyLog, 'monthNumber' | 'createdAt' | 'updatedAt'>>
+): Promise<void> {
+  const d = requireDb();
+  await setDoc(
+    doc(d, 'users', uid, 'babies', babyId, 'monthlyLogs', String(monthNumber)),
+    { ...data, monthNumber, updatedAt: serverTimestamp() },
+    { merge: true }
+  );
+}
+
+export async function getMonthlyLog(
+  uid: string,
+  babyId: string,
+  monthNumber: number
+): Promise<MonthlyLog | null> {
+  const d = requireDb();
+  const snap = await getDoc(
+    doc(d, 'users', uid, 'babies', babyId, 'monthlyLogs', String(monthNumber))
+  );
+  if (!snap.exists()) return null;
+  return toMonthlyLog(monthNumber, snap.data() as Record<string, unknown>);
+}
+
+export async function getMonthlyLogs(uid: string, babyId: string): Promise<MonthlyLog[]> {
+  const d = requireDb();
+  const snap = await getDocs(
+    collection(d, 'users', uid, 'babies', babyId, 'monthlyLogs')
+  );
+  return snap.docs.map((s: QueryDocumentSnapshot) =>
+    toMonthlyLog(
+      Number(s.id),
+      s.data() as Record<string, unknown>
+    )
+  );
+}
+
+export async function addMilestoneRecord(
+  uid: string,
+  babyId: string,
+  data: Omit<MilestoneRecord, 'id' | 'createdAt'>
+): Promise<string> {
+  const d = requireDb();
+  const ref = await addDoc(
+    collection(d, 'users', uid, 'babies', babyId, 'milestones'),
+    { ...data, occurredAt: data.occurredAt, createdAt: serverTimestamp() }
+  );
+  return ref.id;
+}
+
+export async function getMilestoneRecords(
+  uid: string,
+  babyId: string
+): Promise<MilestoneRecord[]> {
+  const d = requireDb();
+  const q = query(
+    collection(d, 'users', uid, 'babies', babyId, 'milestones'),
+    orderBy('occurredAt', 'desc')
+  );
+  const snap = await getDocs(q);
+  return snap.docs.map((s: QueryDocumentSnapshot) => ({
+    id: s.id,
+    ...s.data(),
+    occurredAt: (s.data().occurredAt as Timestamp)?.toDate() ?? new Date(),
+    createdAt: (s.data().createdAt as Timestamp)?.toDate() ?? new Date(),
+  })) as MilestoneRecord[];
 }

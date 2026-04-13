@@ -1,4 +1,4 @@
-import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage';
+import { ref, uploadBytesResumable, getDownloadURL, deleteObject, type UploadTaskSnapshot } from 'firebase/storage';
 import { storage } from './client';
 import type { DiaryMedia } from '@/types';
 
@@ -22,7 +22,7 @@ export async function uploadDiaryMedia(
     const task = uploadBytesResumable(storageRef, file);
     task.on(
       'state_changed',
-      (snapshot) => {
+      (snapshot: UploadTaskSnapshot) => {
         const pct = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         onProgress?.(Math.round(pct));
       },
@@ -37,6 +37,39 @@ export async function uploadDiaryMedia(
 }
 
 export async function deleteDiaryMedia(path: string): Promise<void> {
+  const st = requireStorage();
+  await deleteObject(ref(st, path));
+}
+
+export async function uploadBabyPhoto(
+  uid: string,
+  babyId: string,
+  file: File,
+  onProgress?: (pct: number) => void
+): Promise<{ url: string; path: string }> {
+  const st = requireStorage();
+  const ext = file.name.split('.').pop() ?? 'jpg';
+  const path = `babies/${uid}/${babyId}.${ext}`;
+  const storageRef = ref(st, path);
+
+  return new Promise((resolve, reject) => {
+    const task = uploadBytesResumable(storageRef, file);
+    task.on(
+      'state_changed',
+      (snapshot: UploadTaskSnapshot) => {
+        const pct = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        onProgress?.(Math.round(pct));
+      },
+      reject,
+      async () => {
+        const url = await getDownloadURL(task.snapshot.ref);
+        resolve({ url, path });
+      }
+    );
+  });
+}
+
+export async function deleteBabyPhoto(path: string): Promise<void> {
   const st = requireStorage();
   await deleteObject(ref(st, path));
 }

@@ -180,9 +180,44 @@ export interface Baby {
   status: BabyStatus;
   dueDate?: string;    // YYYY-MM-DD (임신 중)
   birthDate?: string;  // YYYY-MM-DD (출생 후)
+  photoUrl?: string;   // 아기 프로필 사진
   createdAt: Date;
   updatedAt: Date;
 }
+
+// ── Growth Calendar ───────────────────────────────────────────
+
+export interface WeeklyLog {
+  weekNumber: number;
+  memo: string;
+  photoUrls: string[];
+  milestones: string[];
+  checklistDone: string[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface MonthlyLog {
+  monthNumber: number;
+  heightCm: number | null;
+  weightKg: number | null;
+  memo: string;
+  photoUrls: string[];
+  milestones: string[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface MilestoneRecord {
+  id: string;
+  label: string;
+  memo: string;
+  photoUrl: string | null;
+  occurredAt: Date;
+  createdAt: Date;
+}
+
+// ─────────────────────────────────────────────────────────────
 
 export type GovStage = 'pre-pregnancy' | 'pregnant' | 'newborn' | 'infant';
 export type GovCategory = 'health' | 'finance' | 'leave' | 'care';

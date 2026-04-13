@@ -64,11 +64,20 @@ function SingleBabyCard({
       {/* 헤더 */}
       <div className="flex items-center justify-between mb-3 relative z-10">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 bg-white/20 rounded-xl flex items-center justify-center">
-            {baby.status === 'pregnant'
-              ? <Heart size={15} className="text-white" />
-              : <BabyIcon size={15} className="text-white" />}
-          </div>
+          {/* 프로필 아바타 */}
+          {baby.photoUrl ? (
+            <img
+              src={baby.photoUrl}
+              alt={name}
+              className="w-9 h-9 rounded-full object-cover ring-2 ring-white/50 flex-shrink-0"
+            />
+          ) : (
+            <div className="w-9 h-9 bg-white/20 rounded-full flex items-center justify-center ring-2 ring-white/20 flex-shrink-0">
+              {baby.status === 'pregnant'
+                ? <Heart size={15} className="text-white/80" />
+                : <BabyIcon size={15} className="text-white/80" />}
+            </div>
+          )}
           <p className="text-sm font-bold text-white/90">{name}</p>
 
           {/* 상태 뱃지 */}
