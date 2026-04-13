@@ -7,10 +7,11 @@ import { saveFcmToken } from '@/lib/firebase/firestore';
 
 interface FcmPermissionModalProps {
   uid: string;
+  babyStatus?: 'pregnant' | 'born';
   onClose: () => void;
 }
 
-export default function FcmPermissionModal({ uid, onClose }: FcmPermissionModalProps) {
+export default function FcmPermissionModal({ uid, babyStatus = 'pregnant', onClose }: FcmPermissionModalProps) {
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -45,7 +46,11 @@ export default function FcmPermissionModal({ uid, onClose }: FcmPermissionModalP
               <Bell size={28} className="text-brand-500" />
             </div>
             <p className="font-black text-slate-800">알림 설정 완료!</p>
-            <p className="text-sm text-slate-500 text-center">매주 아빠가 해야 할 일을 알려드릴게요.</p>
+            <p className="text-sm text-slate-500 text-center">
+              {babyStatus === 'born'
+                ? '예방접종·검진 일정을 놓치지 않도록 알림으로 알려드릴게요.'
+                : '매주 아빠가 해야 할 일을 알림으로 알려드릴게요.'}
+            </p>
           </div>
         ) : (
           <>
@@ -58,10 +63,15 @@ export default function FcmPermissionModal({ uid, onClose }: FcmPermissionModalP
               </button>
             </div>
 
-            <h2 className="font-black text-lg text-slate-900 mb-1">주간 알림 받기</h2>
+            <h2 className="font-black text-lg text-slate-900 mb-1">
+              {babyStatus === 'born' ? '예방접종 알림 받기' : '주간 알림 받기'}
+            </h2>
             <p className="text-sm text-slate-500 mb-5 leading-relaxed">
-              매주 임신 주차별 아빠 할 일을 알림으로 보내드려요.<br />
-              중요한 검진·준비 일정을 놓치지 마세요.
+              {babyStatus === 'born' ? (
+                <>예방접종·영유아 건강검진 일정을 매주 알림으로 보내드려요.<br />D+일차에 맞춰 딱 필요할 때만 알려드려요.</>
+              ) : (
+                <>매주 임신 주차별 아빠 할 일을 알림으로 보내드려요.<br />중요한 검진·준비 일정을 놓치지 마세요.</>
+              )}
             </p>
 
             <div className="space-y-2">

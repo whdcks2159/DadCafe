@@ -50,12 +50,8 @@ export default function BabyRegisterPage() {
         await refreshProfile();
       }
 
-      // 임신 중인 경우 FCM 알림 권유
-      if (status === 'pregnant') {
-        setShowFcmModal(true);
-      } else {
-        router.push('/');
-      }
+      // FCM 알림 권유 (임신 중 / 출생 후 모두)
+      setShowFcmModal(true);
     } catch {
       setError('저장 중 오류가 발생했어요. 다시 시도해주세요.');
     } finally {
@@ -71,7 +67,7 @@ export default function BabyRegisterPage() {
   return (
     <>
       {showFcmModal && user && (
-        <FcmPermissionModal uid={user.uid} onClose={() => router.push('/')} />
+        <FcmPermissionModal uid={user.uid} babyStatus={status ?? 'pregnant'} onClose={() => router.push('/')} />
       )}
       <TopHeader title="아이 등록" showBack />
 
