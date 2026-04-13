@@ -131,7 +131,7 @@ export default function HomePage() {
                 테스트 시작하기 <ArrowRight size={14} />
               </Link>
             </div>
-            <img src="/icons/ic-stats.png" alt="" className="w-16 h-16 opacity-30" />
+            <img src="/icons/mainLogo.png" alt="" className="w-16 h-16 opacity-40" />
           </div>
         </div>
       </section>
