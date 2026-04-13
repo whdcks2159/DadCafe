@@ -80,6 +80,7 @@ const SITUATION_KEYWORDS: Record<string, string> = {
   'newborn-jaundice': '황달 황달 치료 빌리루빈 신생아 노란',
   'hospital-discharge': '퇴원 이동 카시트 신생아 이동',
   'birth-registration': '출생신고 신고 방법 어디서',
+  'joryiwon-prep': '조리원 산후조리원 2주 아빠 할 일 체크리스트 출생신고 바우처 퇴소',
   'hospital-bill': '병원비 입원비 얼마 비용 건강보험',
   'newborn-screening': '신생아 검사 발바닥 채혈 선별검사',
   'breastfeeding-struggle': '모유수유 젖 수유 힘들어요 젖몸살 라치',
