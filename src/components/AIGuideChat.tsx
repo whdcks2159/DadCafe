@@ -65,6 +65,12 @@ export default function AIGuideChat({ stage }: AIGuideChatProps) {
                   ...prev.slice(0, -1),
                   { role: 'ai', text: aiText },
                 ]);
+              } else if (data.type === 'error') {
+                setMessages((prev) => [
+                  ...prev.slice(0, -1),
+                  { role: 'ai', text: `오류가 발생했습니다: ${data.error?.message || data.error}` },
+                ]);
+                break;
               }
             } catch {}
           }
