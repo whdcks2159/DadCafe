@@ -5,6 +5,7 @@ import { getWeekInfo } from '@/data/pregnancyWeeks';
 import type { WeeklyLog } from '@/types';
 import RecordBottomSheet from '@/components/growth-calendar/shared/RecordBottomSheet';
 import { useGrowthCalendar } from '@/context/GrowthCalendarContext';
+import FruitIcon from '@/components/FruitIcon';
 
 interface WeeklyCardProps {
   weekNumber: number;
@@ -45,6 +46,7 @@ export default function WeeklyCard({ weekNumber, log }: WeeklyCardProps) {
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center gap-2">
                 <span className="font-bold text-slate-800 text-sm">{weekNumber}주차</span>
+                <FruitIcon fruit={info.fruit} size={22} className="flex-shrink-0" />
                 <span className="text-xs text-slate-400">{info.fruit}</span>
               </div>
               <button

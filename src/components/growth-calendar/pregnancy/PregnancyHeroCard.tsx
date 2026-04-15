@@ -5,6 +5,7 @@ import { getWeekInfo } from '@/data/pregnancyWeeks';
 import type { WeeklyLog } from '@/types';
 import RecordBottomSheet from '@/components/growth-calendar/shared/RecordBottomSheet';
 import { useGrowthCalendar } from '@/context/GrowthCalendarContext';
+import FruitIcon from '@/components/FruitIcon';
 
 interface PregnancyHeroCardProps {
   currentWeek: number;
@@ -64,8 +65,8 @@ export default function PregnancyHeroCard({
 
         {/* 과일 비유 */}
         <div className="bg-white rounded-2xl px-4 py-3 mb-4 flex items-center gap-3">
-          <div className="text-2xl">
-            {getFruitEmoji(info.fruit)}
+          <div className="flex-shrink-0">
+            <FruitIcon fruit={info.fruit} size={52} />
           </div>
           <div>
             <div className="font-bold text-slate-900 text-sm">{info.sizeLabel}</div>
@@ -205,15 +206,3 @@ export default function PregnancyHeroCard({
   );
 }
 
-function getFruitEmoji(fruit: string): string {
-  const map: Record<string, string> = {
-    양귀비씨: '🌺', 참깨: '🌾', 완두콩: '🟢', 블루베리: '🫐', 라즈베리: '🍓',
-    올리브: '🫒', 딸기: '🍓', 무화과: '🍈', 레몬: '🍋', 복숭아: '🍑',
-    키위: '🥝', 사과: '🍎', 아보카도: '🥑', 당근: '🥕', 망고: '🥭',
-    바나나: '🍌', 피망: '🫑', 파프리카: '🫑', '포도송이': '🍇', 옥수수: '🌽',
-    순무: '🥔', '상추 한포기': '🥬', 콜리플라워: '🥦', 가지: '🍆',
-    '버터넛 호박': '🎃', 양배추: '🥬', 코코넛: '🥥', 파인애플: '🍍',
-    멜론: '🍈', 파파야: '🍈', '수박 (소)': '🍉', 수박: '🍉',
-  };
-  return map[fruit] ?? '🍼';
-}
