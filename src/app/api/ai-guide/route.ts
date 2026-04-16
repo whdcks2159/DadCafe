@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const stream = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
+      model: 'claude-3-5-haiku-20241022',
       max_tokens: 512,
       stream: true,
       system: SYSTEM_PROMPT,
@@ -46,7 +46,9 @@ export async function POST(req: NextRequest) {
         'Cache-Control': 'no-cache',
       },
     });
-  } catch (e) {
-    return NextResponse.json({ error: '응답 생성 중 오류가 발생했습니다.' }, { status: 500 });
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[ai-guide] error:', msg);
+    return NextResponse.json({ error: msg || '응답 생성 중 오류가 발생했습니다.' }, { status: 500 });
   }
 }

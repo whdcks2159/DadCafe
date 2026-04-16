@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import TopHeader from '@/components/layout/TopHeader';
 import { Send, Bot, User, Sparkles, ChevronRight } from 'lucide-react';
 
@@ -34,33 +34,11 @@ export default function AiGuidePage() {
   const [loading, setLoading] = useState(false);
   const [started, setStarted] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const isUserScrolling = useRef(false);
+  const shouldAutoScroll = useRef(true);
 
-  // 유저가 위로 스크롤하면 자동 스크롤 잠금
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const onScroll = () => {
-      const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 60;
-      isUserScrolling.current = !atBottom;
-    };
-    el.addEventListener('scroll', onScroll, { passive: true });
-    return () => el.removeEventListener('scroll', onScroll);
-  }, []);
-
-  // 유저 메시지 전송 시 → 무조건 아래로
-  // 어시스턴트 응답 시 → 이미 아래에 있을 때만 따라감
-  useEffect(() => {
-    const lastMsg = messages[messages.length - 1];
-    if (!lastMsg) return;
-    if (lastMsg.role === 'user') {
-      isUserScrolling.current = false;
-      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-    } else if (!isUserScrolling.current) {
-      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [messages.length]);
+  const scrollToBottom = () => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const sendMessage = async (q: string) => {
     if (!q.trim() || loading) return;
@@ -69,6 +47,8 @@ export default function AiGuidePage() {
     setStarted(true);
     setMessages((prev) => [...prev, { role: 'user', content: userMsg }]);
     setLoading(true);
+    // 메시지 보낼 때만 스크롤
+    setTimeout(scrollToBottom, 50);
 
     try {
       const res = await fetch('/api/ai-guide', {
@@ -187,7 +167,7 @@ export default function AiGuidePage() {
         </div>
       ) : (
         /* ── 대화 화면 ── */
-        <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
           {messages.map((msg, i) => (
             <div
               key={i}
