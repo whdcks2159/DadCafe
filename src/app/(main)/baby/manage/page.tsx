@@ -17,6 +17,8 @@ export default function BabyManagePage() {
   const [uploading, setUploading] = useState<string | null>(null);
   // 업로드 중 로컬 미리보기 (babyId → objectURL)
   const [localPreviews, setLocalPreviews] = useState<Record<string, string>>({});
+  // 업로드 진행률 (babyId → 0~100)
+  const [uploadProgress, setUploadProgress] = useState<Record<string, number>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
   const uploadTargetRef = useRef<string | null>(null);
 
@@ -35,9 +37,12 @@ export default function BabyManagePage() {
     const previewUrl = URL.createObjectURL(file);
     setLocalPreviews((prev) => ({ ...prev, [babyId]: previewUrl }));
     setUploading(babyId);
+    setUploadProgress((prev) => ({ ...prev, [babyId]: 0 }));
 
     try {
-      const { url } = await uploadBabyPhoto(user.uid, babyId, file);
+      const { url } = await uploadBabyPhoto(user.uid, babyId, file, (pct) => {
+        setUploadProgress((prev) => ({ ...prev, [babyId]: pct }));
+      });
       await updateBaby(user.uid, babyId, { photoUrl: url });
       await refreshBabies();
     } catch {
@@ -47,6 +52,7 @@ export default function BabyManagePage() {
     } finally {
       URL.revokeObjectURL(previewUrl);
       setLocalPreviews((prev) => { const n = { ...prev }; delete n[babyId]; return n; });
+      setUploadProgress((prev) => { const n = { ...prev }; delete n[babyId]; return n; });
       setUploading(null);
     }
   };
@@ -98,6 +104,9 @@ export default function BabyManagePage() {
           babies.map((baby) => {
             const isActive = activeBaby?.id === baby.id;
             const isUploading = uploading === baby.id;
+            const pct = uploadProgress[baby.id] ?? 0;
+            // 업로드 진행에 따라 어두운 오버레이가 점점 사라짐 (0% → 0.65, 100% → 0)
+            const overlayOpacity = isUploading ? (1 - pct / 100) * 0.65 : 0;
             return (
               <div
                 key={baby.id}
@@ -125,16 +134,19 @@ export default function BabyManagePage() {
                         <StatusIcon status={baby.status} />
                       </div>
                     )}
-                    {/* 카메라 오버레이 */}
-                    <div className={`absolute inset-0 rounded-full flex items-center justify-center transition-opacity ${
-                      isUploading ? 'bg-black/30 opacity-100' : 'bg-black/0 opacity-0 group-hover:opacity-100 group-hover:bg-black/25'
-                    }`}>
-                      {isUploading ? (
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      ) : (
+                    {/* 업로드 진행 오버레이: 어두운 상태에서 점점 밝아짐 */}
+                    {isUploading ? (
+                      <div
+                        className="absolute inset-0 rounded-full flex flex-col items-center justify-center transition-all"
+                        style={{ backgroundColor: `rgba(0,0,0,${overlayOpacity})` }}
+                      >
+                        <span className="text-white font-black text-xs">{pct}%</span>
+                      </div>
+                    ) : (
+                      <div className="absolute inset-0 rounded-full flex items-center justify-center bg-black/0 opacity-0 group-hover:opacity-100 group-hover:bg-black/25 transition-opacity">
                         <Camera size={16} className="text-white" />
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </button>
 
                   {/* 정보 */}

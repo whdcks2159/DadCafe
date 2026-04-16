@@ -74,16 +74,29 @@ export async function uploadBabyPhoto(
   uid: string,
   babyId: string,
   file: File,
+  onProgress?: (pct: number) => void,
 ): Promise<{ url: string; path: string }> {
   const st = requireStorage();
   // 프로필 사진: 400px / 0.75 — 화면 표시 크기(56px)에 충분, 업로드 크기 최소화
   const compressed = await compressImage(file, 400, 0.75);
   const path = `babies/${uid}/${babyId}.jpg`;
   const storageRef = ref(st, path);
-  // uploadBytes: 작은 파일엔 resumable 세션 오버헤드 없이 더 빠름
-  const snapshot = await uploadBytes(storageRef, compressed);
-  const url = await getDownloadURL(snapshot.ref);
-  return { url, path };
+
+  return new Promise((resolve, reject) => {
+    const task = uploadBytesResumable(storageRef, compressed);
+    task.on(
+      'state_changed',
+      (snapshot: UploadTaskSnapshot) => {
+        const pct = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        onProgress?.(pct);
+      },
+      reject,
+      async () => {
+        const url = await getDownloadURL(task.snapshot.ref);
+        resolve({ url, path });
+      }
+    );
+  });
 }
 
 export async function deleteBabyPhoto(path: string): Promise<void> {
