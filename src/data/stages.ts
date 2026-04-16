@@ -11,6 +11,7 @@ export const STAGES: Stage[] = [
     topics: [
       {
         slug: 'health-prep',
+        image: '/icons/topic-health-prep.svg',
         titleKo: '건강 준비하기',
         summaryKo: '임신 전 아빠가 챙겨야 할 건강 수칙',
         estimatedReadMin: 5,
@@ -38,6 +39,7 @@ export const STAGES: Stage[] = [
       },
       {
         slug: 'financial-prep',
+        image: '/icons/topic-financial-prep.svg',
         titleKo: '재정 준비하기',
         summaryKo: '출산·육아에 드는 현실적인 비용 가이드',
         estimatedReadMin: 6,
@@ -65,6 +67,7 @@ export const STAGES: Stage[] = [
       },
       {
         slug: 'communication',
+        image: '/icons/topic-communication.svg',
         titleKo: '파트너와 소통하기',
         summaryKo: '임신 준비 과정에서 부부 소통법',
         estimatedReadMin: 4,
@@ -92,6 +95,7 @@ export const STAGES: Stage[] = [
     topics: [
       {
         slug: 'trimester-1',
+        image: '/icons/topic-trimester-1.svg',
         titleKo: '1삼분기 (1~3개월)',
         summaryKo: '입덧, 유산 위험, 첫 초음파 동행',
         estimatedReadMin: 7,
@@ -119,6 +123,7 @@ export const STAGES: Stage[] = [
       },
       {
         slug: 'trimester-2',
+        image: '/icons/topic-trimester-2.svg',
         titleKo: '2삼분기 (4~6개월)',
         summaryKo: '태동 느끼기, 태교, 산전 교육',
         estimatedReadMin: 6,
@@ -145,6 +150,7 @@ export const STAGES: Stage[] = [
       },
       {
         slug: 'trimester-3',
+        image: '/icons/topic-trimester-3.svg',
         titleKo: '3삼분기 (7~9개월)',
         summaryKo: '출산 준비, 분만 동행, 산후조리',
         estimatedReadMin: 8,
@@ -171,6 +177,7 @@ export const STAGES: Stage[] = [
       },
       {
         slug: 'maternity-leave',
+        image: '/icons/topic-maternity-leave.svg',
         titleKo: '배우자 출산휴가 신청하기',
         summaryKo: '20일 유급휴가 법적 권리와 신청 방법',
         estimatedReadMin: 5,
@@ -207,6 +214,7 @@ export const STAGES: Stage[] = [
     topics: [
       {
         slug: 'emergency-guide',
+        image: '/icons/topic-emergency-guide.svg',
         titleKo: '응급 대응 가이드',
         summaryKo: '아기가 위험할 때 남편이 바로 해야 할 행동',
         estimatedReadMin: 5,
@@ -244,6 +252,7 @@ export const STAGES: Stage[] = [
       },
       {
         slug: 'postpartum-center',
+        image: '/icons/topic-postpartum-center.svg',
         titleKo: '산후조리원 실전 가이드',
         summaryKo: '예약부터 퇴소까지 — 남편이 직접 해야 할 행동 목록',
         estimatedReadMin: 7,
@@ -295,6 +304,7 @@ export const STAGES: Stage[] = [
       },
       {
         slug: 'first-week',
+        image: '/icons/topic-first-week.svg',
         titleKo: '생후 첫 1주일',
         summaryKo: '신생아 특징, 황달, 배꼽 소독',
         estimatedReadMin: 6,
@@ -321,6 +331,7 @@ export const STAGES: Stage[] = [
       },
       {
         slug: 'feeding',
+        image: '/icons/topic-feeding.svg',
         titleKo: '수유와 분유 지원하기',
         summaryKo: '모유수유 지원법, 분유 타는 법',
         estimatedReadMin: 7,
@@ -349,6 +360,7 @@ export const STAGES: Stage[] = [
       },
       {
         slug: 'baby-bath',
+        image: '/icons/topic-baby-bath.svg',
         titleKo: '목욕과 기저귀',
         summaryKo: '신생아 목욕 순서와 기저귀 교체법',
         estimatedReadMin: 5,
@@ -376,6 +388,7 @@ export const STAGES: Stage[] = [
       },
       {
         slug: 'postpartum',
+        image: '/icons/topic-postpartum.svg',
         titleKo: '산후우울증 이해하기',
         summaryKo: '엄마의 산후우울증 — 이해하고 지원하기',
         estimatedReadMin: 6,
@@ -413,6 +426,7 @@ export const STAGES: Stage[] = [
     topics: [
       {
         slug: 'development',
+        image: '/icons/topic-development.svg',
         titleKo: '발달 단계 이해하기',
         summaryKo: '월령별 신체·언어·인지 발달표',
         estimatedReadMin: 8,
@@ -443,6 +457,7 @@ export const STAGES: Stage[] = [
       },
       {
         slug: 'play',
+        image: '/icons/topic-play.svg',
         titleKo: '아빠와 놀이',
         summaryKo: '월령별 적합한 놀이와 자극법',
         estimatedReadMin: 6,
@@ -461,6 +476,7 @@ export const STAGES: Stage[] = [
       },
       {
         slug: 'sleep',
+        image: '/icons/topic-sleep.svg',
         titleKo: '수면 교육',
         summaryKo: '통잠 재우기, 낮잠 루틴 만들기',
         estimatedReadMin: 7,

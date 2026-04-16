@@ -26,6 +26,7 @@ export interface GuideTopic {
   summaryKo: string;
   content: GuideSection[];
   estimatedReadMin: number;
+  image?: string;
 }
 
 export interface Stage {

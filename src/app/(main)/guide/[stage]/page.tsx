@@ -36,9 +36,16 @@ export default function StageDetailPage({ params }: { params: { stage: string } 
           <Link
             key={topic.slug}
             href={`/guide/${stage.slug}/${topic.slug}`}
-            className="flex items-center justify-between bg-white rounded-2xl border border-neutral-100 p-4 hover:border-brand-200 hover:shadow-sm transition-all"
+            className="flex items-center gap-4 bg-white rounded-2xl border border-neutral-100 p-4 hover:border-brand-200 hover:shadow-card transition-all active:scale-[0.98]"
           >
-            <div className="flex-1 mr-3">
+            {topic.image ? (
+              <img src={topic.image} alt={topic.titleKo} className="w-14 h-14 flex-shrink-0 rounded-2xl" />
+            ) : (
+              <div className={`w-14 h-14 flex-shrink-0 rounded-2xl ${stage.bgClass.split(' ')[0]} flex items-center justify-center`}>
+                <img src={stage.emoji} alt="" className="w-8 h-8 opacity-50" />
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
               <p className="font-bold text-neutral-900 text-sm">{topic.titleKo}</p>
               <p className="text-xs text-neutral-500 mt-1 line-clamp-2">{topic.summaryKo}</p>
               <div className="flex items-center gap-1 mt-2 text-xs text-neutral-400">

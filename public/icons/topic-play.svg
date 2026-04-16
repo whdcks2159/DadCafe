@@ -1,0 +1,16 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="14" fill="#FFFBEB"/>
+  <circle cx="24" cy="26" r="12" fill="#FBBF24"/>
+  <circle cx="24" cy="26" r="12" fill="url(#play-stripe)" opacity="0.3"/>
+  <path d="M13 21 Q24 14 35 21" stroke="#F59E0B" stroke-width="2" fill="none"/>
+  <path d="M13 31 Q24 38 35 31" stroke="#F59E0B" stroke-width="2" fill="none"/>
+  <circle cx="24" cy="26" r="3" fill="#F59E0B"/>
+  <circle cx="36" cy="13" r="4" fill="#FB923C"/>
+  <path d="M34 11 L36 9 L38 11 L38 14 L36 16 L34 14 Z" fill="#FED7AA"/>
+  <circle cx="12" cy="15" r="3" fill="#A78BFA"/>
+  <defs>
+    <pattern id="play-stripe" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+      <rect width="3" height="6" fill="white"/>
+    </pattern>
+  </defs>
+</svg>
