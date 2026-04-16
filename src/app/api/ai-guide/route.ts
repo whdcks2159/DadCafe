@@ -1,6 +1,8 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const maxDuration = 60;
+
 const SYSTEM_PROMPT = `당신은 "대디 AI"입니다. 한국의 예비 아빠와 초보 아빠를 위한 임신·출산·육아 전문 AI 가이드입니다.
 
 규칙:
@@ -29,29 +31,15 @@ export async function POST(req: NextRequest) {
   const userMessage = stage ? `[${stage} 단계 아빠의 질문] ${question}` : question;
 
   try {
-    const encoder = new TextEncoder();
-    const readable = new ReadableStream({
-      async start(controller) {
-        try {
-          const stream = client.messages.stream({
-            model: 'claude-3-haiku-20240307',
-            max_tokens: 512,
-            system: SYSTEM_PROMPT,
-            messages: [{ role: 'user', content: userMessage }],
-          });
-          for await (const event of stream) {
-            controller.enqueue(encoder.encode(`data: ${JSON.stringify(event)}\n\n`));
-          }
-        } catch (err) {
-          const errEvent = { type: 'error', error: String(err) };
-          controller.enqueue(encoder.encode(`data: ${JSON.stringify(errEvent)}\n\n`));
-        } finally {
-          controller.close();
-        }
-      },
+    const stream = await client.messages.create({
+      model: 'claude-3-haiku-20240307',
+      max_tokens: 512,
+      stream: true,
+      system: SYSTEM_PROMPT,
+      messages: [{ role: 'user', content: userMessage }],
     });
 
-    return new Response(readable, {
+    return new Response(stream.toReadableStream(), {
       headers: {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
