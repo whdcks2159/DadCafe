@@ -14,6 +14,8 @@ import {
   ChevronRight, Plus, Settings,
   Baby as BabyIcon, Heart, Star,
 } from 'lucide-react';
+import FruitIcon from '@/components/FruitIcon';
+import { calcCurrentWeek, getWeekInfo } from '@/data/pregnancyWeeks';
 
 /* ── 단일 아이 카드 ──────────────────────────────────────────── */
 function SingleBabyCard({
@@ -104,7 +106,22 @@ function SingleBabyCard({
             <span className="text-[10px] text-white/60 font-medium">{phaseInfo.weekLabel}</span>
           )}
         </div>
-        <p className="text-3xl font-black leading-none">{ageLabel}</p>
+        <div className="flex items-center gap-3">
+          <p className="text-3xl font-black leading-none">{ageLabel}</p>
+          {baby.status === 'pregnant' && baby.dueDate && (() => {
+            const week = calcCurrentWeek(baby.dueDate);
+            const info = getWeekInfo(week);
+            return (
+              <div className="flex items-center gap-1.5 bg-white/20 rounded-2xl px-2.5 py-1">
+                <FruitIcon fruit={info.fruit} size={28} />
+                <div>
+                  <p className="text-[10px] font-black text-white/90 leading-none">{info.fruit}</p>
+                  <p className="text-[9px] text-white/60 leading-none mt-0.5">{info.sizeLabel}</p>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
       </div>
 
       {/* 포커스 포인트 */}
