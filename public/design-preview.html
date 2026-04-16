@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>파파플랜 Design System Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Brand */
+      --brand-50:  #EEF4FF;
+      --brand-100: #D9E8FF;
+      --brand-200: #B3CEFF;
+      --brand-400: #4E84E0;
+      --brand-500: #3567C8;
+      --brand-600: #2A53A8;
+      --brand-700: #1F3D84;
+
+      /* Neutral (text) */
+      --neutral-900: #2A1F18;
+      --neutral-700: #4A3F36;
+      --neutral-500: #7D7167;
+      --neutral-400: #A89D93;
+      --neutral-200: #E8DFD5;
+      --neutral-100: #F2EBE4;
+      --neutral-50:  #FAF6F2;
+
+      /* Semantic */
+      --success: #34D399;
+      --warning: #F59E0B;
+      --error: #F43F5E;
+      --info: #4E84E0;
+
+      /* Surfaces */
+      --bg: #FFFBF7;
+      --surface: #FFFFFF;
+      --shadow-card: 0 1px 8px -2px rgba(42,31,24,0.07);
+      --shadow-warm: 0 4px 20px -4px rgba(53,103,200,0.20);
+    }
+
+    [data-theme="dark"] {
+      --bg: #1A1612;
+      --surface: #252017;
+      --neutral-900: #F5F0EC;
+      --neutral-700: #CEC8C2;
+      --neutral-500: #9C9590;
+      --neutral-400: #6B6460;
+      --neutral-200: #3A342E;
+      --neutral-100: #2E2822;
+      --neutral-50: #252017;
+      --brand-50: #1A2340;
+      --brand-100: #213060;
+      --shadow-card: 0 1px 8px -2px rgba(0,0,0,0.3);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--neutral-900);
+      line-height: 1.6;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* Layout */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 64px 0; }
+    .section + .section { border-top: 1px solid var(--neutral-200); }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, var(--brand-50), #EEF4FF, #EDE9FF);
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--neutral-200);
+    }
+    .header-inner { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .logo-row { display: flex; align-items: center; gap: 12px; }
+    .logo-icon {
+      width: 48px; height: 48px;
+      background: var(--brand-500);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; color: white; font-weight: 900;
+    }
+    .logo-text h1 { font-size: 24px; font-weight: 900; color: var(--neutral-900); line-height: 1.2; }
+    .logo-text p { font-size: 11px; color: var(--neutral-500); margin-top: 2px; }
+    .tagline { font-size: 13px; color: var(--brand-600); font-weight: 700; background: var(--brand-50); border: 1px solid var(--brand-100); padding: 6px 14px; border-radius: 999px; }
+
+    /* Dark mode toggle */
+    .dark-toggle {
+      position: fixed; top: 20px; right: 20px;
+      background: var(--surface); border: 1px solid var(--neutral-200);
+      border-radius: 999px; padding: 8px 16px; cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px; font-weight: 700; color: var(--neutral-700);
+      box-shadow: var(--shadow-card);
+      z-index: 100;
+    }
+    .dark-toggle:hover { background: var(--brand-50); color: var(--brand-600); }
+
+    /* Section titles */
+    .section-label {
+      font-size: 10px; font-weight: 900; color: var(--brand-500);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .section-title { font-size: 26px; font-weight: 900; color: var(--neutral-900); margin-bottom: 6px; }
+    .section-desc { font-size: 14px; color: var(--neutral-500); font-weight: 500; margin-bottom: 32px; }
+
+    /* ─── TYPOGRAPHY ─── */
+    .type-row { margin-bottom: 28px; }
+    .type-role { font-size: 10px; font-weight: 900; color: var(--brand-400); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .type-sample-xl  { font-size: 30px; font-weight: 900; color: var(--neutral-900); line-height: 1.2; }
+    .type-sample-lg  { font-size: 18px; font-weight: 900; color: var(--neutral-900); line-height: 1.3; }
+    .type-sample-sm-bold { font-size: 14px; font-weight: 700; color: var(--neutral-900); }
+    .type-sample-sm  { font-size: 14px; font-weight: 500; color: var(--neutral-700); line-height: 1.6; }
+    .type-sample-xs  { font-size: 12px; font-weight: 500; color: var(--neutral-500); }
+    .type-sample-tag { font-size: 10px; font-weight: 900; color: var(--brand-700); background: var(--brand-200); padding: 3px 8px; border-radius: 999px; display: inline-block; }
+    .type-meta { font-size: 11px; color: var(--neutral-400); margin-top: 6px; font-weight: 500; }
+    .type-divider { height: 1px; background: var(--neutral-200); margin: 24px 0; }
+
+    /* ─── COLOR ─── */
+    .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; margin-bottom: 32px; }
+    .swatch { border-radius: 12px; overflow: hidden; }
+    .swatch-color { height: 56px; }
+    .swatch-info { padding: 8px; background: var(--surface); border: 1px solid var(--neutral-200); border-top: none; border-radius: 0 0 12px 12px; }
+    .swatch-hex { font-size: 11px; font-weight: 700; color: var(--neutral-900); font-family: monospace; }
+    .swatch-name { font-size: 10px; color: var(--neutral-500); font-weight: 500; margin-top: 2px; }
+
+    .palette-section-label { font-size: 11px; font-weight: 900; color: var(--neutral-500); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+
+    /* ─── COMPONENT PATTERNS ─── */
+    .component-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+
+    /* Buttons */
+    .btn-primary {
+      background: var(--brand-500); color: white; font-weight: 700;
+      font-size: 15px; padding: 14px 20px; border-radius: 16px;
+      display: inline-flex; align-items: center; gap: 8px;
+      border: none; cursor: pointer; font-family: 'Noto Sans KR', sans-serif;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-primary:hover { background: var(--brand-600); }
+    .btn-primary:active { transform: scale(0.98); }
+
+    .btn-ghost {
+      background: transparent; color: var(--neutral-500);
+      font-weight: 500; font-size: 14px; padding: 12px 16px;
+      border-radius: 16px; border: none; cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      transition: color 0.15s;
+    }
+    .btn-ghost:hover { color: var(--neutral-900); }
+
+    .btn-outline {
+      background: transparent; color: var(--brand-500);
+      font-weight: 700; font-size: 14px; padding: 12px 20px;
+      border-radius: 16px; border: 1.5px solid var(--brand-200);
+      cursor: pointer; font-family: 'Noto Sans KR', sans-serif;
+      transition: all 0.15s;
+    }
+    .btn-outline:hover { background: var(--brand-50); border-color: var(--brand-500); }
+
+    /* Cards */
+    .card-base {
+      background: var(--surface); border: 1px solid var(--neutral-200);
+      border-radius: 24px; padding: 20px; box-shadow: var(--shadow-card);
+    }
+
+    /* Gradient Card (BabyCard) */
+    .gradient-card {
+      border-radius: 24px; padding: 20px; color: white;
+      box-shadow: var(--shadow-warm); position: relative; overflow: hidden;
+    }
+    .gradient-card-label { font-size: 10px; font-weight: 900; background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 999px; display: inline-block; margin-bottom: 12px; }
+    .gradient-card-dday { font-size: 30px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+    .gradient-card-sub { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 500; margin-bottom: 16px; }
+    .focus-box { background: rgba(255,255,255,0.15); border-radius: 16px; padding: 12px; }
+    .focus-label { font-size: 10px; font-weight: 900; color: rgba(255,255,255,0.6); margin-bottom: 8px; letter-spacing: 0.08em; }
+    .focus-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .focus-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.7); flex-shrink: 0; }
+    .focus-text { font-size: 12px; color: rgba(255,255,255,0.9); font-weight: 600; }
+
+    /* Feature grid card */
+    .feature-card {
+      display: flex; flex-direction: column; gap: 12px;
+      padding: 16px; border-radius: 24px;
+      border: 1px solid; transition: box-shadow 0.15s;
+    }
+    .feature-card:hover { box-shadow: var(--shadow-card); }
+    .feature-icon { width: 40px; height: 40px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .feature-title { font-size: 14px; font-weight: 700; color: var(--neutral-900); }
+    .feature-desc { font-size: 11px; color: var(--neutral-500); line-height: 1.5; }
+
+    /* Info box */
+    .info-box {
+      background: var(--brand-50); border: 1px solid var(--brand-100);
+      border-radius: 16px; padding: 16px;
+    }
+    .info-box-title { font-size: 14px; font-weight: 700; color: var(--brand-600); margin-bottom: 4px; }
+    .info-box-desc { font-size: 12px; color: var(--neutral-500); line-height: 1.5; }
+
+    /* Badge */
+    .badge { font-size: 10px; font-weight: 900; padding: 3px 8px; border-radius: 999px; display: inline-block; }
+    .badge-brand { background: var(--brand-200); color: var(--brand-700); }
+    .badge-success { background: #D1FAE5; color: #065F46; }
+    .badge-warning { background: #FEF3C7; color: #92400E; }
+    .badge-error { background: #FFE4E6; color: #9F1239; }
+
+    /* Input */
+    .input-field {
+      width: 100%; padding: 14px 16px;
+      border: 1.5px solid var(--neutral-200); border-radius: 16px;
+      font-family: 'Noto Sans KR', sans-serif; font-size: 14px;
+      color: var(--neutral-900); background: var(--surface);
+      transition: border-color 0.15s;
+    }
+    .input-field:focus { outline: none; border-color: var(--brand-500); }
+    .input-field::placeholder { color: var(--neutral-400); }
+    .input-label { font-size: 12px; font-weight: 700; color: var(--neutral-700); margin-bottom: 6px; display: block; }
+
+    /* ─── GRADIENTS ─── */
+    .gradient-showcase { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+    .gradient-swatch { height: 70px; border-radius: 16px; display: flex; align-items: flex-end; padding: 10px 12px; }
+    .gradient-swatch-label { font-size: 10px; font-weight: 900; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+
+    /* ─── MOBILE MOCKUP ─── */
+    .phone-frame {
+      width: 375px; margin: 0 auto;
+      background: var(--bg); border-radius: 32px;
+      box-shadow: 0 20px 60px -10px rgba(0,0,0,0.20), 0 0 0 1px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .phone-status-bar { height: 44px; background: linear-gradient(135deg, var(--brand-50), #EEF4FF, #EDE9FF); display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; }
+    .phone-status-bar span { font-size: 12px; font-weight: 700; color: var(--neutral-500); }
+    .phone-hero { background: linear-gradient(135deg, var(--brand-50), #EEF4FF, #EDE9FF); padding: 16px 20px 28px; }
+    .phone-logo-row { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
+    .phone-logo-icon { width: 32px; height: 32px; background: var(--brand-500); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 900; }
+    .phone-logo-text h2 { font-size: 15px; font-weight: 900; color: var(--neutral-900); line-height: 1; }
+    .phone-logo-text p { font-size: 9px; color: var(--neutral-400); }
+    .phone-hero-eyebrow { font-size: 10px; font-weight: 700; color: var(--brand-400); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+    .phone-hero-h1 { font-size: 26px; font-weight: 900; color: var(--neutral-900); line-height: 1.25; }
+    .phone-hero-h1 span { color: var(--brand-500); }
+    .phone-hero-desc { font-size: 12px; color: var(--neutral-500); font-weight: 500; margin-top: 10px; line-height: 1.6; }
+
+    .phone-body { background: var(--bg); padding: 0 16px 80px; }
+
+    .phone-baby-card {
+      margin: -12px 0 16px;
+      background: linear-gradient(135deg, #3B82F6, #6366F1, #60A5FA);
+      border-radius: 24px; padding: 16px; color: white;
+      box-shadow: var(--shadow-warm);
+    }
+    .phone-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .phone-card-avatar { width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .phone-card-name { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.9); margin-left: 8px; }
+    .phone-card-badge { font-size: 9px; font-weight: 900; background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 999px; }
+    .phone-card-settings { width: 28px; height: 28px; background: rgba(255,255,255,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    .phone-card-phase-badge { font-size: 9px; font-weight: 900; background: rgba(255,255,255,0.25); padding: 2px 8px; border-radius: 999px; display: inline-block; margin-bottom: 6px; }
+    .phone-card-dday { font-size: 28px; font-weight: 900; line-height: 1; }
+    .phone-card-focus { background: rgba(255,255,255,0.15); border-radius: 14px; padding: 10px 12px; margin-top: 10px; }
+    .phone-card-focus-label { font-size: 9px; font-weight: 900; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+    .phone-focus-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .phone-focus-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.7); }
+    .phone-focus-text { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.9); }
+
+    .phone-section-label { font-size: 10px; font-weight: 900; color: var(--neutral-400); letter-spacing: 0.08em; text-transform: uppercase; margin: 16px 0 10px; }
+
+    .phone-gov-banner {
+      display: flex; align-items: center; gap: 12px;
+      background: #EEF0FF; border: 1px solid #C7CBF5; border-radius: 20px; padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+    .phone-gov-icon { width: 40px; height: 40px; background: var(--brand-100); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .phone-gov-title { font-size: 12px; font-weight: 900; color: var(--neutral-900); }
+    .phone-gov-desc { font-size: 10px; color: var(--neutral-500); margin-top: 2px; }
+
+    .phone-feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .phone-feature-item {
+      display: flex; flex-direction: column; gap: 10px;
+      padding: 14px; border-radius: 20px; border: 1px solid;
+    }
+    .phone-feature-icon { width: 36px; height: 36px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .phone-feature-title { font-size: 12px; font-weight: 700; color: var(--neutral-900); }
+    .phone-feature-desc { font-size: 10px; color: var(--neutral-500); line-height: 1.4; }
+
+    .phone-bottom-nav {
+      position: sticky; bottom: 0;
+      height: 64px; background: var(--surface);
+      border-top: 1px solid var(--neutral-200);
+      display: flex; align-items: center; justify-content: space-around;
+      padding: 0 8px;
+    }
+    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; }
+    .nav-icon { font-size: 18px; }
+    .nav-label { font-size: 9px; font-weight: 700; color: var(--neutral-400); }
+    .nav-label.active { color: var(--brand-500); }
+    .nav-center {
+      width: 48px; height: 48px; background: var(--brand-500); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 20px;
+      margin-top: -16px; box-shadow: var(--shadow-warm);
+    }
+
+    /* Spacing showcase */
+    .spacing-grid { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
+    .spacing-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .spacing-bar { background: var(--brand-200); border-radius: 4px; width: 24px; }
+    .spacing-label { font-size: 10px; font-weight: 700; color: var(--neutral-500); text-align: center; }
+
+    /* Motion preview */
+    .motion-demo { display: flex; gap: 16px; flex-wrap: wrap; }
+    .motion-btn { padding: 12px 20px; border-radius: 16px; background: var(--brand-500); color: white; font-weight: 700; font-size: 14px; font-family: 'Noto Sans KR', sans-serif; border: none; cursor: pointer; transition: all 0.15s; }
+    .motion-btn:active { transform: scale(0.98); }
+    .motion-btn-spin {
+      padding: 12px 20px; border-radius: 16px; background: var(--surface); color: var(--brand-500);
+      border: 1.5px solid var(--brand-200); font-weight: 700; font-size: 14px;
+      font-family: 'Noto Sans KR', sans-serif; cursor: pointer; display: flex; align-items: center; gap: 8px;
+    }
+    .spinner { width: 16px; height: 16px; border: 2px solid var(--brand-200); border-top-color: var(--brand-500); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+    .animate-fade-in-up { animation: fadeInUp 0.25s ease-out; }
+
+    /* Footer */
+    .page-footer { text-align: center; padding: 48px 0; }
+    .page-footer p { font-size: 12px; color: var(--neutral-400); font-weight: 500; }
+
+    @media (max-width: 600px) {
+      .phone-frame { width: 100%; border-radius: 0; }
+      .gradient-showcase { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <button class="dark-toggle" onclick="toggleDark()">다크 모드 토글</button>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo-row">
+          <div class="logo-icon">P</div>
+          <div class="logo-text">
+            <h1>파파플랜</h1>
+            <p>PapaPlan · Design System Preview</p>
+          </div>
+        </div>
+        <div class="tagline">Warm &amp; Calm — 아빠 옆 조용한 안내자</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 1. TYPOGRAPHY ───────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">01 Typography</div>
+      <h2 class="section-title">Noto Sans KR 단독 시스템</h2>
+      <p class="section-desc">한국어 가독성 최우선. 900 Black으로 제목에 남성적 자신감을 부여.</p>
+
+      <div class="type-row">
+        <div class="type-role">메인 제목 · text-3xl font-black</div>
+        <div class="type-sample-xl">함께 키우는 아이 이야기,<br>파파플랜에서</div>
+        <div class="type-meta">Noto Sans KR 900 · 30px / lh 1.25</div>
+      </div>
+      <div class="type-divider"></div>
+
+      <div class="type-row">
+        <div class="type-role">카드 제목 · text-lg font-black</div>
+        <div class="type-sample-lg">임신 후기 — D-42</div>
+        <div class="type-meta">Noto Sans KR 900 · 18px / lh 1.3</div>
+      </div>
+      <div class="type-divider"></div>
+
+      <div class="type-row">
+        <div class="type-role">섹션 제목 · text-sm font-bold</div>
+        <div class="type-sample-sm-bold">지금 신경 쓸 것</div>
+        <div class="type-meta">Noto Sans KR 700 · 14px</div>
+      </div>
+      <div class="type-divider"></div>
+
+      <div class="type-row">
+        <div class="type-role">본문 · text-sm font-medium</div>
+        <div class="type-sample-sm">맘카페 말고 파파플랜. 임신부터 영아기까지 아빠가 해야 할 일을 단계별로 친절하게 안내해드려요. 오늘도 옆에 있어 주는 것만으로 충분해요.</div>
+        <div class="type-meta">Noto Sans KR 500 · 14px / lh 1.6</div>
+      </div>
+      <div class="type-divider"></div>
+
+      <div class="type-row">
+        <div class="type-role">보조 · text-xs font-medium</div>
+        <div class="type-sample-xs">마지막 준비를 꼼꼼히 확인해보세요. 병원 경로 미리 확인</div>
+        <div class="type-meta">Noto Sans KR 500 · 12px</div>
+      </div>
+      <div class="type-divider"></div>
+
+      <div class="type-row">
+        <div class="type-role">레이블/배지 · text-[10px] font-black</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <span class="type-sample-tag">임신 후기</span>
+          <span class="badge badge-brand">2026</span>
+          <span class="badge badge-success">완료</span>
+          <span class="badge badge-warning">D-7</span>
+          <span class="badge badge-error">병원 권고</span>
+        </div>
+        <div class="type-meta">Noto Sans KR 900 · 10px</div>
+      </div>
+
+      <div style="margin-top:28px;padding:16px;background:var(--neutral-50);border-radius:16px;border:1px solid var(--neutral-200)">
+        <div class="type-role" style="margin-bottom:6px">CDN 로딩 전략</div>
+        <code style="font-size:12px;color:var(--brand-600);font-family:monospace;line-height:1.8">
+          &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;<br>
+          &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;<br>
+          &lt;link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap" rel="stylesheet"&gt;
+        </code>
+        <div class="type-meta" style="margin-top:8px">weights: 400(normal) 500(medium) 700(bold) 900(black) — display:swap으로 FOUT 방지</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. COLOR ───────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">02 Color</div>
+      <h2 class="section-title">블루-크림 이중 축</h2>
+      <p class="section-desc">경쟁 앱의 핑크/파스텔을 거부. 신뢰감 있는 블루 + 따뜻한 크림 배경.</p>
+
+      <div class="palette-section-label">Brand Scale</div>
+      <div class="palette-grid">
+        <div class="swatch"><div class="swatch-color" style="background:#EEF4FF"></div><div class="swatch-info"><div class="swatch-hex">#EEF4FF</div><div class="swatch-name">brand-50</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#D9E8FF"></div><div class="swatch-info"><div class="swatch-hex">#D9E8FF</div><div class="swatch-name">brand-100</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#B3CEFF"></div><div class="swatch-info"><div class="swatch-hex">#B3CEFF</div><div class="swatch-name">brand-200</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#4E84E0"></div><div class="swatch-info"><div class="swatch-hex" style="color:white">#4E84E0</div><div class="swatch-name">brand-400</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3567C8"></div><div class="swatch-info"><div class="swatch-hex" style="color:white">#3567C8</div><div class="swatch-name">brand-500 ★</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#2A53A8"></div><div class="swatch-info"><div class="swatch-hex" style="color:white">#2A53A8</div><div class="swatch-name">brand-600</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#1F3D84"></div><div class="swatch-info"><div class="swatch-hex" style="color:white">#1F3D84</div><div class="swatch-name">brand-700</div></div></div>
+      </div>
+
+      <div class="palette-section-label" style="margin-top:8px">Neutral (Warm Gray) — 텍스트 계층</div>
+      <div class="palette-grid">
+        <div class="swatch"><div class="swatch-color" style="background:#FFFBF7"></div><div class="swatch-info"><div class="swatch-hex">#FFFBF7</div><div class="swatch-name">warm-50 ★ 배경</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FAF6F2"></div><div class="swatch-info"><div class="swatch-hex">#FAF6F2</div><div class="swatch-name">neutral-50</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E8DFD5"></div><div class="swatch-info"><div class="swatch-hex">#E8DFD5</div><div class="swatch-name">neutral-200 구분선</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#A89D93"></div><div class="swatch-info"><div class="swatch-hex" style="color:white">#A89D93</div><div class="swatch-name">neutral-400 라벨</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#7D7167"></div><div class="swatch-info"><div class="swatch-hex" style="color:white">#7D7167</div><div class="swatch-name">neutral-500 보조</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#4A3F36"></div><div class="swatch-info"><div class="swatch-hex" style="color:white">#4A3F36</div><div class="swatch-name">neutral-700 본문</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#2A1F18"></div><div class="swatch-info"><div class="swatch-hex" style="color:white">#2A1F18</div><div class="swatch-name">neutral-900 제목</div></div></div>
+      </div>
+
+      <div class="palette-section-label" style="margin-top:8px">Semantic</div>
+      <div class="palette-grid" style="grid-template-columns:repeat(4,1fr)">
+        <div class="swatch"><div class="swatch-color" style="background:#34D399"></div><div class="swatch-info"><div class="swatch-hex">#34D399</div><div class="swatch-name">성공/완료</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F59E0B"></div><div class="swatch-info"><div class="swatch-hex">#F59E0B</div><div class="swatch-name">경고/D-day 임박</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F43F5E"></div><div class="swatch-info"><div class="swatch-hex" style="color:white">#F43F5E</div><div class="swatch-name">에러/병원 권고</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#4E84E0"></div><div class="swatch-info"><div class="swatch-hex" style="color:white">#4E84E0</div><div class="swatch-name">정보/안내</div></div></div>
+      </div>
+
+      <div class="palette-section-label" style="margin-top:24px">Phase Gradients (BabyCard) — RISK #2</div>
+      <div class="gradient-showcase">
+        <div class="gradient-swatch" style="background:linear-gradient(135deg,#34D399,#2DD4BF,#86EFAC)"><div class="gradient-swatch-label">임신 초기</div></div>
+        <div class="gradient-swatch" style="background:linear-gradient(135deg,#FBBF24,#FB923C,#FDE68A)"><div class="gradient-swatch-label">임신 중기</div></div>
+        <div class="gradient-swatch" style="background:linear-gradient(135deg,#3B82F6,#6366F1,#60A5FA)"><div class="gradient-swatch-label">임신 후기</div></div>
+        <div class="gradient-swatch" style="background:linear-gradient(135deg,#FB7185,#F472B6,#E879F9)"><div class="gradient-swatch-label">신생아 0~30일</div></div>
+        <div class="gradient-swatch" style="background:linear-gradient(135deg,#38BDF8,#60A5FA,#818CF8)"><div class="gradient-swatch-label">신생아 ~100일</div></div>
+        <div class="gradient-swatch" style="background:linear-gradient(135deg,#A78BFA,#C084FC,#F472B6)"><div class="gradient-swatch-label">영아기</div></div>
+      </div>
+      <p style="font-size:11px;color:var(--neutral-400);margin-top:10px;font-weight:500">아이가 자랄수록 BabyCard 색이 변함 — 육아앱 최초</p>
+    </div>
+  </section>
+
+  <!-- ── 3. COMPONENTS ──────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">03 Components</div>
+      <h2 class="section-title">컴포넌트 패턴</h2>
+      <p class="section-desc">모든 컴포넌트가 같은 디자인 언어를 씁니다.</p>
+
+      <!-- Buttons -->
+      <div class="palette-section-label">Buttons</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;align-items:center">
+        <button class="btn-primary">아이 등록하기</button>
+        <button class="btn-outline">가이드 보기</button>
+        <button class="btn-ghost">닫기</button>
+        <button class="btn-primary" style="opacity:0.6;cursor:not-allowed" disabled>비활성화</button>
+      </div>
+
+      <!-- Cards -->
+      <div class="palette-section-label">Cards</div>
+      <div class="component-grid" style="margin-bottom:32px">
+        <!-- White card -->
+        <div class="card-base">
+          <div style="font-size:10px;font-weight:900;color:var(--brand-400);margin-bottom:8px;letter-spacing:0.08em">기본 카드</div>
+          <div style="font-size:16px;font-weight:900;color:var(--neutral-900);margin-bottom:8px">산후조리원 예약하기</div>
+          <div style="font-size:13px;color:var(--neutral-700);font-weight:500;line-height:1.6">분만 후 보통 2주간 조리원에서 생활합니다. 미리 예약해두세요.</div>
+          <button class="btn-primary" style="margin-top:14px;font-size:13px;padding:10px 16px">체크리스트 보기</button>
+        </div>
+
+        <!-- Gradient card -->
+        <div class="gradient-card" style="background:linear-gradient(135deg,#3B82F6,#6366F1,#60A5FA)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <div class="gradient-card-label">임신 후기</div>
+              <div class="gradient-card-dday">D-42</div>
+              <div class="gradient-card-sub">32주차</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.2);border-radius:14px;padding:8px 10px;display:flex;align-items:center;gap:6px">
+              <span style="font-size:20px">🍆</span>
+              <div>
+                <div style="font-size:9px;font-weight:900;color:rgba(255,255,255,0.9)">가지</div>
+                <div style="font-size:8px;color:rgba(255,255,255,0.6)">약 43cm</div>
+              </div>
+            </div>
+          </div>
+          <div class="focus-box">
+            <div class="focus-label">지금 신경 쓸 것</div>
+            <div class="focus-item"><div class="focus-dot"></div><div class="focus-text">입원 가방 미리 싸기</div></div>
+            <div class="focus-item"><div class="focus-dot"></div><div class="focus-text">병원 경로 미리 확인</div></div>
+            <div class="focus-item"><div class="focus-dot"></div><div class="focus-text">분만 동행 준비하기</div></div>
+          </div>
+        </div>
+
+        <!-- Info box -->
+        <div class="info-box animate-fade-in-up">
+          <div class="info-box-title">아직 지난 기록이 없어요</div>
+          <div class="info-box-desc">매주 기록을 쌓으면 여기에 성장 타임라인이 생겨요. 작은 기록이 나중에 큰 추억이 됩니다.</div>
+        </div>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="palette-section-label">Feature Grid (2열)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:480px;margin-bottom:32px">
+        <div class="feature-card" style="background:#EEF4FF;border-color:#D9E8FF">
+          <div class="feature-icon" style="background:#4E84E0"><span style="font-size:18px">📖</span></div>
+          <div>
+            <div class="feature-title">가이드</div>
+            <div class="feature-desc">단계별·상황별 모든 가이드 보기</div>
+          </div>
+        </div>
+        <div class="feature-card" style="background:#ECFDF5;border-color:#D1FAE5">
+          <div class="feature-icon" style="background:#34D399"><span style="font-size:18px">✅</span></div>
+          <div>
+            <div class="feature-title">체크리스트</div>
+            <div class="feature-desc">지금 해야 할 일을 단계별로 확인해보세요</div>
+          </div>
+        </div>
+        <div class="feature-card" style="background:#FFF1F2;border-color:#FFE4E6">
+          <div class="feature-icon" style="background:#FB7185"><span style="font-size:18px">📔</span></div>
+          <div>
+            <div class="feature-title">육아일기</div>
+            <div class="feature-desc">소중한 순간을 사진과 함께 기록해요</div>
+          </div>
+        </div>
+        <div class="feature-card" style="background:#F5F3FF;border-color:#EDE9FE">
+          <div class="feature-icon" style="background:#A78BFA"><span style="font-size:18px">👥</span></div>
+          <div>
+            <div class="feature-title">커뮤니티</div>
+            <div class="feature-desc">같은 처지의 아빠들과 경험을 나눠보세요</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form inputs -->
+      <div class="palette-section-label">Input Fields</div>
+      <div style="max-width:400px;display:flex;flex-direction:column;gap:16px">
+        <div>
+          <label class="input-label">출산 예정일</label>
+          <input class="input-field" type="text" placeholder="YYYY-MM-DD" />
+        </div>
+        <div>
+          <label class="input-label">아기 이름 (태명)</label>
+          <input class="input-field" type="text" value="콩이" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. SPACING & RADIUS ───────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">04 Spacing &amp; Border Radius</div>
+      <h2 class="section-title">4px 베이스 유닛</h2>
+      <p class="section-desc">comfortable density — 모바일 터치 우선. 최소 터치 타겟 44px.</p>
+
+      <div class="spacing-grid" style="margin-bottom:40px">
+        <div class="spacing-item"><div class="spacing-bar" style="height:4px"></div><div class="spacing-label">p-1<br>4px</div></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:8px"></div><div class="spacing-label">p-2<br>8px</div></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:12px"></div><div class="spacing-label">p-3<br>12px</div></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:16px"></div><div class="spacing-label">p-4<br>16px</div></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:20px"></div><div class="spacing-label">p-5<br>20px</div></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:24px"></div><div class="spacing-label">p-6<br>24px</div></div>
+        <div class="spacing-item"><div class="spacing-bar" style="height:32px"></div><div class="spacing-label">p-8<br>32px</div></div>
+      </div>
+
+      <div class="palette-section-label">Border Radius 계층</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+        <div style="text-align:center">
+          <div style="width:60px;height:60px;background:var(--brand-200);border-radius:4px;margin:0 auto 6px"></div>
+          <div style="font-size:10px;color:var(--neutral-500);font-weight:700">rounded<br>4px</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:60px;height:60px;background:var(--brand-200);border-radius:8px;margin:0 auto 6px"></div>
+          <div style="font-size:10px;color:var(--neutral-500);font-weight:700">rounded-lg<br>8px</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:60px;height:60px;background:var(--brand-200);border-radius:12px;margin:0 auto 6px"></div>
+          <div style="font-size:10px;color:var(--neutral-500);font-weight:700">rounded-xl<br>12px</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:60px;height:60px;background:var(--brand-200);border-radius:16px;margin:0 auto 6px"></div>
+          <div style="font-size:10px;color:var(--neutral-500);font-weight:700">rounded-2xl<br>16px · 버튼</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:60px;height:60px;background:var(--brand-200);border-radius:24px;margin:0 auto 6px"></div>
+          <div style="font-size:10px;color:var(--neutral-500);font-weight:700">rounded-3xl<br>24px · 카드</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:60px;height:60px;background:var(--brand-200);border-radius:9999px;margin:0 auto 6px"></div>
+          <div style="font-size:10px;color:var(--neutral-500);font-weight:700">rounded-full<br>배지/태그</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. MOTION ──────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">05 Motion</div>
+      <h2 class="section-title">Minimal-functional</h2>
+      <p class="section-desc">불필요한 애니메이션 없음. 기능을 보조할 때만.</p>
+      <div class="motion-demo">
+        <button class="motion-btn" onclick="this.style.transform='scale(0.98)';setTimeout(()=>this.style.transform='',100)">active:scale(0.98) 터치</button>
+        <div class="motion-btn-spin"><div class="spinner"></div>로딩 중...</div>
+        <div style="padding:12px 20px;background:var(--brand-50);border:1px solid var(--brand-100);border-radius:16px;font-size:13px;font-weight:700;color:var(--brand-600)" class="animate-float">animate-float 아이콘</div>
+      </div>
+      <div style="margin-top:24px;padding:16px;background:var(--neutral-50);border-radius:16px;border:1px solid var(--neutral-200)">
+        <div class="palette-section-label" style="margin-bottom:8px">Duration Scale</div>
+        <div style="display:flex;gap:24px;flex-wrap:wrap">
+          <div><span style="font-size:11px;font-weight:700;color:var(--neutral-700)">micro</span> <span style="font-size:11px;color:var(--neutral-500)">50~100ms — 색상 전환</span></div>
+          <div><span style="font-size:11px;font-weight:700;color:var(--neutral-700)">short</span> <span style="font-size:11px;color:var(--neutral-500)">150~200ms — 기본 전환</span></div>
+          <div><span style="font-size:11px;font-weight:700;color:var(--neutral-700)">medium</span> <span style="font-size:11px;color:var(--neutral-500)">250ms — 모달 진입</span></div>
+          <div><span style="font-size:11px;font-weight:700;color:var(--neutral-700)">금지</span> <span style="font-size:11px;color:var(--error)">400ms+ 장식용 전환</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 6. MOBILE MOCKUP ───────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">06 Mobile Mockup</div>
+      <h2 class="section-title">실제 홈 화면</h2>
+      <p class="section-desc">375px 모바일 기준. 디자인 시스템 적용 결과.</p>
+
+      <div class="phone-frame">
+        <!-- Status bar -->
+        <div class="phone-status-bar"><span>9:41</span></div>
+
+        <!-- Hero -->
+        <div class="phone-hero">
+          <div class="phone-logo-row">
+            <div class="phone-logo-icon">P</div>
+            <div class="phone-logo-text">
+              <h2>파파플랜</h2>
+              <p>PapaPlan · 아빠 육아 가이드</p>
+            </div>
+          </div>
+          <div class="phone-hero-eyebrow">아빠를 위한 따뜻한 육아 플랜</div>
+          <div class="phone-hero-h1">함께 키우는<br>아이 이야기,<br><span>파파플랜에서</span></div>
+          <div class="phone-hero-desc">맘카페 말고 <strong style="color:var(--brand-600)">파파플랜</strong>.<br>임신부터 영아기까지 단계별로 안내해드려요.</div>
+        </div>
+
+        <!-- Body -->
+        <div class="phone-body">
+          <!-- BabyCard -->
+          <div class="phone-baby-card">
+            <div class="phone-card-top">
+              <div style="display:flex;align-items:center;gap:6px">
+                <div class="phone-card-avatar">👶</div>
+                <span class="phone-card-name">콩이</span>
+                <span class="phone-card-badge">배 속</span>
+              </div>
+              <div class="phone-card-settings">⚙</div>
+            </div>
+            <div style="margin-bottom:6px">
+              <span class="phone-card-phase-badge">임신 후기</span>
+              <span style="font-size:9px;color:rgba(255,255,255,0.6);margin-left:6px;font-weight:500">32주차</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div class="phone-card-dday">D-42</div>
+              <div style="background:rgba(255,255,255,0.2);border-radius:12px;padding:6px 8px;display:flex;align-items:center;gap:4px">
+                <span style="font-size:18px">🍆</span>
+                <div>
+                  <div style="font-size:9px;font-weight:900;color:rgba(255,255,255,0.9)">가지</div>
+                  <div style="font-size:8px;color:rgba(255,255,255,0.6)">약 43cm</div>
+                </div>
+              </div>
+            </div>
+            <div class="phone-card-focus">
+              <div class="phone-card-focus-label">지금 신경 쓸 것</div>
+              <div class="phone-focus-row"><div class="phone-focus-dot"></div><div class="phone-focus-text">입원 가방 미리 싸기</div></div>
+              <div class="phone-focus-row"><div class="phone-focus-dot"></div><div class="phone-focus-text">병원 경로 미리 확인</div></div>
+              <div class="phone-focus-row"><div class="phone-focus-dot"></div><div class="phone-focus-text">분만 동행 준비하기</div></div>
+            </div>
+          </div>
+
+          <!-- Gov banner -->
+          <div class="phone-gov-banner">
+            <div class="phone-gov-icon">🏛</div>
+            <div style="flex:1">
+              <div style="display:flex;align-items:center;gap:6px">
+                <div class="phone-gov-title">정부 지원 한눈에 보기</div>
+                <span style="font-size:8px;font-weight:900;background:var(--brand-200);color:var(--brand-700);padding:1px 5px;border-radius:999px">2026</span>
+              </div>
+              <div class="phone-gov-desc">신청하지 않으면 받을 수 없어요</div>
+            </div>
+            <span style="font-size:14px;color:var(--brand-400)">›</span>
+          </div>
+
+          <!-- Feature grid -->
+          <div class="phone-section-label">주요 기능</div>
+          <div class="phone-feature-grid">
+            <div class="phone-feature-item" style="background:#EEF4FF;border-color:#D9E8FF">
+              <div class="phone-feature-icon" style="background:#4E84E0">📖</div>
+              <div>
+                <div class="phone-feature-title">가이드</div>
+                <div class="phone-feature-desc">단계별·상황별 모든 가이드 보기</div>
+              </div>
+            </div>
+            <div class="phone-feature-item" style="background:#ECFDF5;border-color:#D1FAE5">
+              <div class="phone-feature-icon" style="background:#34D399">✅</div>
+              <div>
+                <div class="phone-feature-title">체크리스트</div>
+                <div class="phone-feature-desc">지금 해야 할 일을 단계별로</div>
+              </div>
+            </div>
+            <div class="phone-feature-item" style="background:#FFF1F2;border-color:#FFE4E6">
+              <div class="phone-feature-icon" style="background:#FB7185">📔</div>
+              <div>
+                <div class="phone-feature-title">육아일기</div>
+                <div class="phone-feature-desc">소중한 순간을 기록해요</div>
+              </div>
+            </div>
+            <div class="phone-feature-item" style="background:#F5F3FF;border-color:#EDE9FE">
+              <div class="phone-feature-icon" style="background:#A78BFA">👥</div>
+              <div>
+                <div class="phone-feature-title">커뮤니티</div>
+                <div class="phone-feature-desc">아빠들과 경험 나눠보세요</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom nav -->
+        <div class="phone-bottom-nav">
+          <div class="nav-item"><div class="nav-icon">🏠</div><div class="nav-label active">홈</div></div>
+          <div class="nav-item"><div class="nav-icon">📋</div><div class="nav-label">체크</div></div>
+          <div class="nav-center">🔍</div>
+          <div class="nav-item"><div class="nav-icon">📖</div><div class="nav-label">가이드</div></div>
+          <div class="nav-item"><div class="nav-icon">👤</div><div class="nav-label">내 정보</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 7. DECISIONS LOG ─────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">07 Decisions Log</div>
+      <h2 class="section-title">결정 근거</h2>
+      <p class="section-desc">왜 이렇게 결정했는지 기록. 나중에 일관성 유지에 필수.</p>
+      <div style="border:1px solid var(--neutral-200);border-radius:16px;overflow:hidden">
+        <table style="width:100%;border-collapse:collapse;font-size:13px">
+          <thead>
+            <tr style="background:var(--neutral-50)">
+              <th style="padding:12px 16px;text-align:left;font-weight:700;color:var(--neutral-700);border-bottom:1px solid var(--neutral-200)">날짜</th>
+              <th style="padding:12px 16px;text-align:left;font-weight:700;color:var(--neutral-700);border-bottom:1px solid var(--neutral-200)">결정</th>
+              <th style="padding:12px 16px;text-align:left;font-weight:700;color:var(--neutral-700);border-bottom:1px solid var(--neutral-200)">근거</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--neutral-100)">
+              <td style="padding:12px 16px;color:var(--neutral-500);white-space:nowrap">2026-04-16</td>
+              <td style="padding:12px 16px;font-weight:700;color:var(--neutral-900)">DESIGN.md 재작성</td>
+              <td style="padding:12px 16px;color:var(--neutral-700)">/design-consultation 전체 플로우 + 경쟁 리서치 반영</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--neutral-100)">
+              <td style="padding:12px 16px;color:var(--neutral-500);white-space:nowrap">2026-04-16</td>
+              <td style="padding:12px 16px;font-weight:700;color:var(--neutral-900)">warm-50 크림 배경</td>
+              <td style="padding:12px 16px;color:var(--neutral-700)">경쟁 앱 99%가 흰색. 크림은 "병원 앱이 아닌 우리 이야기" 느낌. WCAG AA 통과.</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--neutral-100)">
+              <td style="padding:12px 16px;color:var(--neutral-500);white-space:nowrap">2026-04-16</td>
+              <td style="padding:12px 16px;font-weight:700;color:var(--neutral-900)">Hero blob 장식 제거</td>
+              <td style="padding:12px 16px;color:var(--neutral-700)">AI 슬롭 패턴 6번. 내용 없는 absolute 원형 장식 전부 삭제.</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--neutral-100)">
+              <td style="padding:12px 16px;color:var(--neutral-500);white-space:nowrap">2026-04-16</td>
+              <td style="padding:12px 16px;font-weight:700;color:var(--neutral-900)">slate → neutral 통일</td>
+              <td style="padding:12px 16px;color:var(--neutral-700)">동일 색상에 두 토큰명 혼용 방지. neutral-* 단일화.</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--neutral-100)">
+              <td style="padding:12px 16px;color:var(--neutral-500);white-space:nowrap">2026-04-16</td>
+              <td style="padding:12px 16px;font-weight:700;color:var(--neutral-900)">font-black(900) 제목</td>
+              <td style="padding:12px 16px;color:var(--neutral-700)">한국 육아앱 대부분 Bold. Black = 더 자신감, 남성적 톤. 아빠 전용 앱에 맞음.</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 16px;color:var(--neutral-500);white-space:nowrap">2026-03</td>
+              <td style="padding:12px 16px;font-weight:700;color:var(--neutral-900)">이모지 전체 제거</td>
+              <td style="padding:12px 16px;color:var(--neutral-700)">앱 톤 통일. FruitIcon 컴포넌트는 예외 (기능적 역할).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-footer">
+    <p>파파플랜 Design System · /design-consultation · 2026-04-16</p>
+    <p style="margin-top:4px">Noto Sans KR · brand-500 #3567C8 · warm-50 #FFFBF7</p>
+  </div>
+
+  <script>
+    function toggleDark() {
+      const html = document.documentElement;
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.removeAttribute('data-theme');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+      }
+    }
+  </script>
+</body>
+</html>

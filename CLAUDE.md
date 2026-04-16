@@ -254,6 +254,15 @@ SHA256 fingerprint를 받아서 `public/.well-known/assetlinks.json`의
 
 UI나 시각적 결정을 내리기 전에 항상 `DESIGN.md`를 먼저 읽어라.
 색상, 폰트, 간격, 보더 반경, 컴포넌트 패턴이 모두 정의되어 있다.
+
+**핵심 규칙:**
+- `slate-*` 사용 금지 — `neutral-*`로 통일
+- Hero 섹션에 장식용 blob (내용 없는 absolute 원형) 금지
+- 이모지를 UI 장식으로 사용 금지 (FruitIcon처럼 기능적 역할은 예외)
+- 배경은 항상 `warm-50` (#FFFBF7), white 직접 사용 금지
+- 새 컴포넌트 작성 시 DESIGN.md의 border radius 계층 참조 (카드=rounded-3xl, 버튼=rounded-2xl)
+- All font choices, colors, spacing, and aesthetic direction are defined in DESIGN.md.
+- In QA mode, flag any code that doesn't match DESIGN.md.
 `DESIGN.md`에서 벗어나려면 사용자의 명시적 승인이 필요하다.
 `slate-*` 대신 `neutral-*` 사용. Hero 섹션에 장식용 blob 금지.
 
