@@ -38,7 +38,7 @@ export function getDaysSinceBirth(birthDate: string): number {
 export function getBabyAgeLabel(baby: Baby): string {
   if (baby.status === 'pregnant' && baby.dueDate) {
     const d = getDaysUntilDue(baby.dueDate);
-    if (d > 0)  return `출산까지 D-${d}`;
+    if (d > 0)  return `D-${d}`;
     if (d === 0) return '출산 예정일 당일';
     return `예정일 D+${Math.abs(d)}`;
   }
