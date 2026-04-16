@@ -85,7 +85,11 @@ export default function ChecklistMode({ steps, slug, uid }: Props) {
       {/* 완료 상태 */}
       {allDone && (
         <div className="bg-green-50 border border-green-100 rounded-2xl p-5 text-center space-y-3">
-          <p className="text-2xl">✅</p>
+          <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+            <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+              <path d="M2 9L8 15L20 2" stroke="#22C55E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
           <p className="font-black text-green-700 text-base">잘 하셨어요.</p>
           <p className="text-sm text-green-600">그래도 걱정되면 AI에게 물어보세요.</p>
           <Link
