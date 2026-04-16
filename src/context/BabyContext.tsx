@@ -5,6 +5,29 @@ import { useAuth } from './AuthContext';
 import { getBabies, getActiveBabyId, setActiveBabyId } from '@/lib/firebase/firestore';
 import type { Baby } from '@/types';
 
+const CACHE_KEY = 'papaplan_babies_cache';
+
+function readCache(uid: string): { babies: Baby[]; activeId: string | null } | null {
+  try {
+    const raw = localStorage.getItem(`${CACHE_KEY}_${uid}`);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    // Date 필드 복원
+    parsed.babies = parsed.babies.map((b: Baby) => ({
+      ...b,
+      createdAt: new Date(b.createdAt),
+      updatedAt: new Date(b.updatedAt),
+    }));
+    return parsed;
+  } catch { return null; }
+}
+
+function writeCache(uid: string, babies: Baby[], activeId: string | null) {
+  try {
+    localStorage.setItem(`${CACHE_KEY}_${uid}`, JSON.stringify({ babies, activeId }));
+  } catch { /* 무음 */ }
+}
+
 interface BabyContextValue {
   babies: Baby[];
   activeBaby: Baby | null;
@@ -34,15 +57,24 @@ export function BabyProvider({ children }: { children: ReactNode }) {
       setLoading(false);
       return;
     }
-    setLoading(true);
+
+    // 캐시 있으면 즉시 노출 (D-day 한 박자 지연 방지)
+    const cached = readCache(user.uid);
+    if (cached) {
+      setBabies(cached.babies);
+      setActiveBabyIdState(cached.activeId);
+      setLoading(false);
+    }
+
     try {
       const [fetched, activeId] = await Promise.all([
         getBabies(user.uid),
         getActiveBabyId(user.uid),
       ]);
+      const resolvedId = activeId ?? fetched[0]?.id ?? null;
       setBabies(fetched);
-      // activeId 없으면 첫 번째 아이로 자동 설정
-      setActiveBabyIdState(activeId ?? fetched[0]?.id ?? null);
+      setActiveBabyIdState(resolvedId);
+      writeCache(user.uid, fetched, resolvedId);
     } catch {
       // Firebase 미초기화 등 에러 시 무음 처리
     } finally {
@@ -58,6 +90,8 @@ export function BabyProvider({ children }: { children: ReactNode }) {
     if (!user) return;
     setActiveBabyIdState(babyId);
     await setActiveBabyId(user.uid, babyId);
+    // 캐시도 즉시 업데이트
+    writeCache(user.uid, babies, babyId);
   };
 
   const activeBaby = babies.find((b) => b.id === activeBabyId) ?? babies[0] ?? null;
