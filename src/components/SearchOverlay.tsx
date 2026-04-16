@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, X, ChevronRight, ArrowRight, Sparkles } from 'lucide-react';
+import { Search, X, ChevronRight, ArrowRight, Sparkles, Clock } from 'lucide-react';
 import Fuse from 'fuse.js';
 import {
   buildSearchIndex,
@@ -23,6 +23,24 @@ const fuse = new Fuse(buildSearchIndex(), {
   useExtendedSearch: false,
 });
 
+const HISTORY_KEY = 'papaplan_search_history';
+const MAX_HISTORY = 8;
+
+function loadHistory(): string[] {
+  try {
+    const raw = localStorage.getItem(HISTORY_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveHistory(history: string[]) {
+  try {
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  } catch {}
+}
+
 interface Props {
   isOpen: boolean;
   onClose: () => void;
@@ -31,11 +49,12 @@ interface Props {
 export default function SearchOverlay({ isOpen, onClose }: Props) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchItem[]>([]);
+  const [history, setHistory] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isOpen) {
-      // 약간의 딜레이 후 포커스 (모바일 키보드 대응)
+      setHistory(loadHistory());
       const t = setTimeout(() => inputRef.current?.focus(), 80);
       return () => clearTimeout(t);
     } else {
@@ -43,6 +62,29 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
       setResults([]);
     }
   }, [isOpen]);
+
+  const addToHistory = useCallback((q: string) => {
+    const trimmed = q.trim();
+    if (!trimmed) return;
+    setHistory((prev) => {
+      const deduped = [trimmed, ...prev.filter((h) => h !== trimmed)].slice(0, MAX_HISTORY);
+      saveHistory(deduped);
+      return deduped;
+    });
+  }, []);
+
+  const removeFromHistory = (item: string) => {
+    setHistory((prev) => {
+      const next = prev.filter((h) => h !== item);
+      saveHistory(next);
+      return next;
+    });
+  };
+
+  const clearHistory = () => {
+    setHistory([]);
+    saveHistory([]);
+  };
 
   const handleSearch = useCallback((q: string) => {
     setQuery(q);
@@ -58,6 +100,11 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
   const handleChip = (kw: string) => {
     handleSearch(kw);
     inputRef.current?.focus();
+  };
+
+  const handleResultClick = () => {
+    addToHistory(query);
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -97,22 +144,62 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
 
       {/* ── 스크롤 영역 ── */}
       <div className="flex-1 overflow-y-auto">
-        {/* 입력 전: 추천 키워드 칩 */}
+        {/* 입력 전: 최근 검색 + 추천 키워드 칩 */}
         {!isSearching && (
-          <div className="px-4 pt-5">
-            <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest mb-3">
-              아빠들이 자주 찾는 상황
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {POPULAR_KEYWORDS.map((kw) => (
-                <button
-                  key={kw}
-                  onClick={() => handleChip(kw)}
-                  className="px-3.5 py-1.5 bg-neutral-50 hover:bg-brand-50 text-neutral-700 hover:text-brand-600 text-sm rounded-full border border-neutral-200 hover:border-brand-200 transition-colors"
-                >
-                  {kw}
-                </button>
-              ))}
+          <div className="px-4 pt-5 space-y-5">
+            {/* 최근 검색 */}
+            {history.length > 0 && (
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest">
+                    최근 검색
+                  </p>
+                  <button
+                    onClick={clearHistory}
+                    className="text-[11px] text-neutral-400 hover:text-neutral-600 transition-colors"
+                  >
+                    전체 삭제
+                  </button>
+                </div>
+                <div className="space-y-1">
+                  {history.map((h) => (
+                    <div key={h} className="flex items-center gap-2 group">
+                      <button
+                        onClick={() => handleChip(h)}
+                        className="flex items-center gap-2.5 flex-1 py-2 text-left"
+                      >
+                        <Clock size={13} className="text-neutral-400 flex-shrink-0" />
+                        <span className="text-sm text-neutral-700">{h}</span>
+                      </button>
+                      <button
+                        onClick={() => removeFromHistory(h)}
+                        className="p-1.5 opacity-0 group-hover:opacity-100 transition-opacity rounded-full hover:bg-neutral-100"
+                        aria-label="삭제"
+                      >
+                        <X size={12} className="text-neutral-400" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* 추천 키워드 */}
+            <div>
+              <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest mb-3">
+                아빠들이 자주 찾는 상황
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {POPULAR_KEYWORDS.map((kw) => (
+                  <button
+                    key={kw}
+                    onClick={() => handleChip(kw)}
+                    className="px-3.5 py-1.5 bg-neutral-50 hover:bg-brand-50 text-neutral-700 hover:text-brand-600 text-sm rounded-full border border-neutral-200 hover:border-brand-200 transition-colors"
+                  >
+                    {kw}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -125,7 +212,7 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
               {results.length}개
             </p>
             {results.map((item) => (
-              <SearchResultCard key={item.id} item={item} onClose={onClose} />
+              <SearchResultCard key={item.id} item={item} onClose={handleResultClick} />
             ))}
 
             {/* 하단 AI 제안 */}
