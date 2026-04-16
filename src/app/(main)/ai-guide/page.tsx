@@ -34,10 +34,27 @@ export default function AiGuidePage() {
   const [loading, setLoading] = useState(false);
   const [started, setStarted] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isUserScrolling = useRef(false);
 
+  // 유저가 위로 스크롤하면 자동 스크롤 잠금
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, loading]);
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 60;
+      isUserScrolling.current = !atBottom;
+    };
+    el.addEventListener('scroll', onScroll, { passive: true });
+    return () => el.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // 새 메시지 추가 시 or 로딩 시작 시만 스크롤 (스트리밍 중 매 토큰 X)
+  useEffect(() => {
+    if (!isUserScrolling.current) {
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages.length, loading]);
 
   const sendMessage = async (q: string) => {
     if (!q.trim() || loading) return;
@@ -164,7 +181,7 @@ export default function AiGuidePage() {
         </div>
       ) : (
         /* ── 대화 화면 ── */
-        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
           {messages.map((msg, i) => (
             <div
               key={i}
