@@ -1,4 +1,4 @@
-import { ref, uploadBytesResumable, getDownloadURL, deleteObject, type UploadTaskSnapshot } from 'firebase/storage';
+import { ref, uploadBytes, uploadBytesResumable, getDownloadURL, deleteObject, type UploadTaskSnapshot } from 'firebase/storage';
 import { storage } from './client';
 import type { DiaryMedia } from '@/types';
 
@@ -7,19 +7,18 @@ function requireStorage() {
   return storage;
 }
 
-/** 업로드 전 이미지 압축: 최대 1200px, JPEG quality 0.82 */
-async function compressImage(file: File): Promise<File> {
+/** 업로드 전 이미지 압축 */
+async function compressImage(file: File, maxPx = 1200, quality = 0.82): Promise<File> {
   if (!file.type.startsWith('image/')) return file;
   return new Promise((resolve) => {
     const img = new Image();
     const url = URL.createObjectURL(file);
     img.onload = () => {
       URL.revokeObjectURL(url);
-      const MAX = 1200;
       let { width, height } = img;
-      if (width > MAX || height > MAX) {
-        if (width > height) { height = Math.round((height * MAX) / width); width = MAX; }
-        else { width = Math.round((width * MAX) / height); height = MAX; }
+      if (width > maxPx || height > maxPx) {
+        if (width > height) { height = Math.round((height * maxPx) / width); width = maxPx; }
+        else { width = Math.round((width * maxPx) / height); height = maxPx; }
       }
       const canvas = document.createElement('canvas');
       canvas.width = width;
@@ -28,7 +27,7 @@ async function compressImage(file: File): Promise<File> {
       canvas.toBlob(
         (blob) => resolve(blob ? new File([blob], file.name, { type: 'image/jpeg' }) : file),
         'image/jpeg',
-        0.82
+        quality
       );
     };
     img.onerror = () => { URL.revokeObjectURL(url); resolve(file); };
@@ -75,28 +74,16 @@ export async function uploadBabyPhoto(
   uid: string,
   babyId: string,
   file: File,
-  onProgress?: (pct: number) => void
 ): Promise<{ url: string; path: string }> {
   const st = requireStorage();
-  const compressed = await compressImage(file);
+  // 프로필 사진: 400px / 0.75 — 화면 표시 크기(56px)에 충분, 업로드 크기 최소화
+  const compressed = await compressImage(file, 400, 0.75);
   const path = `babies/${uid}/${babyId}.jpg`;
   const storageRef = ref(st, path);
-
-  return new Promise((resolve, reject) => {
-    const task = uploadBytesResumable(storageRef, compressed);
-    task.on(
-      'state_changed',
-      (snapshot: UploadTaskSnapshot) => {
-        const pct = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        onProgress?.(Math.round(pct));
-      },
-      reject,
-      async () => {
-        const url = await getDownloadURL(task.snapshot.ref);
-        resolve({ url, path });
-      }
-    );
-  });
+  // uploadBytes: 작은 파일엔 resumable 세션 오버헤드 없이 더 빠름
+  const snapshot = await uploadBytes(storageRef, compressed);
+  const url = await getDownloadURL(snapshot.ref);
+  return { url, path };
 }
 
 export async function deleteBabyPhoto(path: string): Promise<void> {

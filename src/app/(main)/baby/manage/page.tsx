@@ -15,6 +15,8 @@ export default function BabyManagePage() {
   const { babies, activeBaby, setActiveBaby, refreshBabies } = useBaby();
   const [deleting, setDeleting] = useState<string | null>(null);
   const [uploading, setUploading] = useState<string | null>(null);
+  // 업로드 중 로컬 미리보기 (babyId → objectURL)
+  const [localPreviews, setLocalPreviews] = useState<Record<string, string>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
   const uploadTargetRef = useRef<string | null>(null);
 
@@ -29,14 +31,22 @@ export default function BabyManagePage() {
     if (!file || !babyId || !user) return;
     e.target.value = '';
 
+    // 즉시 로컬 미리보기 표시
+    const previewUrl = URL.createObjectURL(file);
+    setLocalPreviews((prev) => ({ ...prev, [babyId]: previewUrl }));
     setUploading(babyId);
+
     try {
       const { url } = await uploadBabyPhoto(user.uid, babyId, file);
       await updateBaby(user.uid, babyId, { photoUrl: url });
       await refreshBabies();
     } catch {
+      // 실패 시 미리보기 제거
+      setLocalPreviews((prev) => { const n = { ...prev }; delete n[babyId]; return n; });
       alert('사진 업로드에 실패했어요. 다시 시도해주세요.');
     } finally {
+      URL.revokeObjectURL(previewUrl);
+      setLocalPreviews((prev) => { const n = { ...prev }; delete n[babyId]; return n; });
       setUploading(null);
     }
   };
@@ -102,9 +112,9 @@ export default function BabyManagePage() {
                     disabled={isUploading}
                     className="relative w-14 h-14 flex-shrink-0 group"
                   >
-                    {baby.photoUrl ? (
+                    {(localPreviews[baby.id] || baby.photoUrl) ? (
                       <img
-                        src={baby.photoUrl}
+                        src={localPreviews[baby.id] ?? baby.photoUrl!}
                         alt={getBabyDisplayName(baby)}
                         className="w-14 h-14 rounded-full object-cover ring-2 ring-brand-100"
                       />
