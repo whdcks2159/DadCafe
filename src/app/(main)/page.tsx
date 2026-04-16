@@ -23,8 +23,8 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-warm-50">
 
-      {/* ── Hero: 비로그인만 표시 ─────────────────── */}
-      {!isLoggedIn && (
+      {/* ── Hero: 비로그인만 표시 (loading 중엔 숨김) ─ */}
+      {!loading && !isLoggedIn && (
         <section className="bg-gradient-to-br from-brand-50 via-blue-50 to-pastel-lavender px-6 pt-14 pb-12">
           <div>
             <div className="flex items-center gap-2.5 mb-8">
@@ -50,7 +50,7 @@ export default function HomePage() {
       )}
 
       {/* ── 로그인 상태: 상단 로고 바 ────────────── */}
-      {isLoggedIn && (
+      {!loading && isLoggedIn && (
         <div className="px-5 pt-5 pb-1 flex items-center gap-2">
           <Image src="/icons/mainLogo.png" alt="파파플랜 로고" width={28} height={28} className="w-7 h-7" />
           <p className="font-black text-sm text-neutral-900">파파플랜</p>
