@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ArrowRight, CheckSquare, Users, Landmark, BookHeart, BookOpen, Newspaper, CalendarDays } from 'lucide-react';
 import BabyCard from '@/components/BabyCard';
 import { BLOG_POSTS } from '@/data/blogPosts';
+import { useAuth } from '@/context/AuthContext';
 
 const FEATURES = [
   { icon: BookOpen,    title: '가이드',       desc: '단계별·상황별\n모든 가이드 보기',         href: '/guide',      iconBg: 'bg-brand-400',   cardBg: 'bg-brand-50',        border: 'border-brand-100' },
@@ -14,15 +15,16 @@ const FEATURES = [
 ];
 
 export default function HomePage() {
+  const { user, loading } = useAuth();
+  const isLoggedIn = !loading && !!user;
+
   return (
     <div className="min-h-screen flex flex-col bg-warm-50">
 
-      {/* ── Hero ──────────────────────────────── */}
-      <section className="bg-gradient-to-br from-brand-50 via-blue-50 to-pastel-lavender px-6 pt-14 pb-12">
-
-        <div>
+      {/* ── Hero: 비로그인만 표시 ─────────────────── */}
+      {!isLoggedIn && (
+        <section className="bg-gradient-to-br from-brand-50 via-blue-50 to-pastel-lavender px-6 pt-14 pb-12">
           <div>
-            {/* 로고 */}
             <div className="flex items-center gap-2.5 mb-8">
               <Image src="/icons/mainLogo.png" alt="파파플랜 로고" width={40} height={40} className="w-10 h-10" />
               <div>
@@ -30,7 +32,6 @@ export default function HomePage() {
                 <p className="text-[10px] text-neutral-400">PapaPlan · 아빠 육아 가이드</p>
               </div>
             </div>
-
             <p className="text-brand-400 text-xs font-medium mb-2 tracking-wider uppercase">아빠를 위한 따뜻한 육아 플랜</p>
             <h1 className="text-3xl font-black leading-tight mb-3 text-neutral-900">
               함께 키우는<br />
@@ -43,8 +44,16 @@ export default function HomePage() {
               단계별로 친절하게 안내해드려요.
             </p>
           </div>
+        </section>
+      )}
+
+      {/* ── 로그인 상태: 상단 로고 바 ────────────── */}
+      {isLoggedIn && (
+        <div className="px-5 pt-5 pb-1 flex items-center gap-2">
+          <Image src="/icons/mainLogo.png" alt="파파플랜 로고" width={28} height={28} className="w-7 h-7" />
+          <p className="font-black text-sm text-neutral-900">파파플랜</p>
         </div>
-      </section>
+      )}
 
       {/* ── 오늘 우리 아기 ──────────────────────── */}
       <section className="pb-2 bg-warm-50">
