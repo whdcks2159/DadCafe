@@ -35,22 +35,26 @@ export default function BabyRegisterPage() {
         ...(status === 'pregnant' ? { dueDate: date }  : {}),
         ...(status === 'born'     ? { birthDate: date } : {}),
       };
-      const babyId = await createBaby(user.uid, babyData);
-      await setActiveBabyId(user.uid, babyId);
-      await refreshBabies();
 
-      // 아기 이름 있고, 닉네임을 직접 수정한 적 없으면 자동완성
+      // 1단계: 아기 생성
+      const babyId = await createBaby(user.uid, babyData);
+
+      // 2단계: 나머지 쓰기 병렬 실행
       const babyName = name.trim();
+      const writes: Promise<unknown>[] = [setActiveBabyId(user.uid, babyId)];
       if (babyName && !userProfile?.nicknameManuallySet) {
-        await upsertUserProfile({
+        writes.push(upsertUserProfile({
           uid: user.uid,
           nickname: `${babyName}아빠`,
           nicknameManuallySet: false,
-        });
-        await refreshProfile();
+        }));
       }
+      await Promise.all(writes);
 
-      // FCM 알림 권유 (임신 중 / 출생 후 모두)
+      // refresh는 백그라운드 (모달 표시를 기다리지 않음)
+      refreshBabies();
+      if (babyName) refreshProfile();
+
       setShowFcmModal(true);
     } catch {
       setError('저장 중 오류가 발생했어요. 다시 시도해주세요.');
