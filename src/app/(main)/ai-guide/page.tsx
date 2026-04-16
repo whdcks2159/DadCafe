@@ -49,12 +49,18 @@ export default function AiGuidePage() {
     return () => el.removeEventListener('scroll', onScroll);
   }, []);
 
-  // 새 메시지 추가 시 or 로딩 시작 시만 스크롤 (스트리밍 중 매 토큰 X)
+  // 유저 메시지 전송 시 → 무조건 아래로
+  // 어시스턴트 응답 시 → 이미 아래에 있을 때만 따라감
   useEffect(() => {
-    if (!isUserScrolling.current) {
+    const lastMsg = messages[messages.length - 1];
+    if (!lastMsg) return;
+    if (lastMsg.role === 'user') {
+      isUserScrolling.current = false;
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    } else if (!isUserScrolling.current) {
       bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages.length, loading]);
+  }, [messages.length]);
 
   const sendMessage = async (q: string) => {
     if (!q.trim() || loading) return;
