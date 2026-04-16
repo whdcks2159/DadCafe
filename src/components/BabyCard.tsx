@@ -6,35 +6,14 @@ import { useBaby } from '@/context/BabyContext';
 import {
   getBabyAgeLabel,
   getBabyDisplayName,
-  getBabyStage,
   isMilestoneDay,
   getPhaseInfo,
 } from '@/lib/baby';
 import type { Baby } from '@/types';
 import {
-  ChevronRight, Plus, Settings, BookOpen, CheckSquare, Landmark,
-  Baby as BabyIcon, AlertTriangle, User, BookHeart, Heart, Star,
-  type LucideIcon,
+  ChevronRight, Plus, Settings,
+  Baby as BabyIcon, Heart, Star,
 } from 'lucide-react';
-
-/* 단계별 빠른 링크 */
-const QUICK_LINKS: Record<string, { label: string; href: string; icon: LucideIcon }[]> = {
-  pregnant: [
-    { label: '임신 가이드', href: '/guide/pregnant',   icon: BookOpen },
-    { label: '체크리스트',  href: '/checklist',         icon: CheckSquare },
-    { label: '정부 지원',   href: '/gov-support',       icon: Landmark },
-  ],
-  newborn: [
-    { label: '신생아 가이드', href: '/guide/newborn',                icon: BabyIcon },
-    { label: '응급 대응',     href: '/guide/newborn/emergency-guide', icon: AlertTriangle },
-    { label: '체크리스트',    href: '/checklist',                    icon: CheckSquare },
-  ],
-  toddler: [
-    { label: '영아기 가이드', href: '/guide/toddler', icon: User },
-    { label: '육아일기',      href: '/diary',          icon: BookHeart },
-    { label: '체크리스트',    href: '/checklist',      icon: CheckSquare },
-  ],
-};
 
 /* ── 단일 아이 카드 ──────────────────────────────────────────── */
 function SingleBabyCard({
@@ -48,12 +27,10 @@ function SingleBabyCard({
   showSwitch: boolean;
   onSwitch: () => void;
 }) {
-  const stage      = getBabyStage(baby);
   const ageLabel   = getBabyAgeLabel(baby);
   const name       = getBabyDisplayName(baby);
   const milestone  = isMilestoneDay(baby);
   const phaseInfo  = getPhaseInfo(baby);
-  const quickLinks = QUICK_LINKS[stage] ?? QUICK_LINKS.newborn;
 
   return (
     <div className={`bg-gradient-to-br ${phaseInfo.gradient} rounded-3xl p-5 text-white shadow-warm relative overflow-hidden`}>
@@ -143,19 +120,6 @@ function SingleBabyCard({
         </div>
       </div>
 
-      {/* 빠른 링크 */}
-      <div className="flex gap-2 relative z-10">
-        {quickLinks.map(({ label, href, icon: Icon }) => (
-          <Link
-            key={href}
-            href={href}
-            className="flex items-center gap-1 bg-white/20 hover:bg-white/30 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-full transition-colors"
-          >
-            <Icon size={11} />
-            {label}
-          </Link>
-        ))}
-      </div>
     </div>
   );
 }
