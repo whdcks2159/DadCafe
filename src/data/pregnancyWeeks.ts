@@ -2,6 +2,7 @@ export interface PregnancyWeekInfo {
   week: number;
   fruit: string;
   sizeLabel: string;
+  size: string;
   babyTip: string;
   dadTip: string;
   checklistItems: { id: string; text: string }[];
@@ -12,6 +13,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 4,
     fruit: '양귀비씨',
     sizeLabel: '양귀비씨만해요',
+    size: '약 2mm',
     babyTip: '심장이 뛰기 시작했어요',
     dadTip: '산부인과 첫 예약 바로 잡으세요. 4~6주 사이가 황금 타이밍이에요.',
     checklistItems: [
@@ -24,6 +26,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 5,
     fruit: '참깨',
     sizeLabel: '참깨만해요',
+    size: '약 4mm',
     babyTip: '뇌와 척수가 만들어지고 있어요',
     dadTip: '오늘부터 집에서 요리할 때 환기부터 하세요. 냄새가 입덧을 터뜨려요.',
     checklistItems: [
@@ -35,6 +38,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 6,
     fruit: '완두콩',
     sizeLabel: '완두콩만해요',
+    size: '약 6mm',
     babyTip: '심장 박동이 초음파로 들려요',
     dadTip: '초음파 예약 됐는지 확인하세요. 반드시 같이 가야 해요. 심장 소리 처음 듣는 순간이에요.',
     checklistItems: [
@@ -46,6 +50,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 7,
     fruit: '블루베리',
     sizeLabel: '블루베리만해요',
+    size: '약 1cm',
     babyTip: '팔다리 싹이 자라기 시작했어요',
     dadTip: '입덧 절정기예요. 설거지·청소·요리 전부 아빠 담당으로 전환하세요.',
     checklistItems: [
@@ -57,6 +62,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 8,
     fruit: '라즈베리',
     sizeLabel: '라즈베리만해요',
+    size: '약 1.6cm',
     babyTip: '손가락과 발가락이 생겨요',
     dadTip: '산전 기본 혈액 검사 예약 됐나요? 이 주에 모자보건수첩도 받아오세요.',
     checklistItems: [
@@ -69,6 +75,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 9,
     fruit: '올리브',
     sizeLabel: '올리브만해요',
+    size: '약 2.3cm',
     babyTip: '눈꺼풀이 형성되고 있어요',
     dadTip: '퇴근하면 바로 저녁 준비하세요. 아내가 일어나지 않아도 되게 해야 해요.',
     checklistItems: [
@@ -80,6 +87,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 10,
     fruit: '딸기',
     sizeLabel: '딸기만해요',
+    size: '약 3.1cm',
     babyTip: '손톱이 자라기 시작해요',
     dadTip: 'NT 검사가 11~13주 사이예요. 이번 주 안에 예약 잡으세요. 늦으면 못 해요.',
     checklistItems: [
@@ -91,6 +99,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 11,
     fruit: '무화과',
     sizeLabel: '무화과만해요',
+    size: '약 4.2cm',
     babyTip: '생식기관이 발달하기 시작해요',
     dadTip: 'NT 검사 주간이에요. 다운증후군 등 염색체 이상 선별 검사예요. 반드시 같이 가세요.',
     checklistItems: [
@@ -102,6 +111,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 12,
     fruit: '레몬',
     sizeLabel: '레몬만해요',
+    size: '약 5.4cm',
     babyTip: '성별이 결정됐어요 (아직은 안 보여요)',
     dadTip: 'NT 검사 결과 나왔나요? 결과지 같이 확인하고 궁금한 점 의사에게 직접 물어보세요.',
     checklistItems: [
@@ -114,6 +124,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 13,
     fruit: '복숭아',
     sizeLabel: '복숭아만해요',
+    size: '약 7.4cm',
     babyTip: '지문이 형성되기 시작해요',
     dadTip: '입덧이 줄어드는 시기예요. 지금이 출산 병원 비교할 타이밍이에요. 인기 병원은 예약이 빨리 찹니다.',
     checklistItems: [
@@ -125,6 +136,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 14,
     fruit: '키위',
     sizeLabel: '키위만해요',
+    size: '약 8.7cm',
     babyTip: '표정을 짓기 시작해요',
     dadTip: '쿼드 검사(기형아 검사)가 15~20주 사이예요. 이번 검진 때 예약 잡아두세요.',
     checklistItems: [
@@ -136,6 +148,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 15,
     fruit: '사과',
     sizeLabel: '사과만해요',
+    size: '약 10cm',
     babyTip: '다리가 팔보다 길어지기 시작해요',
     dadTip: '쿼드 검사 이번 주에 받아야 해요. 신경관 결손·다운증후군 수치 확인하는 혈액 검사예요.',
     checklistItems: [
@@ -147,6 +160,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 16,
     fruit: '아보카도',
     sizeLabel: '아보카도만해요',
+    size: '약 11.6cm',
     babyTip: '태동을 처음 느낄 수 있는 시기예요',
     dadTip: '이 시기부터 태동을 느낄 수 있어요. 오늘 저녁 배에 손 얹어보고 같이 기다려보세요.',
     checklistItems: [
@@ -159,6 +173,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 17,
     fruit: '무',
     sizeLabel: '작은 무만해요',
+    size: '약 13cm',
     babyTip: '지방이 쌓이기 시작해요',
     dadTip: '출산 병원 둘러볼 타이밍이에요. 분만실·신생아실 직접 보고 분위기 확인하세요.',
     checklistItems: [
@@ -170,6 +185,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 18,
     fruit: '피망',
     sizeLabel: '피망만해요',
+    size: '약 14.2cm',
     babyTip: '뼈가 단단해지고 있어요',
     dadTip: '정밀초음파 꼭 예약하세요 (18~20주 내). 태아 기형 여부를 가장 자세히 보는 검사예요.',
     checklistItems: [
@@ -181,6 +197,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 19,
     fruit: '망고',
     sizeLabel: '망고만해요',
+    size: '약 15.3cm',
     babyTip: '감각기관이 빠르게 발달해요',
     dadTip: '임산부 배 사진 남겨주세요. 나중에 아이에게 보여줄 소중한 기록이에요.',
     checklistItems: [
@@ -192,6 +209,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 20,
     fruit: '바나나',
     sizeLabel: '바나나만해요',
+    size: '약 16.4cm',
     babyTip: '청력이 발달해 목소리를 들을 수 있어요',
     dadTip: '정밀초음파 주간이에요. 성별 확인 원하면 미리 의사에게 말해두세요. 결과는 꼭 같이 들으세요.',
     checklistItems: [
@@ -204,6 +222,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 21,
     fruit: '당근',
     sizeLabel: '당근만해요',
+    size: '약 26.7cm',
     babyTip: '눈썹과 속눈썹이 생겨요',
     dadTip: '보건소 무료 출산 준비 교실 신청하세요. 분만 과정·신생아 돌봄 실습까지 해요. 아빠도 대상이에요.',
     checklistItems: [
@@ -215,6 +234,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 22,
     fruit: '파프리카',
     sizeLabel: '파프리카만해요',
+    size: '약 27.8cm',
     babyTip: '잠자고 깨는 패턴이 생겨요',
     dadTip: '임산부 쿠션(C자형·U자형) 지금 구매하세요. 배가 빠르게 커지는 시기라 수면이 힘들어져요.',
     checklistItems: [
@@ -226,6 +246,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 23,
     fruit: '포도송이',
     sizeLabel: '포도송이만해요',
+    size: '약 28.9cm',
     babyTip: '폐가 발달을 시작해요',
     dadTip: '임신성 당뇨 검사(50g 당부하 검사)가 24~28주예요. 검진 일정 확인하고 꼭 같이 가세요.',
     checklistItems: [
@@ -237,6 +258,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 24,
     fruit: '옥수수',
     sizeLabel: '옥수수만해요',
+    size: '약 30cm',
     babyTip: '눈꺼풀이 열리기 시작해요',
     dadTip: '산후조리원 예약 지금 안 하면 자리 없어요. 인기 조리원은 6개월 전에 마감돼요.',
     checklistItems: [
@@ -249,6 +271,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 25,
     fruit: '순무',
     sizeLabel: '순무만해요',
+    size: '약 34.6cm',
     babyTip: '머리카락이 자라기 시작해요',
     dadTip: '산후조리원 2~3곳 직접 투어하세요. 신생아실·산모실 직접 눈으로 봐야 후회가 없어요.',
     checklistItems: [
@@ -260,6 +283,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 26,
     fruit: '상추 한포기',
     sizeLabel: '상추 한포기만해요',
+    size: '약 35.6cm',
     babyTip: '눈을 뜨고 감을 수 있어요',
     dadTip: '육아휴직 쓸 계획이면 지금 회사와 협의 시작하세요. 출산 직전에 말하면 처리가 늦어요.',
     checklistItems: [
@@ -271,6 +295,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 27,
     fruit: '콜리플라워',
     sizeLabel: '콜리플라워만해요',
+    size: '약 36.6cm',
     babyTip: '뇌가 빠르게 성장하는 시기예요',
     dadTip: '태교여행 가고 싶으면 지금이 마지막 기회예요. 28주 이후엔 장거리 이동이 부담돼요.',
     checklistItems: [
@@ -282,6 +307,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 28,
     fruit: '가지',
     sizeLabel: '가지만해요',
+    size: '약 37.6cm',
     babyTip: '뇌 주름이 생기기 시작해요',
     dadTip: '3분기 시작이에요. 산후조리원 계약 아직이면 이번 주 안에 끝내세요. 이제 진짜 급해요.',
     checklistItems: [
@@ -294,6 +320,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 29,
     fruit: '버터넛 호박',
     sizeLabel: '작은 호박만해요',
+    size: '약 38.6cm',
     babyTip: '근육과 폐가 계속 성장해요',
     dadTip: '철분제 재고 확인하세요. 3분기엔 철분 요구량이 급증해서 빈혈 오기 쉬워요.',
     checklistItems: [
@@ -305,6 +332,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 30,
     fruit: '양배추',
     sizeLabel: '양배추만해요',
+    size: '약 39.9cm',
     babyTip: '눈이 빛에 반응하기 시작해요',
     dadTip: '신생아 용품 리스트 점검하세요. 카시트·유모차·아기 침대는 지금 주문해야 제때 와요.',
     checklistItems: [
@@ -317,6 +345,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 31,
     fruit: '코코넛',
     sizeLabel: '코코넛만해요',
+    size: '약 41.1cm',
     babyTip: '소화 시스템이 완성돼 가요',
     dadTip: '오늘 저녁 발·허리 마사지 10분 해주세요. 3분기엔 부종과 요통이 매일 와요.',
     checklistItems: [
@@ -328,6 +357,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 32,
     fruit: '파인애플',
     sizeLabel: '파인애플만해요',
+    size: '약 42.4cm',
     babyTip: '뒤집기 연습을 시작해요',
     dadTip: '32주 정밀초음파 예약 됐나요? 태아 위치(역아 여부)·태반 위치 확인하는 중요한 검사예요.',
     checklistItems: [
@@ -340,6 +370,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 33,
     fruit: '파인애플',
     sizeLabel: '파인애플만해요',
+    size: '약 43.7cm',
     babyTip: '두뇌 발달이 폭발적으로 이루어져요',
     dadTip: '조산 신호 외워두세요. 규칙적 복통·질 출혈·파수는 즉시 병원이에요. 새벽이어도 가야 해요.',
     checklistItems: [
@@ -351,6 +382,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 34,
     fruit: '멜론',
     sizeLabel: '멜론만해요',
+    size: '약 45cm',
     babyTip: '면역 시스템이 발달해요',
     dadTip: '카시트 지금 차에 설치하세요. 병원에서 퇴원할 때 카시트 없으면 아기 못 데려가요.',
     checklistItems: [
@@ -363,6 +395,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 35,
     fruit: '멜론',
     sizeLabel: '멜론만해요',
+    size: '약 46.2cm',
     babyTip: '신장이 완전히 발달해요',
     dadTip: '육아휴직 신청서 이번 주 제출하세요. 출산 예정일 30일 전까지 신청해야 급여 처리가 돼요.',
     checklistItems: [
@@ -374,6 +407,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 36,
     fruit: '파파야',
     sizeLabel: '파파야만해요',
+    size: '약 47.4cm',
     babyTip: '머리가 골반 쪽으로 내려오기 시작해요',
     dadTip: '출산 가방 지금 당장 차 트렁크에 실어두세요. 36주부터 언제든 진통 올 수 있어요.',
     checklistItems: [
@@ -386,6 +420,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 37,
     fruit: '수박 (소)',
     sizeLabel: '작은 수박만해요',
+    size: '약 48.6cm',
     babyTip: '지금 태어나도 건강하게 자랄 수 있어요',
     dadTip: '진통 10분 간격 → 병원 출발. 폰 충전기 항상 챙기고 회의 중에도 전화 받을 수 있게 해두세요.',
     checklistItems: [
@@ -397,6 +432,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 38,
     fruit: '수박',
     sizeLabel: '수박만해요',
+    size: '약 49.8cm',
     babyTip: '출산 준비가 거의 완료됐어요',
     dadTip: '병원까지 야간 루트 한 번 더 확인하세요. 낮에 익숙한 길도 새벽엔 다르게 느껴져요.',
     checklistItems: [
@@ -408,6 +444,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 39,
     fruit: '수박',
     sizeLabel: '수박만해요',
+    size: '약 50.7cm',
     babyTip: '지방이 쌓여 포동포동해지고 있어요',
     dadTip: '출산 당일 아빠 역할을 머릿속에 정리해두세요. 접수·보호자 동의서·주차 위치까지 아빠가 다 챙겨야 해요.',
     checklistItems: [
@@ -419,6 +456,7 @@ export const PREGNANCY_WEEKS: PregnancyWeekInfo[] = [
     week: 40,
     fruit: '수박',
     sizeLabel: '곧 만나요',
+    size: '약 51.2cm',
     babyTip: '드디어 세상에 나올 준비가 됐어요',
     dadTip: '오늘 아내에게 "고마워, 정말 대단해"라고 말해주세요. 40주 버텨낸 거 대단한 일이에요.',
     checklistItems: [

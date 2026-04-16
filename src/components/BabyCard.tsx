@@ -113,7 +113,7 @@ function SingleBabyCard({
                 <FruitIcon fruit={info.fruit} size={28} />
                 <div>
                   <p className="text-[10px] font-black text-white/90 leading-none">{info.fruit}</p>
-                  <p className="text-[9px] text-white/60 leading-none mt-0.5">{info.sizeLabel}</p>
+                  <p className="text-[9px] text-white/60 leading-none mt-0.5">{info.size}</p>
                 </div>
               </div>
             );
