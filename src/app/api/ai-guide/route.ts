@@ -32,9 +32,10 @@ export async function POST(req: NextRequest) {
   const userMessage = stage ? `[${stage} 단계 아빠의 질문] ${question}` : question;
 
   try {
-    const stream = client.messages.stream({
+    const stream = await client.messages.create({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 512,
+      stream: true,
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userMessage }],
     });
