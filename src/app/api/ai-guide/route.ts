@@ -1,7 +1,8 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const maxDuration = 60;
+// Vercel Pro: 60s / Hobby: 10s (스트리밍이라 첫 청크 10s 안에 오면 OK)
+export const maxDuration = 30;
 
 const SYSTEM_PROMPT = `당신은 "대디 AI"입니다. 한국의 예비 아빠와 초보 아빠를 위한 임신·출산·육아 전문 AI 가이드입니다.
 
@@ -31,10 +32,9 @@ export async function POST(req: NextRequest) {
   const userMessage = stage ? `[${stage} 단계 아빠의 질문] ${question}` : question;
 
   try {
-    const stream = await client.messages.create({
-      model: 'claude-3-haiku-20240307',
+    const stream = client.messages.stream({
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 512,
-      stream: true,
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userMessage }],
     });
