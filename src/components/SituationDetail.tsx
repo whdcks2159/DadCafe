@@ -5,11 +5,13 @@ import { CheckCircle2, XCircle, ListChecks, BookOpen } from 'lucide-react';
 import type { SituationGuide } from '@/types';
 import { SITUATION_TAG_LABELS } from '@/data/situations';
 import ChecklistMode from '@/components/ChecklistMode';
+import { useAuth } from '@/context/AuthContext';
 
 type Mode = 'guide' | 'checklist';
 
 export default function SituationDetail({ situation }: { situation: SituationGuide }) {
   const [mode, setMode] = useState<Mode>('guide');
+  const { user } = useAuth();
 
   return (
     <>
@@ -63,7 +65,11 @@ export default function SituationDetail({ situation }: { situation: SituationGui
       {/* 콘텐츠 */}
       {mode === 'checklist' ? (
         <div className="mt-2">
-          <ChecklistMode steps={situation.steps} />
+          <ChecklistMode
+            steps={situation.steps}
+            slug={situation.slug}
+            uid={user?.uid}
+          />
         </div>
       ) : (
         <div className="px-5 py-5 space-y-6">

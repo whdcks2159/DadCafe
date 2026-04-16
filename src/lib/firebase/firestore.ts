@@ -61,6 +61,43 @@ export async function saveCompletedItems(uid: string, completedItemIds: string[]
   });
 }
 
+// ── Checklist Situation History ─────────────────────────────
+
+export interface ChecklistCompletion {
+  slug: string;
+  completedAt: Timestamp;
+  completionCount: number;
+}
+
+export async function recordChecklistCompletion(uid: string, slug: string): Promise<void> {
+  const d = requireDb();
+  const ref = doc(d, 'users', uid, 'checklistHistory', slug);
+  const snap = await getDoc(ref);
+  if (snap.exists()) {
+    await updateDoc(ref, {
+      completedAt: serverTimestamp(),
+      completionCount: increment(1),
+    });
+  } else {
+    await setDoc(ref, {
+      slug,
+      completedAt: serverTimestamp(),
+      completionCount: 1,
+    });
+  }
+}
+
+export async function getChecklistHistory(uid: string): Promise<ChecklistCompletion[]> {
+  const d = requireDb();
+  const q = query(
+    collection(d, 'users', uid, 'checklistHistory'),
+    orderBy('completedAt', 'desc'),
+    limit(50),
+  );
+  const snap = await getDocs(q);
+  return snap.docs.map((s) => s.data() as ChecklistCompletion);
+}
+
 // ── Posts ────────────────────────────────────────────────────
 
 export async function createPost(post: Omit<Post, 'id' | 'createdAt' | 'likeCount' | 'commentCount'>) {

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Sparkles, RotateCcw, AlertTriangle } from 'lucide-react';
 import type { SituationStep } from '@/types';
+import { recordChecklistCompletion } from '@/lib/firebase/firestore';
 
 // 에스컬레이션 키워드 (병원 가야 할 때)
 const ESCALATION_KEYWORDS = [
@@ -18,16 +19,28 @@ function isEscalation(step: SituationStep): boolean {
 
 interface Props {
   steps: SituationStep[];
+  slug?: string;
+  uid?: string;
 }
 
-export default function ChecklistMode({ steps }: Props) {
+export default function ChecklistMode({ steps, slug, uid }: Props) {
   const [checked, setChecked] = useState<Set<number>>(new Set());
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const savedRef = useRef(false);
 
   const total = steps.length;
   const doneCount = checked.size;
   const allDone = doneCount === total;
   const progress = total > 0 ? (doneCount / total) * 100 : 0;
+
+  // 완료 시 Firebase 저장 (1회만)
+  useEffect(() => {
+    if (allDone && total > 0 && uid && slug && !savedRef.current) {
+      savedRef.current = true;
+      recordChecklistCompletion(uid, slug).catch(() => {});
+    }
+    if (!allDone) savedRef.current = false;
+  }, [allDone, total, uid, slug]);
 
   // 에스컬레이션 기준으로 일반 / 경고 분리
   const normalSteps = steps.filter((s) => !isEscalation(s));
