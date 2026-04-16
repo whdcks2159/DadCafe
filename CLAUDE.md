@@ -169,6 +169,7 @@ interface SearchItem {
 - **가중치:** 제목(50%) + 요약(30%) + 키워드(20%)
 - **유사어 사전:** `searchIndex.ts` 내 `KEYWORD_SYNONYMS` (30개+)
 - **진입점:** TopHeader 검색 아이콘 / BottomNav 가운데 버튼
+- **검색 히스토리:** localStorage `papaplan_search_history` (최대 8개, 결과 클릭 시 저장)
 
 ---
 
@@ -178,7 +179,7 @@ interface SearchItem {
 - **토글:** 가이드 모드 ↔ 체크리스트 모드 세그먼트 컨트롤
 - **에스컬레이션 감지:** `ESCALATION_KEYWORDS` 포함 step → 빨간 경고 섹션 분리
 - **완료 흐름:** 진행 바 → 전체 완료 → AI 가이드 연결
-- **상태:** 클라이언트 useState (세션 내 유지, 미저장)
+- **완료 저장:** 로그인 상태일 때 `users/{uid}/checklistHistory/{slug}` Firestore 저장 (completedAt + completionCount)
 
 ---
 
@@ -241,8 +242,8 @@ SHA256 fingerprint를 받아서 `public/.well-known/assetlinks.json`의
 
 ## 앞으로 구현 예정
 
-- [ ] 10초 체크리스트 완료 기록 저장 (Firebase)
-- [ ] 검색 히스토리 (localStorage)
+- [x] 10초 체크리스트 완료 기록 저장 (Firebase) — users/{uid}/checklistHistory/{slug}
+- [x] 검색 히스토리 (localStorage) — papaplan_search_history, 최대 8개
 - [ ] 아기 성장 추적 대시보드
 - [ ] 푸시 알림 (예방접종 / 검진 일정)
 - [ ] TWA SHA256 fingerprint 교체 후 Play Store 제출
