@@ -89,7 +89,7 @@ export default function DiaryDetailPage() {
   if (!entry) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen gap-3">
-        <p className="text-slate-400">일기를 찾을 수 없습니다.</p>
+        <p className="text-neutral-400">일기를 찾을 수 없습니다.</p>
         <button onClick={() => router.push('/diary')} className="text-brand-500 text-sm font-bold">
           목록으로
         </button>
@@ -103,7 +103,7 @@ export default function DiaryDetailPage() {
         title={formatFullDate(entry.date)}
         showBack
         right={
-          <button onClick={handleDelete} disabled={deleting} className="p-2 text-slate-400 hover:text-red-500 transition-colors">
+          <button onClick={handleDelete} disabled={deleting} className="p-2 text-neutral-400 hover:text-red-500 transition-colors">
             {deleting ? <Loader2 size={18} className="animate-spin" /> : <Trash2 size={18} />}
           </button>
         }
@@ -111,7 +111,7 @@ export default function DiaryDetailPage() {
 
       {/* 미디어 캐러셀 */}
       {entry.mediaList.length > 0 && (
-        <div className="relative bg-slate-900 aspect-square">
+        <div className="relative bg-neutral-900 aspect-square">
           {entry.mediaList[mediaIdx].type === 'photo' ? (
             <img
               src={entry.mediaList[mediaIdx].url}
@@ -177,7 +177,7 @@ export default function DiaryDetailPage() {
         {entry.emotions.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {entry.emotions.map((e) => (
-              <span key={e} className="text-sm bg-slate-50 border border-slate-100 px-3 py-1 rounded-full">
+              <span key={e} className="text-sm bg-neutral-50 border border-neutral-100 px-3 py-1 rounded-full">
                 {EMOTION_LABELS[e] ?? e}
               </span>
             ))}
@@ -188,7 +188,7 @@ export default function DiaryDetailPage() {
         {entry.actions.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {entry.actions.map((a) => (
-              <span key={a} className="text-xs bg-slate-800 text-white px-2.5 py-1 rounded-full">
+              <span key={a} className="text-xs bg-neutral-900 text-white px-2.5 py-1 rounded-full">
                 {ACTION_LABELS[a] ?? a}
               </span>
             ))}
@@ -196,7 +196,7 @@ export default function DiaryDetailPage() {
         )}
 
         {/* 본문 */}
-        <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap">{entry.text}</p>
+        <p className="text-sm text-neutral-700 leading-relaxed whitespace-pre-wrap">{entry.text}</p>
 
         {/* AI 요약 */}
         {summary ? (
@@ -205,13 +205,13 @@ export default function DiaryDetailPage() {
               <Sparkles size={13} className="text-brand-500" />
               <p className="text-xs font-black text-brand-600">AI 하루 요약</p>
             </div>
-            <p className="text-sm text-slate-700 leading-relaxed">{summary}</p>
+            <p className="text-sm text-neutral-700 leading-relaxed">{summary}</p>
           </div>
         ) : (
           <button
             onClick={handleAiSummary}
             disabled={summarizing}
-            className="w-full flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 text-sm font-bold text-slate-600 hover:border-brand-200 hover:bg-brand-50 hover:text-brand-600 transition-all disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 bg-neutral-50 border border-neutral-100 rounded-2xl px-4 py-3 text-sm font-bold text-neutral-700 hover:border-brand-200 hover:bg-brand-50 hover:text-brand-600 transition-all disabled:opacity-50"
           >
             {summarizing ? (
               <Loader2 size={15} className="animate-spin" />

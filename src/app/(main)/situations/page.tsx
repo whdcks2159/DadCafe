@@ -19,7 +19,7 @@ export default function SituationsPage() {
       <TopHeader title="상황별 가이드" />
 
       <div className="px-4 py-4">
-        <p className="text-sm text-slate-500 mb-4">
+        <p className="text-sm text-neutral-500 mb-4">
           지금 겪고 있는 상황을 선택하세요.
         </p>
 
@@ -32,7 +32,7 @@ export default function SituationsPage() {
               className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${
                 activeTag === tag
                   ? 'bg-brand-500 text-white'
-                  : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                  : 'bg-neutral-100 text-neutral-500 hover:bg-neutral-200'
               }`}
             >
               {tag === 'all' ? '전체' : SITUATION_TAG_LABELS[tag]}
@@ -46,14 +46,14 @@ export default function SituationsPage() {
             <Link
               key={situation.slug}
               href={`/situations/${situation.slug}`}
-              className="bg-white rounded-2xl border border-slate-100 p-4 hover:border-brand-200 hover:shadow-sm transition-all active:scale-95"
+              className="bg-white rounded-2xl border border-neutral-100 p-4 hover:border-brand-200 hover:shadow-sm transition-all active:scale-95"
             >
               <img src={situation.emoji} alt={situation.titleKo} className="w-10 h-10 mb-2" />
-              <p className="font-bold text-sm text-slate-800 leading-snug mb-1">
+              <p className="font-bold text-sm text-neutral-900 leading-snug mb-1">
                 {situation.titleKo}
               </p>
-              <p className="text-xs text-slate-500 line-clamp-2">{situation.summaryKo}</p>
-              <span className="inline-block mt-2 text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">
+              <p className="text-xs text-neutral-500 line-clamp-2">{situation.summaryKo}</p>
+              <span className="inline-block mt-2 text-[10px] bg-neutral-100 text-neutral-500 px-2 py-0.5 rounded-full">
                 {SITUATION_TAG_LABELS[situation.tag]}
               </span>
             </Link>

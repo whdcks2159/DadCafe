@@ -146,7 +146,7 @@ export default function HomePage() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="flex flex-col gap-0.5 p-4 bg-white border border-slate-100 rounded-2xl hover:border-brand-200 hover:bg-brand-50/30 transition-all active:scale-[0.98] shadow-card"
+              className="flex flex-col gap-0.5 p-4 bg-white border border-neutral-100 rounded-2xl hover:border-brand-200 hover:bg-brand-50/30 transition-all active:scale-[0.98] shadow-card"
             >
               <p className="font-bold text-sm text-neutral-900 leading-snug">{post.title}</p>
               <p className="text-xs text-neutral-500 line-clamp-1">{post.description}</p>

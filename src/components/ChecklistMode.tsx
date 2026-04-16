@@ -56,7 +56,7 @@ export default function ChecklistMode({ steps }: Props) {
     <div className="px-4 py-4 space-y-3">
       {/* 진행 바 */}
       <div className="flex items-center gap-3 mb-2">
-        <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
+        <div className="flex-1 h-2 bg-neutral-100 rounded-full overflow-hidden">
           <div
             className={`h-full rounded-full transition-all duration-500 ${
               allDone ? 'bg-green-400' : 'bg-brand-500'
@@ -104,11 +104,11 @@ export default function ChecklistMode({ steps }: Props) {
       {warnSteps.length > 0 && (
         <>
           <div className="flex items-center gap-3 py-1">
-            <div className="flex-1 h-px bg-slate-200" />
-            <span className="text-xs text-slate-400 font-semibold flex-shrink-0">
+            <div className="flex-1 h-px bg-neutral-200" />
+            <span className="text-xs text-neutral-400 font-semibold flex-shrink-0">
               그래도 안 되면
             </span>
-            <div className="flex-1 h-px bg-slate-200" />
+            <div className="flex-1 h-px bg-neutral-200" />
           </div>
 
           {warnSteps.map((step, idx) => {
@@ -132,7 +132,7 @@ export default function ChecklistMode({ steps }: Props) {
       {doneCount > 0 && !allDone && (
         <button
           onClick={reset}
-          className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-600 transition-colors mx-auto pt-2"
+          className="flex items-center gap-1.5 text-xs text-neutral-400 hover:text-neutral-700 transition-colors mx-auto pt-2"
         >
           <RotateCcw size={12} />
           처음부터 다시
@@ -141,7 +141,7 @@ export default function ChecklistMode({ steps }: Props) {
       {allDone && (
         <button
           onClick={reset}
-          className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-600 transition-colors mx-auto pt-1"
+          className="flex items-center gap-1.5 text-xs text-neutral-400 hover:text-neutral-700 transition-colors mx-auto pt-1"
         >
           <RotateCcw size={12} />
           처음부터 다시
@@ -169,10 +169,10 @@ const CheckItem = forwardRef<
       onClick={onToggle}
       className={`w-full flex items-center gap-3 p-4 rounded-2xl border text-left transition-all active:scale-[0.98] ${
         done
-          ? 'bg-slate-50 border-slate-100'
+          ? 'bg-neutral-50 border-neutral-100'
           : isWarn
           ? 'bg-red-50 border-red-100 hover:border-red-200'
-          : 'bg-white border-slate-100 hover:border-brand-200 shadow-sm'
+          : 'bg-white border-neutral-100 hover:border-brand-200 shadow-sm'
       }`}
     >
       {/* 체크 원 */}
@@ -182,7 +182,7 @@ const CheckItem = forwardRef<
             ? 'bg-brand-500 border-brand-500'
             : isWarn
             ? 'border-red-300'
-            : 'border-slate-200'
+            : 'border-neutral-200'
         }`}
       >
         {done && (
@@ -197,10 +197,10 @@ const CheckItem = forwardRef<
       <span
         className={`text-sm font-bold leading-tight transition-all ${
           done
-            ? 'line-through text-slate-400'
+            ? 'line-through text-neutral-400'
             : isWarn
             ? 'text-red-700'
-            : 'text-slate-800'
+            : 'text-neutral-900'
         }`}
       >
         {step.titleKo}

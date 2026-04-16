@@ -35,10 +35,7 @@ function SingleBabyCard({
   const phaseInfo  = getPhaseInfo(baby);
 
   return (
-    <div className={`bg-gradient-to-br ${phaseInfo.gradient} rounded-3xl p-5 text-white shadow-warm relative overflow-hidden`}>
-      {/* 배경 장식 */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-8 translate-x-8 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-20 h-20 bg-white/10 rounded-full translate-y-6 -translate-x-6 pointer-events-none" />
+    <div className={`bg-gradient-to-br ${phaseInfo.gradient} rounded-3xl p-5 text-white shadow-warm`}>
 
       {/* 헤더 */}
       <div className="flex items-center justify-between mb-3 relative z-10">

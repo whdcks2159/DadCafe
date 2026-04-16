@@ -87,34 +87,34 @@ export default function CommunityPage() {
       />
 
       <div className="px-4 py-4 space-y-3">
-        <p className="text-xs text-slate-400 font-medium">최신 글 {posts.length}개</p>
+        <p className="text-xs text-neutral-400 font-medium">최신 글 {posts.length}개</p>
         {posts.map((post) => (
           <Link
             key={post.id}
             href={`/community/${post.id}`}
-            className="block bg-white rounded-2xl border border-slate-100 p-4 hover:border-brand-200 hover:shadow-sm transition-all"
+            className="block bg-white rounded-2xl border border-neutral-100 p-4 hover:border-brand-200 hover:shadow-sm transition-all"
           >
             {/* Author */}
             <div className="flex items-center gap-2 mb-2">
               <div className="w-7 h-7 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">
                 {post.authorName[0]}
               </div>
-              <span className="text-xs text-slate-500">{post.authorName}</span>
-              <span className="text-xs text-slate-300 ml-auto flex items-center gap-1">
+              <span className="text-xs text-neutral-500">{post.authorName}</span>
+              <span className="text-xs text-neutral-400 ml-auto flex items-center gap-1">
                 <Clock size={10} />
                 {formatDate(post.createdAt)}
               </span>
             </div>
 
             {/* Content */}
-            <p className="font-bold text-slate-800 text-sm mb-1">{post.titleKo}</p>
-            <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">{post.bodyKo}</p>
+            <p className="font-bold text-neutral-900 text-sm mb-1">{post.titleKo}</p>
+            <p className="text-xs text-neutral-500 line-clamp-2 leading-relaxed">{post.bodyKo}</p>
 
             {/* Tags */}
             {post.tags.length > 0 && (
               <div className="flex flex-wrap gap-1 mt-2">
                 {post.tags.map((tag) => (
-                  <span key={tag} className="text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">
+                  <span key={tag} className="text-[10px] bg-neutral-100 text-neutral-500 px-2 py-0.5 rounded-full">
                     #{tag}
                   </span>
                 ))}
@@ -122,7 +122,7 @@ export default function CommunityPage() {
             )}
 
             {/* Stats */}
-            <div className="flex items-center gap-3 mt-3 text-xs text-slate-400">
+            <div className="flex items-center gap-3 mt-3 text-xs text-neutral-400">
               <span className="flex items-center gap-1">
                 <Heart size={12} /> {post.likeCount}
               </span>
@@ -135,8 +135,8 @@ export default function CommunityPage() {
       </div>
 
       {!user && (
-        <div className="mx-4 mt-2 mb-6 bg-slate-50 rounded-2xl p-4 text-center">
-          <p className="text-sm text-slate-600 mb-3">
+        <div className="mx-4 mt-2 mb-6 bg-neutral-50 rounded-2xl p-4 text-center">
+          <p className="text-sm text-neutral-700 mb-3">
             글을 쓰려면 로그인이 필요해요
           </p>
           <Link href="/profile" className="inline-block bg-brand-500 text-white text-sm font-bold px-4 py-2 rounded-xl">

@@ -95,23 +95,23 @@ export default function PrivacyPage() {
           <div className="overflow-x-auto mb-2">
             <table className="text-xs text-neutral-600 border-collapse w-full">
               <thead>
-                <tr className="bg-slate-50">
-                  <th className="border border-slate-200 px-3 py-2 text-left font-bold">수탁 업체</th>
-                  <th className="border border-slate-200 px-3 py-2 text-left font-bold">위탁 내용</th>
+                <tr className="bg-neutral-50">
+                  <th className="border border-neutral-200 px-3 py-2 text-left font-bold">수탁 업체</th>
+                  <th className="border border-neutral-200 px-3 py-2 text-left font-bold">위탁 내용</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-slate-200 px-3 py-2">Google Firebase</td>
-                  <td className="border border-slate-200 px-3 py-2">회원 인증, 데이터베이스 저장, 파일 스토리지</td>
+                  <td className="border border-neutral-200 px-3 py-2">Google Firebase</td>
+                  <td className="border border-neutral-200 px-3 py-2">회원 인증, 데이터베이스 저장, 파일 스토리지</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-200 px-3 py-2">Anthropic (Claude API)</td>
-                  <td className="border border-slate-200 px-3 py-2">AI 맞춤 플랜 생성, 육아일기 요약 (입력 텍스트 전달)</td>
+                  <td className="border border-neutral-200 px-3 py-2">Anthropic (Claude API)</td>
+                  <td className="border border-neutral-200 px-3 py-2">AI 맞춤 플랜 생성, 육아일기 요약 (입력 텍스트 전달)</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-200 px-3 py-2">Vercel</td>
-                  <td className="border border-slate-200 px-3 py-2">웹 서비스 호스팅 및 서버 운영</td>
+                  <td className="border border-neutral-200 px-3 py-2">Vercel</td>
+                  <td className="border border-neutral-200 px-3 py-2">웹 서비스 호스팅 및 서버 운영</td>
                 </tr>
               </tbody>
             </table>

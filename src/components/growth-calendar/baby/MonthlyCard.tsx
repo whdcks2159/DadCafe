@@ -37,14 +37,14 @@ export default function MonthlyCard({ monthNumber, log }: MonthlyCardProps) {
     <>
       <div
         className={`rounded-2xl p-4 mb-3 border transition-colors ${
-          hasRecord ? 'bg-white border-slate-200' : 'bg-slate-50 border-slate-100'
+          hasRecord ? 'bg-white border-neutral-200' : 'bg-neutral-50 border-neutral-100'
         }`}
       >
         <div className="flex items-start gap-3">
           <div className="flex flex-col items-center pt-0.5">
             <div
               className={`w-3 h-3 rounded-full flex-shrink-0 ${
-                hasRecord ? 'bg-green-500' : 'bg-slate-300'
+                hasRecord ? 'bg-green-500' : 'bg-neutral-400'
               }`}
             />
           </div>
@@ -52,9 +52,9 @@ export default function MonthlyCard({ monthNumber, log }: MonthlyCardProps) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center gap-2">
-                <span className="font-bold text-slate-800 text-sm">{info.ageLabel}</span>
+                <span className="font-bold text-neutral-900 text-sm">{info.ageLabel}</span>
                 {(log?.heightCm || log?.weightKg) && (
-                  <span className="text-xs text-slate-400">
+                  <span className="text-xs text-neutral-400">
                     {log.heightCm && `${log.heightCm}cm`}
                     {log.heightCm && log.weightKg && ' · '}
                     {log.weightKg && `${log.weightKg}kg`}
@@ -66,7 +66,7 @@ export default function MonthlyCard({ monthNumber, log }: MonthlyCardProps) {
                 className={`text-xs px-2.5 py-1 rounded-full font-medium ${
                   hasRecord
                     ? 'text-green-700 bg-green-50'
-                    : 'text-slate-500 bg-slate-100'
+                    : 'text-neutral-500 bg-neutral-100'
                 }`}
               >
                 {hasRecord ? '수정' : '기록'}
@@ -88,7 +88,7 @@ export default function MonthlyCard({ monthNumber, log }: MonthlyCardProps) {
                   </div>
                 )}
                 {log?.memo && (
-                  <p className="text-sm text-slate-600 line-clamp-2 mb-2">{log.memo}</p>
+                  <p className="text-sm text-neutral-700 line-clamp-2 mb-2">{log.memo}</p>
                 )}
                 {log?.milestones && log.milestones.length > 0 && (
                   <div className="flex flex-wrap gap-1">
@@ -104,7 +104,7 @@ export default function MonthlyCard({ monthNumber, log }: MonthlyCardProps) {
                 )}
               </>
             ) : (
-              <p className="text-sm text-slate-400">기록이 없어요.</p>
+              <p className="text-sm text-neutral-400">기록이 없어요.</p>
             )}
           </div>
         </div>

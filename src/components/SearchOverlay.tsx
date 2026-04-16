@@ -69,27 +69,27 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
   return (
     <div className="fixed inset-0 z-[60] flex flex-col bg-white">
       {/* ── 검색 입력 헤더 ── */}
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-100 bg-white">
-        <Search size={18} className="text-slate-400 flex-shrink-0" />
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-100 bg-white">
+        <Search size={18} className="text-neutral-400 flex-shrink-0" />
         <input
           ref={inputRef}
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
           placeholder="지금 상황을 입력하세요  (예: 울음, 열, 안 자요)"
-          className="flex-1 text-[15px] text-slate-800 placeholder:text-slate-400 outline-none bg-transparent caret-brand-500"
+          className="flex-1 text-[15px] text-neutral-900 placeholder:text-neutral-400 outline-none bg-transparent caret-brand-500"
         />
         {query.length > 0 && (
           <button
             onClick={() => handleSearch('')}
-            className="p-1 rounded-full hover:bg-slate-100 transition-colors"
+            className="p-1 rounded-full hover:bg-neutral-100 transition-colors"
             aria-label="지우기"
           >
-            <X size={16} className="text-slate-400" />
+            <X size={16} className="text-neutral-400" />
           </button>
         )}
         <button
           onClick={onClose}
-          className="text-sm text-slate-500 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors ml-1 flex-shrink-0"
+          className="text-sm text-neutral-500 px-2 py-1 rounded-lg hover:bg-neutral-100 transition-colors ml-1 flex-shrink-0"
         >
           취소
         </button>
@@ -100,7 +100,7 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
         {/* 입력 전: 추천 키워드 칩 */}
         {!isSearching && (
           <div className="px-4 pt-5">
-            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">
+            <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest mb-3">
               아빠들이 자주 찾는 상황
             </p>
             <div className="flex flex-wrap gap-2">
@@ -108,7 +108,7 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
                 <button
                   key={kw}
                   onClick={() => handleChip(kw)}
-                  className="px-3.5 py-1.5 bg-slate-50 hover:bg-brand-50 text-slate-600 hover:text-brand-600 text-sm rounded-full border border-slate-200 hover:border-brand-200 transition-colors"
+                  className="px-3.5 py-1.5 bg-neutral-50 hover:bg-brand-50 text-neutral-700 hover:text-brand-600 text-sm rounded-full border border-neutral-200 hover:border-brand-200 transition-colors"
                 >
                   {kw}
                 </button>
@@ -120,8 +120,8 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
         {/* 검색 결과 있음 */}
         {isSearching && hasResults && (
           <div className="px-4 pt-4 pb-6 space-y-3">
-            <p className="text-[11px] text-slate-400">
-              <span className="font-bold text-slate-700">&ldquo;{query}&rdquo;</span> 관련 가이드{' '}
+            <p className="text-[11px] text-neutral-400">
+              <span className="font-bold text-neutral-700">&ldquo;{query}&rdquo;</span> 관련 가이드{' '}
               {results.length}개
             </p>
             {results.map((item) => (
@@ -129,8 +129,8 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
             ))}
 
             {/* 하단 AI 제안 */}
-            <div className="mt-2 pt-4 border-t border-slate-100 text-center">
-              <p className="text-xs text-slate-400 mb-3">더 자세한 답변이 필요하다면</p>
+            <div className="mt-2 pt-4 border-t border-neutral-100 text-center">
+              <p className="text-xs text-neutral-400 mb-3">더 자세한 답변이 필요하다면</p>
               <Link
                 href="/ai-guide"
                 onClick={onClose}
@@ -146,18 +146,18 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
         {/* 검색 결과 없음 */}
         {isSearching && !hasResults && (
           <div className="px-4 pt-12 pb-6 flex flex-col items-center text-center">
-            <div className="w-14 h-14 bg-slate-100 rounded-full flex items-center justify-center mb-4">
-              <Search size={24} className="text-slate-400" />
+            <div className="w-14 h-14 bg-neutral-100 rounded-full flex items-center justify-center mb-4">
+              <Search size={24} className="text-neutral-400" />
             </div>
-            <p className="font-bold text-slate-800 mb-1">딱 맞는 가이드가 없네요.</p>
-            <p className="text-sm text-slate-400 mb-6">혹시 이걸 찾으셨나요?</p>
+            <p className="font-bold text-neutral-900 mb-1">딱 맞는 가이드가 없네요.</p>
+            <p className="text-sm text-neutral-400 mb-6">혹시 이걸 찾으셨나요?</p>
 
             <div className="flex flex-wrap gap-2 justify-center mb-8">
               {suggestedWhenEmpty.map((kw) => (
                 <button
                   key={kw}
                   onClick={() => handleChip(kw)}
-                  className="px-3.5 py-1.5 bg-slate-50 text-slate-600 text-sm rounded-full border border-slate-200 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 transition-colors"
+                  className="px-3.5 py-1.5 bg-neutral-50 text-neutral-700 text-sm rounded-full border border-neutral-200 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 transition-colors"
                 >
                   {kw}
                 </button>
@@ -191,7 +191,7 @@ function SearchResultCard({
     <Link
       href={item.href}
       onClick={onClose}
-      className="flex flex-col bg-white border border-slate-100 rounded-2xl p-4 shadow-sm active:bg-slate-50 hover:border-brand-200 transition-colors"
+      className="flex flex-col bg-white border border-neutral-100 rounded-2xl p-4 shadow-sm active:bg-neutral-50 hover:border-brand-200 transition-colors"
     >
       {/* 태그 + 제목 */}
       <div className="flex items-start justify-between gap-2 mb-2">
@@ -199,9 +199,9 @@ function SearchResultCard({
           <span className="inline-block text-[10px] font-bold text-brand-500 bg-brand-50 px-2 py-0.5 rounded-full mb-1.5">
             {item.tagLabel}
           </span>
-          <h3 className="font-bold text-slate-800 text-sm leading-snug">{item.titleKo}</h3>
+          <h3 className="font-bold text-neutral-900 text-sm leading-snug">{item.titleKo}</h3>
         </div>
-        <ChevronRight size={16} className="text-slate-300 flex-shrink-0 mt-1" />
+        <ChevronRight size={16} className="text-neutral-400 flex-shrink-0 mt-1" />
       </div>
 
       {/* 행동 스텝 미리보기 */}
@@ -212,7 +212,7 @@ function SearchResultCard({
               <span className="w-4 h-4 rounded-full bg-brand-100 text-brand-600 text-[9px] font-black flex items-center justify-center flex-shrink-0">
                 {i + 1}
               </span>
-              <span className="text-xs text-slate-600 leading-relaxed">{step}</span>
+              <span className="text-xs text-neutral-700 leading-relaxed">{step}</span>
             </div>
           ))}
         </div>

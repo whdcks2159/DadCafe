@@ -81,8 +81,8 @@ export default function BabyManagePage() {
             <div className="w-16 h-16 bg-pastel-blue rounded-full flex items-center justify-center mb-4">
               <Baby size={28} className="text-brand-400" />
             </div>
-            <p className="font-bold text-slate-700 mb-1">등록된 아이가 없어요</p>
-            <p className="text-sm text-slate-400">아이를 등록하면 맞춤 가이드를 받을 수 있어요.</p>
+            <p className="font-bold text-neutral-700 mb-1">등록된 아이가 없어요</p>
+            <p className="text-sm text-neutral-400">아이를 등록하면 맞춤 가이드를 받을 수 있어요.</p>
           </div>
         ) : (
           babies.map((baby) => {
@@ -130,17 +130,17 @@ export default function BabyManagePage() {
                   {/* 정보 */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className="font-black text-slate-800">{getBabyDisplayName(baby)}</p>
+                      <p className="font-black text-neutral-900">{getBabyDisplayName(baby)}</p>
                       {isActive && (
                         <span className="text-[10px] bg-brand-500 text-white font-bold px-2 py-0.5 rounded-full">
                           현재
                         </span>
                       )}
                     </div>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-xs text-neutral-500 mt-0.5">
                       {statusLabel(baby.status)} · {getBabyAgeLabel(baby)}
                     </p>
-                    <p className="text-[10px] text-slate-400 mt-1">사진을 눌러 변경</p>
+                    <p className="text-[10px] text-neutral-400 mt-1">사진을 눌러 변경</p>
                   </div>
 
                   {/* 액션 */}
@@ -157,7 +157,7 @@ export default function BabyManagePage() {
                     <button
                       onClick={() => handleDelete(baby.id)}
                       disabled={deleting === baby.id}
-                      className="p-2 rounded-xl text-slate-300 hover:text-red-400 hover:bg-red-50 transition-colors"
+                      className="p-2 rounded-xl text-neutral-400 hover:text-red-400 hover:bg-red-50 transition-colors"
                     >
                       <Trash2 size={16} />
                     </button>

@@ -99,18 +99,18 @@ export default function AIGuideChat({ stage }: AIGuideChatProps) {
           <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} />
           <div className="relative w-full max-w-md bg-white rounded-t-3xl shadow-2xl flex flex-col h-[70vh]">
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-100">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center">
                   <Bot size={18} className="text-white" />
                 </div>
                 <div>
-                  <p className="font-black text-sm text-slate-800">대디 AI</p>
-                  <p className="text-[10px] text-slate-400">육아 질문을 물어보세요</p>
+                  <p className="font-black text-sm text-neutral-900">대디 AI</p>
+                  <p className="text-[10px] text-neutral-400">육아 질문을 물어보세요</p>
                 </div>
               </div>
               <button onClick={() => setOpen(false)}>
-                <X size={20} className="text-slate-400" />
+                <X size={20} className="text-neutral-400" />
               </button>
             </div>
 
@@ -118,8 +118,8 @@ export default function AIGuideChat({ stage }: AIGuideChatProps) {
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
               {messages.length === 0 && (
                 <div className="text-center py-8">
-                  <div className="flex justify-center mb-2"><MessageCircle size={36} className="text-slate-300" /></div>
-                  <p className="text-sm text-slate-500">
+                  <div className="flex justify-center mb-2"><MessageCircle size={36} className="text-neutral-400" /></div>
+                  <p className="text-sm text-neutral-500">
                     입덧, 출산 준비, 육아 고민 등<br />
                     무엇이든 물어보세요.
                   </p>
@@ -131,7 +131,7 @@ export default function AIGuideChat({ stage }: AIGuideChatProps) {
                     className={`max-w-[80%] px-3 py-2.5 rounded-2xl text-sm leading-relaxed ${
                       msg.role === 'user'
                         ? 'bg-brand-500 text-white rounded-br-sm'
-                        : 'bg-slate-100 text-slate-800 rounded-bl-sm'
+                        : 'bg-neutral-100 text-neutral-900 rounded-bl-sm'
                     }`}
                   >
                     {msg.text || (loading && i === messages.length - 1 ? '...' : '')}
@@ -142,7 +142,7 @@ export default function AIGuideChat({ stage }: AIGuideChatProps) {
             </div>
 
             {/* Input */}
-            <div className="px-4 py-3 border-t border-slate-100 safe-bottom">
+            <div className="px-4 py-3 border-t border-neutral-100 safe-bottom">
               <div className="flex items-center gap-2">
                 <input
                   type="text"
@@ -150,7 +150,7 @@ export default function AIGuideChat({ stage }: AIGuideChatProps) {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
-                  className="flex-1 bg-slate-50 rounded-full px-4 py-2.5 text-sm focus:outline-none"
+                  className="flex-1 bg-neutral-50 rounded-full px-4 py-2.5 text-sm focus:outline-none"
                 />
                 <button
                   onClick={sendMessage}

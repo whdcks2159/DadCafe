@@ -34,8 +34,8 @@ export default function GrowthCalendarPage() {
     return (
       <div className="px-4 py-8 max-w-md mx-auto text-center">
         <div className="text-4xl mb-4">📅</div>
-        <h1 className="text-xl font-black text-slate-900 mb-2">성장 캘린더</h1>
-        <p className="text-slate-500 text-sm mb-8 leading-relaxed">
+        <h1 className="text-xl font-black text-neutral-900 mb-2">성장 캘린더</h1>
+        <p className="text-neutral-500 text-sm mb-8 leading-relaxed">
           임신부터 육아까지, 아빠의 이야기를 기록해요.
           <br />
           아기 정보를 먼저 등록해주세요.
@@ -48,7 +48,7 @@ export default function GrowthCalendarPage() {
         </Link>
         <Link
           href="/baby/manage"
-          className="block text-sm text-slate-400 mt-3"
+          className="block text-sm text-neutral-400 mt-3"
         >
           기존 아기 정보 사용하기
         </Link>
@@ -62,14 +62,14 @@ export default function GrowthCalendarPage() {
         {/* 상단 헤더 */}
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-xl font-black text-slate-900">성장 캘린더</h1>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <h1 className="text-xl font-black text-neutral-900">성장 캘린더</h1>
+            <p className="text-xs text-neutral-400 mt-0.5">
               {activeBaby.name ?? '우리 아기'}의 이야기
             </p>
           </div>
           <Link
             href="/baby/manage"
-            className="text-xs text-slate-400 bg-slate-100 px-3 py-1.5 rounded-full"
+            className="text-xs text-neutral-400 bg-neutral-100 px-3 py-1.5 rounded-full"
           >
             아기 관리
           </Link>

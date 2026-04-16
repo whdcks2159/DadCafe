@@ -56,7 +56,7 @@ export default function TipsPage() {
               className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${
                 active === slug
                   ? 'bg-brand-500 text-white'
-                  : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                  : 'bg-neutral-100 text-neutral-500 hover:bg-neutral-200'
               }`}
             >
               {label}
@@ -69,7 +69,7 @@ export default function TipsPage() {
           <section className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles size={14} className="text-brand-500" />
-              <h2 className="text-sm font-black text-slate-800">지금 필요한 꿀팁</h2>
+              <h2 className="text-sm font-black text-neutral-900">지금 필요한 꿀팁</h2>
             </div>
             <div className="grid grid-cols-2 gap-2">
               {featured.map((tip) => (
@@ -78,7 +78,7 @@ export default function TipsPage() {
                   href={`/tips/${tip.slug}`}
                   className="bg-brand-50 border border-brand-100 rounded-2xl p-3 hover:border-brand-300 transition-all active:scale-95"
                 >
-                  <p className="font-bold text-xs text-slate-800 leading-snug mb-1">{tip.titleKo}</p>
+                  <p className="font-bold text-xs text-neutral-900 leading-snug mb-1">{tip.titleKo}</p>
                   <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${TIP_CATEGORY_COLORS[tip.category]}`}>
                     {TIP_CATEGORY_LABELS[tip.category]}
                   </span>
@@ -91,28 +91,28 @@ export default function TipsPage() {
         {/* 전체 목록 */}
         <section>
           {active !== 'all' && (
-            <h2 className="text-sm font-black text-slate-800 mb-3">
+            <h2 className="text-sm font-black text-neutral-900 mb-3">
               {TIP_CATEGORY_LABELS[active]} 꿀팁
             </h2>
           )}
           {active === 'all' && (
-            <h2 className="text-sm font-black text-slate-800 mb-3">전체 꿀팁 {TIP_ITEMS.length}개</h2>
+            <h2 className="text-sm font-black text-neutral-900 mb-3">전체 꿀팁 {TIP_ITEMS.length}개</h2>
           )}
           <div className="space-y-2">
             {filtered.map((tip) => (
               <Link
                 key={tip.slug}
                 href={`/tips/${tip.slug}`}
-                className="flex items-center gap-3 bg-white border border-slate-100 rounded-2xl px-4 py-3 hover:border-brand-200 hover:shadow-sm transition-all active:scale-[0.99]"
+                className="flex items-center gap-3 bg-white border border-neutral-100 rounded-2xl px-4 py-3 hover:border-brand-200 hover:shadow-sm transition-all active:scale-[0.99]"
               >
                 <div className="flex-1 min-w-0">
-                  <p className="font-bold text-sm text-slate-800 leading-snug">{tip.titleKo}</p>
-                  <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{tip.summaryKo}</p>
+                  <p className="font-bold text-sm text-neutral-900 leading-snug">{tip.titleKo}</p>
+                  <p className="text-xs text-neutral-500 mt-0.5 line-clamp-1">{tip.summaryKo}</p>
                   <span className={`inline-block mt-1 text-[10px] font-bold px-1.5 py-0.5 rounded-full ${TIP_CATEGORY_COLORS[tip.category]}`}>
                     {TIP_CATEGORY_LABELS[tip.category]}
                   </span>
                 </div>
-                <ChevronRight size={16} className="text-slate-300 flex-shrink-0" />
+                <ChevronRight size={16} className="text-neutral-400 flex-shrink-0" />
               </Link>
             ))}
           </div>

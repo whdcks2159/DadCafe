@@ -28,8 +28,8 @@ export default function WeeklyCard({ weekNumber, log }: WeeklyCardProps) {
       <div
         className={`rounded-2xl p-4 mb-3 border transition-colors ${
           hasRecord
-            ? 'bg-white border-slate-200'
-            : 'bg-slate-50 border-slate-100'
+            ? 'bg-white border-neutral-200'
+            : 'bg-neutral-50 border-neutral-100'
         }`}
       >
         <div className="flex items-start gap-3">
@@ -37,7 +37,7 @@ export default function WeeklyCard({ weekNumber, log }: WeeklyCardProps) {
           <div className="flex flex-col items-center pt-0.5">
             <div
               className={`w-3 h-3 rounded-full flex-shrink-0 ${
-                hasRecord ? 'bg-brand-500' : 'bg-slate-300'
+                hasRecord ? 'bg-brand-500' : 'bg-neutral-400'
               }`}
             />
           </div>
@@ -45,16 +45,16 @@ export default function WeeklyCard({ weekNumber, log }: WeeklyCardProps) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center gap-2">
-                <span className="font-bold text-slate-800 text-sm">{weekNumber}주차</span>
+                <span className="font-bold text-neutral-900 text-sm">{weekNumber}주차</span>
                 <FruitIcon fruit={info.fruit} size={22} className="flex-shrink-0" />
-                <span className="text-xs text-slate-400">{info.fruit}</span>
+                <span className="text-xs text-neutral-400">{info.fruit}</span>
               </div>
               <button
                 onClick={() => setSheetOpen(true)}
                 className={`text-xs px-2.5 py-1 rounded-full font-medium ${
                   hasRecord
                     ? 'text-brand-600 bg-brand-50'
-                    : 'text-slate-500 bg-slate-100'
+                    : 'text-neutral-500 bg-neutral-100'
                 }`}
               >
                 {hasRecord ? '수정' : '기록'}
@@ -77,7 +77,7 @@ export default function WeeklyCard({ weekNumber, log }: WeeklyCardProps) {
                   </div>
                 )}
                 {log?.memo && (
-                  <p className="text-sm text-slate-600 line-clamp-2 mb-2">{log.memo}</p>
+                  <p className="text-sm text-neutral-700 line-clamp-2 mb-2">{log.memo}</p>
                 )}
                 {log?.milestones && log.milestones.length > 0 && (
                   <div className="flex flex-wrap gap-1">
@@ -92,13 +92,13 @@ export default function WeeklyCard({ weekNumber, log }: WeeklyCardProps) {
                   </div>
                 )}
                 {(log?.checklistDone?.length ?? 0) > 0 && (
-                  <div className="mt-1.5 text-xs text-slate-400">
+                  <div className="mt-1.5 text-xs text-neutral-400">
                     할 일 {log!.checklistDone.length}/{info.checklistItems.length} 완료
                   </div>
                 )}
               </>
             ) : (
-              <p className="text-sm text-slate-400">기록이 없어요. 한 줄이라도 남겨보세요.</p>
+              <p className="text-sm text-neutral-400">기록이 없어요. 한 줄이라도 남겨보세요.</p>
             )}
           </div>
         </div>

@@ -21,12 +21,12 @@ export default function TipDetailPage({ params }: { params: { slug: string } }) 
       <TopHeader title="꿀팁" showBack />
 
       {/* 헤더 */}
-      <div className="px-5 py-6 border-b border-slate-100">
+      <div className="px-5 py-6 border-b border-neutral-100">
         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${TIP_CATEGORY_COLORS[tip.category]}`}>
           {TIP_CATEGORY_LABELS[tip.category]}
         </span>
-        <h1 className="font-black text-xl text-slate-800 mt-2 leading-tight">{tip.titleKo}</h1>
-        <p className="text-sm text-slate-500 mt-1">{tip.summaryKo}</p>
+        <h1 className="font-black text-xl text-neutral-900 mt-2 leading-tight">{tip.titleKo}</h1>
+        <p className="text-sm text-neutral-500 mt-1">{tip.summaryKo}</p>
       </div>
 
       <div className="px-5 py-5 space-y-6">
@@ -51,12 +51,12 @@ export default function TipDetailPage({ params }: { params: { slug: string } }) 
 
         {/* 본문 */}
         <section>
-          <h2 className="font-black text-slate-800 text-sm mb-3">핵심 내용</h2>
+          <h2 className="font-black text-neutral-900 text-sm mb-3">핵심 내용</h2>
           <ul className="space-y-3">
             {tip.body.map((line, i) => (
               <li key={i} className="flex items-start gap-2.5">
                 <CheckCircle2 size={15} className="text-brand-500 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-slate-700 leading-relaxed">{line}</p>
+                <p className="text-sm text-neutral-700 leading-relaxed">{line}</p>
               </li>
             ))}
           </ul>
@@ -65,16 +65,16 @@ export default function TipDetailPage({ params }: { params: { slug: string } }) 
         {/* 관련 꿀팁 */}
         {related.length > 0 && (
           <section>
-            <h2 className="font-black text-slate-800 text-sm mb-3">관련 꿀팁</h2>
+            <h2 className="font-black text-neutral-900 text-sm mb-3">관련 꿀팁</h2>
             <div className="space-y-2">
               {related.map((r) => (
                 <Link
                   key={r.slug}
                   href={`/tips/${r.slug}`}
-                  className="flex items-center gap-3 bg-slate-50 rounded-xl px-3 py-2.5 hover:bg-brand-50 transition-colors active:scale-[0.99]"
+                  className="flex items-center gap-3 bg-neutral-50 rounded-xl px-3 py-2.5 hover:bg-brand-50 transition-colors active:scale-[0.99]"
                 >
-                  <p className="flex-1 text-sm font-medium text-slate-700">{r.titleKo}</p>
-                  <ChevronRight size={14} className="text-slate-300" />
+                  <p className="flex-1 text-sm font-medium text-neutral-700">{r.titleKo}</p>
+                  <ChevronRight size={14} className="text-neutral-400" />
                 </Link>
               ))}
             </div>

@@ -50,16 +50,16 @@ export default function PregnancyHeroCard({
         <div className="flex items-start justify-between mb-4">
           <div>
             <div className="text-xs font-medium text-brand-500 mb-0.5">지금 이 순간</div>
-            <h2 className="text-2xl font-black text-slate-900">
+            <h2 className="text-2xl font-black text-neutral-900">
               {currentWeek}주차
             </h2>
             {babyName && (
-              <div className="text-sm text-slate-500 mt-0.5">{babyName}가 자라고 있어요</div>
+              <div className="text-sm text-neutral-500 mt-0.5">{babyName}가 자라고 있어요</div>
             )}
           </div>
           <div className="text-right">
             <div className="text-3xl font-black text-brand-500">{currentWeek}</div>
-            <div className="text-xs text-slate-400">/ 40주</div>
+            <div className="text-xs text-neutral-400">/ 40주</div>
           </div>
         </div>
 
@@ -69,14 +69,14 @@ export default function PregnancyHeroCard({
             <FruitIcon fruit={info.fruit} size={52} />
           </div>
           <div>
-            <div className="font-bold text-slate-900 text-sm">{info.sizeLabel}</div>
-            <div className="text-xs text-slate-500">{info.babyTip}</div>
+            <div className="font-bold text-neutral-900 text-sm">{info.sizeLabel}</div>
+            <div className="text-xs text-neutral-500">{info.babyTip}</div>
           </div>
         </div>
 
         {/* 진행 바 */}
         <div className="mb-4">
-          <div className="flex justify-between text-xs text-slate-400 mb-1.5">
+          <div className="flex justify-between text-xs text-neutral-400 mb-1.5">
             <span>임신 진행</span>
             <span>{progress}%</span>
           </div>
@@ -97,8 +97,8 @@ export default function PregnancyHeroCard({
         {/* 체크리스트 */}
         <div className="mb-4">
           <div className="flex items-center justify-between mb-2">
-            <div className="text-sm font-bold text-slate-700">이번 주 할 일</div>
-            <div className="text-xs text-slate-400">
+            <div className="text-sm font-bold text-neutral-700">이번 주 할 일</div>
+            <div className="text-xs text-neutral-400">
               {checklistDone}/{checklistTotal}
             </div>
           </div>
@@ -117,7 +117,7 @@ export default function PregnancyHeroCard({
                     className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
                       done
                         ? 'border-brand-500 bg-brand-500'
-                        : 'border-slate-300 bg-white'
+                        : 'border-neutral-400 bg-white'
                     }`}
                   >
                     {done && (
@@ -134,7 +134,7 @@ export default function PregnancyHeroCard({
                   </div>
                   <span
                     className={`text-sm ${
-                      done ? 'line-through text-slate-400' : 'text-slate-700'
+                      done ? 'line-through text-neutral-400' : 'text-neutral-700'
                     }`}
                   >
                     {item.text}
@@ -170,8 +170,8 @@ export default function PregnancyHeroCard({
         {/* 기존 메모 미리보기 */}
         {log?.memo && (
           <div className="mt-3 px-3 py-2.5 bg-white rounded-xl">
-            <div className="text-xs text-slate-400 mb-0.5">남긴 기록</div>
-            <div className="text-sm text-slate-700 line-clamp-2">{log.memo}</div>
+            <div className="text-xs text-neutral-400 mb-0.5">남긴 기록</div>
+            <div className="text-sm text-neutral-700 line-clamp-2">{log.memo}</div>
           </div>
         )}
 

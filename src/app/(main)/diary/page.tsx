@@ -78,8 +78,8 @@ export default function DiaryPage() {
             </div>
             {retrospective.map((entry) => (
               <Link key={entry.id} href={`/diary/${entry.id}`} className="block">
-                <p className="text-sm text-slate-700 line-clamp-2">{entry.text}</p>
-                <p className="text-xs text-slate-400 mt-1">{entry.emotions.map((e) => EMOTION_LABELS[e]).join(' ')}</p>
+                <p className="text-sm text-neutral-700 line-clamp-2">{entry.text}</p>
+                <p className="text-xs text-neutral-400 mt-1">{entry.emotions.map((e) => EMOTION_LABELS[e]).join(' ')}</p>
               </Link>
             ))}
           </div>
@@ -94,9 +94,9 @@ export default function DiaryPage() {
           </div>
         ) : entries.length === 0 ? (
           <div className="text-center py-20">
-            <BookHeart size={48} className="text-slate-200 mx-auto mb-3" />
-            <p className="font-bold text-slate-400 mb-1">아직 일기가 없어요</p>
-            <p className="text-sm text-slate-400 mb-5">오늘의 육아 순간을 기록해보세요</p>
+            <BookHeart size={48} className="text-neutral-200 mx-auto mb-3" />
+            <p className="font-bold text-neutral-400 mb-1">아직 일기가 없어요</p>
+            <p className="text-sm text-neutral-400 mb-5">오늘의 육아 순간을 기록해보세요</p>
             <Link
               href="/diary/new"
               className="inline-flex items-center gap-2 bg-brand-500 text-white text-sm font-bold px-5 py-2.5 rounded-xl"
@@ -107,21 +107,21 @@ export default function DiaryPage() {
         ) : (
           monthKeys.map((monthKey) => (
             <div key={monthKey}>
-              <p className="text-xs font-black text-slate-400 mb-3">{formatMonthKey(monthKey)}</p>
+              <p className="text-xs font-black text-neutral-400 mb-3">{formatMonthKey(monthKey)}</p>
               <div className="space-y-2">
                 {grouped[monthKey].map((entry) => (
                   <Link
                     key={entry.id}
                     href={`/diary/${entry.id}`}
-                    className="flex items-start gap-3 bg-white border border-slate-100 rounded-2xl p-4 hover:border-brand-200 transition-all active:scale-[0.99]"
+                    className="flex items-start gap-3 bg-white border border-neutral-100 rounded-2xl p-4 hover:border-brand-200 transition-all active:scale-[0.99]"
                   >
                     {/* 미디어 썸네일 or 날짜 */}
                     {entry.mediaList[0] ? (
-                      <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-slate-100 relative">
+                      <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-neutral-100 relative">
                         {entry.mediaList[0].type === 'photo' ? (
                           <img src={entry.mediaList[0].url} alt="" className="w-full h-full object-cover" />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-slate-800">
+                          <div className="w-full h-full flex items-center justify-center bg-neutral-900">
                             <Video size={20} className="text-white" />
                           </div>
                         )}
@@ -144,24 +144,24 @@ export default function DiaryPage() {
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
-                        <p className="text-xs font-bold text-slate-400">{formatDate(entry.date)}</p>
+                        <p className="text-xs font-bold text-neutral-400">{formatDate(entry.date)}</p>
                         {entry.mediaList[0] && (
                           <span className="flex items-center gap-0.5">
-                            {entry.mediaList.some((m) => m.type === 'photo') && <Camera size={11} className="text-slate-300" />}
-                            {entry.mediaList.some((m) => m.type === 'video') && <Video size={11} className="text-slate-300" />}
+                            {entry.mediaList.some((m) => m.type === 'photo') && <Camera size={11} className="text-neutral-400" />}
+                            {entry.mediaList.some((m) => m.type === 'video') && <Video size={11} className="text-neutral-400" />}
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-slate-700 line-clamp-2 leading-snug">{entry.text}</p>
+                      <p className="text-sm text-neutral-700 line-clamp-2 leading-snug">{entry.text}</p>
                       <div className="flex flex-wrap gap-1 mt-2">
                         {entry.emotions.slice(0, 3).map((e) => (
-                          <span key={e} className="text-[10px] bg-slate-50 text-slate-500 px-1.5 py-0.5 rounded-full">
+                          <span key={e} className="text-[10px] bg-neutral-50 text-neutral-500 px-1.5 py-0.5 rounded-full">
                             {EMOTION_LABELS[e] ?? e}
                           </span>
                         ))}
                       </div>
                     </div>
-                    <ChevronRight size={14} className="text-slate-300 mt-1 flex-shrink-0" />
+                    <ChevronRight size={14} className="text-neutral-400 mt-1 flex-shrink-0" />
                   </Link>
                 ))}
               </div>

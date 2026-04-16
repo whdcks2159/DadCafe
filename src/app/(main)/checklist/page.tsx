@@ -85,8 +85,8 @@ export default function ChecklistPage() {
           <div className="w-16 h-16 bg-pastel-pink rounded-full flex items-center justify-center mb-4">
             <Lock size={28} className="text-rose-400" />
           </div>
-          <p className="font-bold text-slate-700 mb-2">로그인이 필요해요</p>
-          <p className="text-sm text-slate-500 leading-relaxed">
+          <p className="font-bold text-neutral-700 mb-2">로그인이 필요해요</p>
+          <p className="text-sm text-neutral-500 leading-relaxed">
             체크리스트는 로그인 후<br />안전하게 저장됩니다.
           </p>
         </div>
@@ -134,7 +134,7 @@ export default function ChecklistPage() {
             className={`flex-shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
               filter === slug
                 ? 'bg-brand-500 text-white shadow-sm'
-                : 'bg-white border border-warm-200 text-slate-500 hover:border-brand-200'
+                : 'bg-white border border-warm-200 text-neutral-500 hover:border-brand-200'
             }`}
           >
             <Icon size={11} />
@@ -166,8 +166,8 @@ export default function ChecklistPage() {
                     </div>
                   )}
                   <div className="text-left">
-                    <p className="font-bold text-sm text-slate-800">{category.titleKo}</p>
-                    <p className="text-xs text-slate-400 mt-0.5">
+                    <p className="font-bold text-sm text-neutral-900">{category.titleKo}</p>
+                    <p className="text-xs text-neutral-400 mt-0.5">
                       {catCompleted === catTotal && catTotal > 0
                         ? '모두 완료했어요!'
                         : `${catCompleted}/${catTotal} 완료`}
@@ -183,8 +183,8 @@ export default function ChecklistPage() {
                     />
                   </div>
                   {isOpen
-                    ? <ChevronUp size={16} className="text-slate-300" />
-                    : <ChevronDown size={16} className="text-slate-300" />}
+                    ? <ChevronUp size={16} className="text-neutral-400" />
+                    : <ChevronDown size={16} className="text-neutral-400" />}
                 </div>
               </button>
 
@@ -207,16 +207,16 @@ export default function ChecklistPage() {
                             className="text-rose-400 mt-0.5 flex-shrink-0 animate-heart"
                           />
                         ) : (
-                          <Circle size={20} className="text-slate-200 mt-0.5 flex-shrink-0" />
+                          <Circle size={20} className="text-neutral-200 mt-0.5 flex-shrink-0" />
                         )}
                         <div className="flex-1 min-w-0">
                           <p className={`text-sm font-medium leading-snug ${
-                            done ? 'line-through text-slate-400' : 'text-slate-800'
+                            done ? 'line-through text-neutral-400' : 'text-neutral-900'
                           }`}>
                             {item.textKo}
                           </p>
                           {item.noteKo && (
-                            <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">{item.noteKo}</p>
+                            <p className="text-xs text-neutral-400 mt-0.5 leading-relaxed">{item.noteKo}</p>
                           )}
                         </div>
                         {item.priority === 'high' && !done && (

@@ -70,13 +70,13 @@ export default function GuidePage() {
                       STEP {i + 1}
                     </span>
                   </div>
-                  <p className="font-black text-slate-800 text-sm">{stage.labelKo}</p>
-                  <p className="text-xs text-slate-500 mt-0.5 flex items-center gap-1">
+                  <p className="font-black text-neutral-900 text-sm">{stage.labelKo}</p>
+                  <p className="text-xs text-neutral-500 mt-0.5 flex items-center gap-1">
                     <Clock size={10} />
                     가이드 {stage.topics.length}개
                   </p>
                 </div>
-                <ChevronRight size={18} className="text-slate-400 flex-shrink-0" />
+                <ChevronRight size={18} className="text-neutral-400 flex-shrink-0" />
               </Link>
             ))}
           </div>

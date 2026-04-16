@@ -14,26 +14,26 @@ export default function SituationDetail({ situation }: { situation: SituationGui
   return (
     <>
       {/* 헤더 */}
-      <div className="px-5 py-5 border-b border-slate-100">
+      <div className="px-5 py-5 border-b border-neutral-100">
         <div className="mb-3">
           <img src={situation.emoji} alt={situation.titleKo} className="w-14 h-14" />
         </div>
-        <span className="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-medium">
+        <span className="text-xs bg-neutral-100 text-neutral-500 px-2 py-0.5 rounded-full font-medium">
           {SITUATION_TAG_LABELS[situation.tag]}
         </span>
-        <h1 className="font-black text-xl text-slate-800 mt-2 mb-1">{situation.titleKo}</h1>
-        <p className="text-sm text-slate-500">{situation.summaryKo}</p>
+        <h1 className="font-black text-xl text-neutral-900 mt-2 mb-1">{situation.titleKo}</h1>
+        <p className="text-sm text-neutral-500">{situation.summaryKo}</p>
       </div>
 
       {/* 모드 토글 */}
       <div className="px-5 pt-4">
-        <div className="flex bg-slate-100 rounded-xl p-1">
+        <div className="flex bg-neutral-100 rounded-xl p-1">
           <button
             onClick={() => setMode('guide')}
             className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-sm font-bold transition-all ${
               mode === 'guide'
-                ? 'bg-white text-slate-800 shadow-sm'
-                : 'text-slate-400 hover:text-slate-600'
+                ? 'bg-white text-neutral-900 shadow-sm'
+                : 'text-neutral-400 hover:text-neutral-700'
             }`}
           >
             <BookOpen size={14} />
@@ -44,7 +44,7 @@ export default function SituationDetail({ situation }: { situation: SituationGui
             className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-sm font-bold transition-all ${
               mode === 'checklist'
                 ? 'bg-brand-500 text-white shadow-sm'
-                : 'text-slate-400 hover:text-slate-600'
+                : 'text-neutral-400 hover:text-neutral-700'
             }`}
           >
             <ListChecks size={14} />
@@ -54,7 +54,7 @@ export default function SituationDetail({ situation }: { situation: SituationGui
 
         {/* 체크리스트 모드 안내 문구 */}
         {mode === 'checklist' && (
-          <p className="text-xs text-slate-400 text-center mt-2">
+          <p className="text-xs text-neutral-400 text-center mt-2">
             읽지 않고 탭만 해도 돼요
           </p>
         )}
@@ -69,16 +69,16 @@ export default function SituationDetail({ situation }: { situation: SituationGui
         <div className="px-5 py-5 space-y-6">
           {/* Steps */}
           <section>
-            <h2 className="font-black text-slate-800 mb-3">이렇게 하세요</h2>
+            <h2 className="font-black text-neutral-900 mb-3">이렇게 하세요</h2>
             <div className="space-y-3">
               {situation.steps.map((step) => (
                 <div key={step.order} className="flex gap-3">
                   <div className="w-7 h-7 bg-brand-500 text-white rounded-full flex items-center justify-center text-xs font-black flex-shrink-0">
                     {step.order}
                   </div>
-                  <div className="flex-1 pb-3 border-b border-slate-100">
-                    <p className="font-bold text-sm text-slate-800">{step.titleKo}</p>
-                    <p className="text-sm text-slate-600 mt-1 leading-relaxed">{step.descriptionKo}</p>
+                  <div className="flex-1 pb-3 border-b border-neutral-100">
+                    <p className="font-bold text-sm text-neutral-900">{step.titleKo}</p>
+                    <p className="text-sm text-neutral-700 mt-1 leading-relaxed">{step.descriptionKo}</p>
                   </div>
                 </div>
               ))}

@@ -10,7 +10,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   const { needsNickname, refreshProfile } = useAuth();
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-warm-50">
       <Sidebar />
 
       <div className="md:ml-60">

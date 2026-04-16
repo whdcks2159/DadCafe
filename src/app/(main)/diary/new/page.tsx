@@ -146,26 +146,26 @@ export default function NewDiaryPage() {
         {/* 날짜 + 개월 수 */}
         <div className="flex gap-3">
           <div className="flex-1">
-            <label className="text-xs font-black text-slate-500 block mb-1.5">날짜</label>
+            <label className="text-xs font-black text-neutral-500 block mb-1.5">날짜</label>
             <input
               type="date"
               value={date}
               max={today}
               onChange={(e) => setDate(e.target.value)}
-              className="w-full bg-slate-50 border border-slate-100 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-300"
+              className="w-full bg-neutral-50 border border-neutral-100 rounded-xl px-3 py-2.5 text-sm text-neutral-900 focus:outline-none focus:border-brand-300"
             />
           </div>
           <div className="w-28">
-            <label className="text-xs font-black text-slate-500 block mb-1.5">아이 개월 수</label>
-            <div className="flex items-center gap-1 bg-slate-50 border border-slate-100 rounded-xl px-3 py-2.5">
+            <label className="text-xs font-black text-neutral-500 block mb-1.5">아이 개월 수</label>
+            <div className="flex items-center gap-1 bg-neutral-50 border border-neutral-100 rounded-xl px-3 py-2.5">
               <button
                 onClick={() => setBabyAgeMonths((v) => Math.max(0, v - 1))}
-                className="w-5 h-5 flex items-center justify-center text-slate-500 font-black rounded"
+                className="w-5 h-5 flex items-center justify-center text-neutral-500 font-black rounded"
               >−</button>
-              <span className="flex-1 text-center text-sm font-bold text-slate-800">{babyAgeMonths}개월</span>
+              <span className="flex-1 text-center text-sm font-bold text-neutral-900">{babyAgeMonths}개월</span>
               <button
                 onClick={() => setBabyAgeMonths((v) => Math.min(36, v + 1))}
-                className="w-5 h-5 flex items-center justify-center text-slate-500 font-black rounded"
+                className="w-5 h-5 flex items-center justify-center text-neutral-500 font-black rounded"
               >+</button>
             </div>
           </div>
@@ -173,7 +173,7 @@ export default function NewDiaryPage() {
 
         {/* 오늘 어땠어? */}
         <div>
-          <label className="text-xs font-black text-slate-500 block mb-1.5">오늘 어떤 감정이었어요?</label>
+          <label className="text-xs font-black text-neutral-500 block mb-1.5">오늘 어떤 감정이었어요?</label>
           <div className="flex flex-wrap gap-2">
             {EMOTIONS.map(({ value, label }) => (
               <button
@@ -182,7 +182,7 @@ export default function NewDiaryPage() {
                 className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${
                   emotions.includes(value)
                     ? 'bg-brand-500 text-white'
-                    : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                    : 'bg-neutral-100 text-neutral-500 hover:bg-neutral-200'
                 }`}
               >
                 {label}
@@ -193,7 +193,7 @@ export default function NewDiaryPage() {
 
         {/* 뭘 했어? */}
         <div>
-          <label className="text-xs font-black text-slate-500 block mb-1.5">오늘 뭘 했어요?</label>
+          <label className="text-xs font-black text-neutral-500 block mb-1.5">오늘 뭘 했어요?</label>
           <div className="flex flex-wrap gap-2">
             {ACTIONS.map(({ value, label }) => (
               <button
@@ -201,8 +201,8 @@ export default function NewDiaryPage() {
                 onClick={() => toggleAction(value)}
                 className={`px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${
                   actions.includes(value)
-                    ? 'bg-slate-800 text-white'
-                    : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                    ? 'bg-neutral-900 text-white'
+                    : 'bg-neutral-100 text-neutral-500 hover:bg-neutral-200'
                 }`}
               >
                 {label}
@@ -213,33 +213,33 @@ export default function NewDiaryPage() {
 
         {/* 일기 본문 */}
         <div>
-          <label className="text-xs font-black text-slate-500 block mb-1.5">오늘을 기록해주세요</label>
+          <label className="text-xs font-black text-neutral-500 block mb-1.5">오늘을 기록해주세요</label>
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="아이와의 특별한 순간, 느낀 감정, 기억하고 싶은 것들을 자유롭게 써주세요..."
             rows={5}
-            className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-300 resize-none leading-relaxed"
+            className="w-full bg-neutral-50 border border-neutral-100 rounded-xl px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-brand-300 resize-none leading-relaxed"
           />
-          <p className="text-right text-[10px] text-slate-400 mt-1">{text.length}자</p>
+          <p className="text-right text-[10px] text-neutral-400 mt-1">{text.length}자</p>
         </div>
 
         {/* 미디어 첨부 */}
         <div>
-          <label className="text-xs font-black text-slate-500 block mb-2">사진 / 동영상 첨부</label>
+          <label className="text-xs font-black text-neutral-500 block mb-2">사진 / 동영상 첨부</label>
 
           <div className="flex gap-2 mb-3">
             <button
               onClick={() => fileInputRef.current?.click()}
               disabled={photoCount >= MAX_PHOTOS}
-              className="flex items-center gap-1.5 bg-slate-100 text-slate-600 text-xs font-bold px-3 py-2 rounded-xl hover:bg-slate-200 disabled:opacity-40 transition-colors"
+              className="flex items-center gap-1.5 bg-neutral-100 text-neutral-700 text-xs font-bold px-3 py-2 rounded-xl hover:bg-neutral-200 disabled:opacity-40 transition-colors"
             >
               <Camera size={14} /> 사진 ({photoCount}/{MAX_PHOTOS})
             </button>
             <button
               onClick={() => videoInputRef.current?.click()}
               disabled={videoCount >= MAX_VIDEOS}
-              className="flex items-center gap-1.5 bg-slate-100 text-slate-600 text-xs font-bold px-3 py-2 rounded-xl hover:bg-slate-200 disabled:opacity-40 transition-colors"
+              className="flex items-center gap-1.5 bg-neutral-100 text-neutral-700 text-xs font-bold px-3 py-2 rounded-xl hover:bg-neutral-200 disabled:opacity-40 transition-colors"
             >
               <Video size={14} /> 동영상 ({videoCount}/{MAX_VIDEOS})
             </button>
@@ -264,11 +264,11 @@ export default function NewDiaryPage() {
           {mediaPreviews.length > 0 && (
             <div className="grid grid-cols-4 gap-2">
               {mediaPreviews.map((p) => (
-                <div key={p.previewUrl} className="relative aspect-square rounded-xl overflow-hidden bg-slate-100">
+                <div key={p.previewUrl} className="relative aspect-square rounded-xl overflow-hidden bg-neutral-100">
                   {p.type === 'photo' ? (
                     <img src={p.previewUrl} alt="" className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-slate-800">
+                    <div className="w-full h-full flex items-center justify-center bg-neutral-900">
                       <Video size={20} className="text-white" />
                     </div>
                   )}
@@ -297,12 +297,12 @@ export default function NewDiaryPage() {
               ))}
             </div>
           )}
-          <p className="text-[10px] text-slate-400 mt-1.5">사진 최대 {MAX_PHOTOS}장 (장당 5MB), 동영상 최대 {MAX_VIDEOS}개 (개당 50MB, 60초)</p>
+          <p className="text-[10px] text-neutral-400 mt-1.5">사진 최대 {MAX_PHOTOS}장 (장당 5MB), 동영상 최대 {MAX_VIDEOS}개 (개당 50MB, 60초)</p>
         </div>
       </div>
 
       {/* 저장 버튼 */}
-      <div className="sticky bottom-0 px-5 py-4 bg-white border-t border-slate-100">
+      <div className="sticky bottom-0 px-5 py-4 bg-white border-t border-neutral-100">
         <button
           onClick={handleSave}
           disabled={!canSave}

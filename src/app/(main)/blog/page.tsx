@@ -44,11 +44,11 @@ export default function BlogPage() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="block border border-slate-100 rounded-2xl p-5 hover:border-brand-200 hover:bg-brand-50/30 transition-all active:scale-[0.98]"
+              className="block border border-neutral-100 rounded-2xl p-5 hover:border-brand-200 hover:bg-brand-50/30 transition-all active:scale-[0.98]"
             >
               <div className="flex items-center gap-2 mb-2">
                 <span
-                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${CATEGORY_COLOR[post.category] ?? 'bg-slate-100 text-slate-600'}`}
+                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${CATEGORY_COLOR[post.category] ?? 'bg-neutral-100 text-neutral-700'}`}
                 >
                   {post.category}
                 </span>

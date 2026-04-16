@@ -66,30 +66,30 @@ export default function NewPostPage() {
 
       <div className="px-4 py-5 space-y-4">
         <div>
-          <label className="text-xs font-bold text-slate-500 mb-1.5 block">제목</label>
+          <label className="text-xs font-bold text-neutral-500 mb-1.5 block">제목</label>
           <input
             type="text"
             placeholder="제목을 입력하세요"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             maxLength={60}
-            className="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-brand-400 transition-colors"
+            className="w-full border border-neutral-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-brand-400 transition-colors"
           />
         </div>
 
         <div>
-          <label className="text-xs font-bold text-slate-500 mb-1.5 block">내용</label>
+          <label className="text-xs font-bold text-neutral-500 mb-1.5 block">내용</label>
           <textarea
             placeholder="아빠들과 경험을 나눠보세요..."
             value={body}
             onChange={(e) => setBody(e.target.value)}
             rows={8}
-            className="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-brand-400 transition-colors resize-none"
+            className="w-full border border-neutral-200 rounded-2xl px-4 py-3 text-sm focus:outline-none focus:border-brand-400 transition-colors resize-none"
           />
         </div>
 
         <div>
-          <label className="text-xs font-bold text-slate-500 mb-1.5 block">
+          <label className="text-xs font-bold text-neutral-500 mb-1.5 block">
             태그 선택 (최대 3개)
           </label>
           <div className="flex flex-wrap gap-2">
@@ -100,7 +100,7 @@ export default function NewPostPage() {
                 className={`px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${
                   selectedTags.includes(tag)
                     ? 'bg-brand-500 text-white'
-                    : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                    : 'bg-neutral-100 text-neutral-500 hover:bg-neutral-200'
                 }`}
               >
                 #{tag}

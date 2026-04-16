@@ -81,26 +81,26 @@ export default function PostDetailPage() {
       <TopHeader title="커뮤니티" showBack />
 
       {/* Post */}
-      <div className="px-5 py-5 border-b border-slate-100">
+      <div className="px-5 py-5 border-b border-neutral-100">
         <div className="flex items-center gap-2 mb-3">
           <div className="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-sm font-bold text-brand-600">
             {post.authorName[0]}
           </div>
           <div>
-            <p className="text-sm font-bold text-slate-700">{post.authorName}</p>
-            <p className="text-xs text-slate-400 flex items-center gap-1">
+            <p className="text-sm font-bold text-neutral-700">{post.authorName}</p>
+            <p className="text-xs text-neutral-400 flex items-center gap-1">
               <Clock size={10} /> {formatDate(post.createdAt)}
             </p>
           </div>
         </div>
 
-        <h1 className="font-black text-lg text-slate-800 mb-2">{post.titleKo}</h1>
-        <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap">{post.bodyKo}</p>
+        <h1 className="font-black text-lg text-neutral-900 mb-2">{post.titleKo}</h1>
+        <p className="text-sm text-neutral-700 leading-relaxed whitespace-pre-wrap">{post.bodyKo}</p>
 
         {post.tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-3">
             {post.tags.map((tag) => (
-              <span key={tag} className="text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">
+              <span key={tag} className="text-[10px] bg-neutral-100 text-neutral-500 px-2 py-0.5 rounded-full">
                 #{tag}
               </span>
             ))}
@@ -108,17 +108,17 @@ export default function PostDetailPage() {
         )}
 
         {/* Like */}
-        <div className="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100">
+        <div className="flex items-center gap-4 mt-4 pt-4 border-t border-neutral-100">
           <button
             onClick={handleLike}
             className={`flex items-center gap-1.5 text-sm font-bold transition-colors ${
-              liked ? 'text-red-500' : 'text-slate-400 hover:text-red-400'
+              liked ? 'text-red-500' : 'text-neutral-400 hover:text-red-400'
             }`}
           >
             <Heart size={18} fill={liked ? 'currentColor' : 'none'} />
             {localLikeCount}
           </button>
-          <span className="flex items-center gap-1.5 text-sm text-slate-400">
+          <span className="flex items-center gap-1.5 text-sm text-neutral-400">
             <MessageCircle size={18} />
             {comments.length}
           </span>
@@ -127,18 +127,18 @@ export default function PostDetailPage() {
 
       {/* Comments */}
       <div className="px-5 py-4 space-y-4 pb-28">
-        <p className="text-xs font-bold text-slate-400">댓글 {comments.length}개</p>
+        <p className="text-xs font-bold text-neutral-400">댓글 {comments.length}개</p>
         {comments.map((c) => (
           <div key={c.id} className="flex gap-3">
-            <div className="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">
+            <div className="w-7 h-7 rounded-full bg-neutral-100 flex items-center justify-center text-xs font-bold text-neutral-500 flex-shrink-0">
               {c.authorName[0]}
             </div>
             <div className="flex-1">
               <div className="flex items-baseline gap-2">
-                <p className="text-xs font-bold text-slate-700">{c.authorName}</p>
-                <p className="text-[10px] text-slate-400">{formatDate(c.createdAt)}</p>
+                <p className="text-xs font-bold text-neutral-700">{c.authorName}</p>
+                <p className="text-[10px] text-neutral-400">{formatDate(c.createdAt)}</p>
               </div>
-              <p className="text-sm text-slate-600 mt-0.5 leading-relaxed">{c.bodyKo}</p>
+              <p className="text-sm text-neutral-700 mt-0.5 leading-relaxed">{c.bodyKo}</p>
             </div>
           </div>
         ))}
@@ -146,7 +146,7 @@ export default function PostDetailPage() {
 
       {/* Comment Input */}
       {user && (
-        <div className="fixed bottom-16 left-1/2 -translate-x-1/2 w-full max-w-md bg-white border-t border-slate-100 px-4 py-3">
+        <div className="fixed bottom-16 left-1/2 -translate-x-1/2 w-full max-w-md bg-white border-t border-neutral-100 px-4 py-3">
           <div className="flex items-center gap-2">
             <input
               type="text"
@@ -154,7 +154,7 @@ export default function PostDetailPage() {
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleComment()}
-              className="flex-1 bg-slate-50 rounded-full px-4 py-2 text-sm focus:outline-none"
+              className="flex-1 bg-neutral-50 rounded-full px-4 py-2 text-sm focus:outline-none"
             />
             <button
               onClick={handleComment}

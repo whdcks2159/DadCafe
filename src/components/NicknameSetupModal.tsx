@@ -73,10 +73,10 @@ export default function NicknameSetupModal({ onComplete }: Props) {
       {/* 모달 */}
       <div className="relative w-full max-w-sm bg-white rounded-t-3xl sm:rounded-3xl px-6 pt-8 pb-10 mx-auto shadow-2xl">
         {/* 핸들 */}
-        <div className="w-10 h-1 bg-slate-200 rounded-full mx-auto mb-6 sm:hidden" />
+        <div className="w-10 h-1 bg-neutral-200 rounded-full mx-auto mb-6 sm:hidden" />
 
-        <h2 className="font-black text-xl text-slate-800 mb-1">닉네임을 설정해요</h2>
-        <p className="text-sm text-slate-400 mb-6">
+        <h2 className="font-black text-xl text-neutral-900 mb-1">닉네임을 설정해요</h2>
+        <p className="text-sm text-neutral-400 mb-6">
           커뮤니티와 일기에서 이 이름으로 노출돼요.
           <br />아기 이름을 등록하면 자동으로 바뀌기도 해요.
         </p>
@@ -88,14 +88,14 @@ export default function NicknameSetupModal({ onComplete }: Props) {
             onChange={(e) => handleChange(e.target.value)}
             maxLength={10}
             placeholder="닉네임 입력"
-            className="flex-1 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-800 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition"
+            className="flex-1 border border-neutral-200 rounded-xl px-4 py-3 text-sm font-bold text-neutral-900 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition"
           />
           <button
             onClick={shuffle}
-            className="w-12 h-12 rounded-xl border border-slate-200 flex items-center justify-center hover:bg-slate-50 transition-colors flex-shrink-0"
+            className="w-12 h-12 rounded-xl border border-neutral-200 flex items-center justify-center hover:bg-neutral-50 transition-colors flex-shrink-0"
             aria-label="다른 닉네임 추천"
           >
-            <RefreshCw size={16} className="text-slate-400" />
+            <RefreshCw size={16} className="text-neutral-400" />
           </button>
         </div>
 
@@ -108,7 +108,7 @@ export default function NicknameSetupModal({ onComplete }: Props) {
             <button
               key={ex}
               onClick={() => handleChange(ex)}
-              className="text-xs px-2.5 py-1 bg-slate-100 text-slate-500 rounded-full hover:bg-brand-50 hover:text-brand-600 transition-colors"
+              className="text-xs px-2.5 py-1 bg-neutral-100 text-neutral-500 rounded-full hover:bg-brand-50 hover:text-brand-600 transition-colors"
             >
               {ex}
             </button>

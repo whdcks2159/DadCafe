@@ -16,7 +16,7 @@ export default function GrowthCalendarRoot() {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-3">
         <div className="w-8 h-8 border-2 border-brand-500 border-t-transparent rounded-full animate-spin" />
-        <div className="text-sm text-slate-400">불러오는 중...</div>
+        <div className="text-sm text-neutral-400">불러오는 중...</div>
       </div>
     );
   }

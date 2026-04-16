@@ -17,7 +17,7 @@ export default function FertilityPage() {
       <TopHeader title="난임 가이드" />
 
       {/* 헤더 */}
-      <div className="bg-gradient-to-br from-slate-900 via-brand-700 to-brand-500 px-5 py-6 text-white">
+      <div className="bg-gradient-to-br from-neutral-900 via-brand-700 to-brand-500 px-5 py-6 text-white">
         <p className="text-xs text-blue-200 font-bold mb-1">2026년 기준</p>
         <p className="text-xl font-black mb-2">난임, 혼자 감당하지 마라</p>
         <p className="text-sm text-blue-100 leading-relaxed">
@@ -48,7 +48,7 @@ export default function FertilityPage() {
             <div
               key={section.slug}
               className={`bg-white rounded-2xl border transition-all ${
-                isOpen ? 'border-brand-200 shadow-sm' : 'border-slate-100'
+                isOpen ? 'border-brand-200 shadow-sm' : 'border-neutral-100'
               }`}
             >
               {/* 헤더 */}
@@ -63,18 +63,18 @@ export default function FertilityPage() {
                       STEP {i + 1}
                     </span>
                   </div>
-                  <p className="font-bold text-sm text-slate-800 mt-0.5">{section.titleKo}</p>
-                  <p className="text-xs text-slate-500">{section.summaryKo}</p>
+                  <p className="font-bold text-sm text-neutral-900 mt-0.5">{section.titleKo}</p>
+                  <p className="text-xs text-neutral-500">{section.summaryKo}</p>
                 </div>
                 {isOpen
-                  ? <ChevronUp size={16} className="text-slate-400 flex-shrink-0" />
-                  : <ChevronDown size={16} className="text-slate-400 flex-shrink-0" />
+                  ? <ChevronUp size={16} className="text-neutral-400 flex-shrink-0" />
+                  : <ChevronDown size={16} className="text-neutral-400 flex-shrink-0" />
                 }
               </button>
 
               {/* 펼쳐진 내용 */}
               {isOpen && (
-                <div className="px-4 pb-4 space-y-4 border-t border-slate-100 pt-3">
+                <div className="px-4 pb-4 space-y-4 border-t border-neutral-100 pt-3">
 
                   {/* 남편 행동 */}
                   <div className="bg-gradient-to-r from-brand-700 to-brand-500 rounded-xl p-3 text-white">
@@ -97,7 +97,7 @@ export default function FertilityPage() {
                     {section.body.map((line, j) => (
                       <li key={j} className="flex items-start gap-2">
                         <CheckCircle2 size={14} className="text-brand-500 flex-shrink-0 mt-0.5" />
-                        <p className="text-sm text-slate-700 leading-relaxed">{line}</p>
+                        <p className="text-sm text-neutral-700 leading-relaxed">{line}</p>
                       </li>
                     ))}
                   </ul>
@@ -105,16 +105,16 @@ export default function FertilityPage() {
                   {/* 치료 플로우 */}
                   {section.steps && (
                     <div>
-                      <p className="text-xs font-black text-slate-500 mb-2">진행 순서</p>
+                      <p className="text-xs font-black text-neutral-500 mb-2">진행 순서</p>
                       <div className="space-y-2">
                         {section.steps.map((step) => (
                           <div key={step.order} className="flex items-start gap-2.5">
                             <div className="w-6 h-6 bg-brand-500 text-white rounded-full flex items-center justify-center text-[10px] font-black flex-shrink-0">
                               {step.order}
                             </div>
-                            <div className="flex-1 bg-slate-50 rounded-xl px-3 py-2">
-                              <p className="text-xs font-bold text-slate-800">{step.labelKo}</p>
-                              <p className="text-xs text-slate-500 mt-0.5">{step.descriptionKo}</p>
+                            <div className="flex-1 bg-neutral-50 rounded-xl px-3 py-2">
+                              <p className="text-xs font-bold text-neutral-900">{step.labelKo}</p>
+                              <p className="text-xs text-neutral-500 mt-0.5">{step.descriptionKo}</p>
                             </div>
                           </div>
                         ))}

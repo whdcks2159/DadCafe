@@ -21,32 +21,32 @@ export default function StageDetailPage({ params }: { params: { stage: string } 
         <div className="flex items-center gap-3">
           <img src={stage.emoji} alt={stage.labelKo} className="w-14 h-14" />
           <div>
-            <p className="text-xl font-black text-slate-800">{stage.labelKo}</p>
-            <p className="text-sm text-slate-600 mt-0.5">{stage.descriptionKo}</p>
+            <p className="text-xl font-black text-neutral-900">{stage.labelKo}</p>
+            <p className="text-sm text-neutral-700 mt-0.5">{stage.descriptionKo}</p>
           </div>
         </div>
       </div>
 
       {/* Topic List */}
       <div className="px-4 py-4 space-y-3">
-        <p className="text-xs font-bold text-slate-400 uppercase tracking-wide px-1">
+        <p className="text-xs font-bold text-neutral-400 uppercase tracking-wide px-1">
           가이드 목록
         </p>
         {stage.topics.map((topic) => (
           <Link
             key={topic.slug}
             href={`/guide/${stage.slug}/${topic.slug}`}
-            className="flex items-center justify-between bg-white rounded-2xl border border-slate-100 p-4 hover:border-brand-200 hover:shadow-sm transition-all"
+            className="flex items-center justify-between bg-white rounded-2xl border border-neutral-100 p-4 hover:border-brand-200 hover:shadow-sm transition-all"
           >
             <div className="flex-1 mr-3">
-              <p className="font-bold text-slate-800 text-sm">{topic.titleKo}</p>
-              <p className="text-xs text-slate-500 mt-1 line-clamp-2">{topic.summaryKo}</p>
-              <div className="flex items-center gap-1 mt-2 text-xs text-slate-400">
+              <p className="font-bold text-neutral-900 text-sm">{topic.titleKo}</p>
+              <p className="text-xs text-neutral-500 mt-1 line-clamp-2">{topic.summaryKo}</p>
+              <div className="flex items-center gap-1 mt-2 text-xs text-neutral-400">
                 <Clock size={11} />
                 <span>약 {topic.estimatedReadMin}분</span>
               </div>
             </div>
-            <ChevronRight size={18} className="text-slate-300 flex-shrink-0" />
+            <ChevronRight size={18} className="text-neutral-400 flex-shrink-0" />
           </Link>
         ))}
       </div>

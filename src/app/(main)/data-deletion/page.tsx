@@ -31,7 +31,7 @@ export default function DataDeletionPage() {
           <p className="text-xs font-bold text-brand-400 tracking-widest mb-4">삭제 가능한 데이터</p>
           <div className="space-y-3">
             {DATA_TYPES.map((item) => (
-              <div key={item.label} className="p-4 border border-slate-100 rounded-2xl">
+              <div key={item.label} className="p-4 border border-neutral-100 rounded-2xl">
                 <p className="font-bold text-sm text-neutral-900 mb-0.5">{item.label}</p>
                 <p className="text-xs text-neutral-500">{item.desc}</p>
               </div>
@@ -42,7 +42,7 @@ export default function DataDeletionPage() {
         {/* 삭제 요청 방법 */}
         <section className="mb-8">
           <p className="text-xs font-bold text-brand-400 tracking-widest mb-4">요청 방법</p>
-          <div className="bg-slate-50 rounded-2xl p-5 space-y-3">
+          <div className="bg-neutral-50 rounded-2xl p-5 space-y-3">
             <div className="flex gap-3">
               <span className="flex-shrink-0 w-6 h-6 bg-brand-500 text-white text-xs font-black rounded-full flex items-center justify-center">1</span>
               <p className="text-sm text-neutral-700 leading-relaxed">아래 이메일로 삭제 요청 메일을 보내주세요.</p>
@@ -71,7 +71,7 @@ export default function DataDeletionPage() {
         </p>
 
         {/* 계정 전체 삭제 안내 */}
-        <div className="mt-8 p-4 bg-slate-50 rounded-2xl">
+        <div className="mt-8 p-4 bg-neutral-50 rounded-2xl">
           <p className="text-xs font-bold text-neutral-700 mb-1">계정 전체 삭제를 원하시나요?</p>
           <p className="text-xs text-neutral-500 leading-relaxed">
             계정 및 모든 데이터를 완전히 삭제하려면 동일한 이메일로 "계정 전체 삭제 요청"을 보내주세요.

@@ -22,7 +22,7 @@ export default function GovSupportDetailPage({ params }: { params: { slug: strin
       <TopHeader title="지원 상세" showBack />
 
       {/* 헤더 */}
-      <div className="px-5 py-6 border-b border-slate-100">
+      <div className="px-5 py-6 border-b border-neutral-100">
         <div className="flex items-start gap-4 mb-3">
           <div className="flex-1">
             <div className="flex flex-wrap gap-1.5 mb-2">
@@ -30,7 +30,7 @@ export default function GovSupportDetailPage({ params }: { params: { slug: strin
                 {GOV_CATEGORY_LABELS[item.category]}
               </span>
               {item.stage.map((s) => (
-                <span key={s} className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">
+                <span key={s} className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-500">
                   {GOV_STAGE_LABELS[s]}
                 </span>
               ))}
@@ -40,7 +40,7 @@ export default function GovSupportDetailPage({ params }: { params: { slug: strin
                 </span>
               )}
             </div>
-            <h1 className="font-black text-xl text-slate-800 leading-tight">{item.titleKo}</h1>
+            <h1 className="font-black text-xl text-neutral-900 leading-tight">{item.titleKo}</h1>
           </div>
         </div>
 
@@ -80,7 +80,7 @@ export default function GovSupportDetailPage({ params }: { params: { slug: strin
 
         {/* 신청 플로우 */}
         <section>
-          <h2 className="font-black text-slate-800 mb-3 text-sm">신청 흐름</h2>
+          <h2 className="font-black text-neutral-900 mb-3 text-sm">신청 흐름</h2>
           <div className="space-y-2">
             {item.flow.map((step, i) => (
               <div key={step.order} className="flex items-center gap-3">
@@ -90,7 +90,7 @@ export default function GovSupportDetailPage({ params }: { params: { slug: strin
                 <div className={`flex-1 py-2.5 px-3 rounded-xl text-sm font-medium ${
                   i === item.flow.length - 1
                     ? 'bg-blue-50 text-blue-700 font-bold'
-                    : 'bg-slate-50 text-slate-700'
+                    : 'bg-neutral-50 text-neutral-700'
                 }`}>
                   {step.labelKo}
                 </div>
@@ -101,28 +101,28 @@ export default function GovSupportDetailPage({ params }: { params: { slug: strin
 
         {/* 대상 조건 */}
         <section>
-          <h2 className="font-black text-slate-800 mb-2 text-sm">대상 조건</h2>
-          <div className="bg-slate-50 rounded-xl px-4 py-3">
-            <p className="text-sm text-slate-700 leading-relaxed">{item.targetKo}</p>
+          <h2 className="font-black text-neutral-900 mb-2 text-sm">대상 조건</h2>
+          <div className="bg-neutral-50 rounded-xl px-4 py-3">
+            <p className="text-sm text-neutral-700 leading-relaxed">{item.targetKo}</p>
           </div>
         </section>
 
         {/* 신청 방법 */}
         <section>
-          <h2 className="font-black text-slate-800 mb-2 text-sm">신청 방법</h2>
-          <div className="bg-slate-50 rounded-xl px-4 py-3">
-            <p className="text-sm text-slate-700 leading-relaxed">{item.howToKo}</p>
+          <h2 className="font-black text-neutral-900 mb-2 text-sm">신청 방법</h2>
+          <div className="bg-neutral-50 rounded-xl px-4 py-3">
+            <p className="text-sm text-neutral-700 leading-relaxed">{item.howToKo}</p>
           </div>
         </section>
 
         {/* 준비 서류 */}
         <section>
-          <h2 className="font-black text-slate-800 mb-2 text-sm">준비 서류</h2>
+          <h2 className="font-black text-neutral-900 mb-2 text-sm">준비 서류</h2>
           <ul className="space-y-1.5">
             {item.documents.map((doc, i) => (
               <li key={i} className="flex items-center gap-2">
                 <CheckCircle2 size={14} className="text-green-500 flex-shrink-0" />
-                <span className="text-sm text-slate-700">{doc}</span>
+                <span className="text-sm text-neutral-700">{doc}</span>
               </li>
             ))}
           </ul>
@@ -139,7 +139,7 @@ export default function GovSupportDetailPage({ params }: { params: { slug: strin
           <ExternalLink size={16} />
         </Link>
 
-        <p className="text-center text-xs text-slate-400">
+        <p className="text-center text-xs text-neutral-400">
           2026년 기준 정보입니다. 변경될 수 있으니 공식 사이트에서 확인하세요.
         </p>
       </div>

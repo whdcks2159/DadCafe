@@ -36,17 +36,17 @@ export default function ProfilePage() {
       <>
         <TopHeader title="내 정보" />
         <div className="px-5 py-10 flex flex-col items-center text-center">
-          <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-4">
-            <User size={36} className="text-slate-400" />
+          <div className="w-20 h-20 bg-neutral-100 rounded-full flex items-center justify-center mb-4">
+            <User size={36} className="text-neutral-400" />
           </div>
-          <h2 className="font-black text-xl text-slate-800 mb-2">로그인하세요</h2>
-          <p className="text-sm text-slate-500 mb-8 leading-relaxed">
+          <h2 className="font-black text-xl text-neutral-900 mb-2">로그인하세요</h2>
+          <p className="text-sm text-neutral-500 mb-8 leading-relaxed">
             로그인하면 체크리스트 저장, 커뮤니티 참여,<br />
             아빠 레벨 저장 기능을 사용할 수 있어요.
           </p>
           <button
             onClick={signInWithGoogle}
-            className="w-full flex items-center justify-center gap-3 bg-white border-2 border-slate-200 rounded-2xl py-3.5 font-bold text-slate-700 hover:border-slate-300 transition-colors"
+            className="w-full flex items-center justify-center gap-3 bg-white border-2 border-neutral-200 rounded-2xl py-3.5 font-bold text-neutral-700 hover:border-neutral-400 transition-colors"
           >
             <svg width="20" height="20" viewBox="0 0 24 24">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -72,7 +72,7 @@ export default function ProfilePage() {
       <TopHeader title="내 정보" />
 
       {/* Profile Header */}
-      <div className="px-5 pt-6 pb-5 border-b border-slate-100">
+      <div className="px-5 pt-6 pb-5 border-b border-neutral-100">
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 rounded-full bg-brand-100 flex items-center justify-center overflow-hidden">
             {user.photoURL ? (
@@ -83,10 +83,10 @@ export default function ProfilePage() {
             )}
           </div>
           <div>
-            <p className="font-black text-lg text-slate-800">
+            <p className="font-black text-lg text-neutral-900">
               {userProfile?.nickname || userProfile?.displayName || user.displayName || '아빠'}
             </p>
-            <p className="text-xs text-slate-400">{user.email}</p>
+            <p className="text-xs text-neutral-400">{user.email}</p>
             {levelInfo && (
               <span className={`inline-flex items-center gap-1 mt-1 text-xs font-bold px-2 py-0.5 rounded-full ${levelInfo.color}`}>
                 <img src={levelInfo.emoji} alt={levelInfo.label} className="w-4 h-4" />
@@ -103,9 +103,9 @@ export default function ProfilePage() {
             { label: '작성글', value: `${userProfile?.postCount ?? 0}개` },
             { label: '레벨', value: levelInfo?.label ?? '미측정' },
           ].map(({ label, value }) => (
-            <div key={label} className="bg-slate-50 rounded-2xl p-3 text-center">
-              <p className="font-black text-slate-800">{value}</p>
-              <p className="text-xs text-slate-400 mt-0.5">{label}</p>
+            <div key={label} className="bg-neutral-50 rounded-2xl p-3 text-center">
+              <p className="font-black text-neutral-900">{value}</p>
+              <p className="text-xs text-neutral-400 mt-0.5">{label}</p>
             </div>
           ))}
         </div>
@@ -117,13 +117,13 @@ export default function ProfilePage() {
           <Link
             key={href}
             href={href}
-            className="flex items-center justify-between bg-white border border-slate-100 rounded-2xl px-4 py-3.5 hover:border-brand-200 transition-colors"
+            className="flex items-center justify-between bg-white border border-neutral-100 rounded-2xl px-4 py-3.5 hover:border-brand-200 transition-colors"
           >
             <div className="flex items-center gap-3">
               <Icon size={18} className="text-brand-500" />
-              <span className="text-sm font-bold text-slate-700">{label}</span>
+              <span className="text-sm font-bold text-neutral-700">{label}</span>
             </div>
-            <ChevronRight size={16} className="text-slate-300" />
+            <ChevronRight size={16} className="text-neutral-400" />
           </Link>
         ))}
       </div>
@@ -132,7 +132,7 @@ export default function ProfilePage() {
       <div className="px-4 pb-8">
         <button
           onClick={logout}
-          className="w-full flex items-center justify-center gap-2 text-sm text-slate-400 hover:text-red-500 py-3 transition-colors"
+          className="w-full flex items-center justify-center gap-2 text-sm text-neutral-400 hover:text-red-500 py-3 transition-colors"
         >
           <LogOut size={16} />
           로그아웃

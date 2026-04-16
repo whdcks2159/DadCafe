@@ -17,7 +17,7 @@ const LEGAL_LINKS = [
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-slate-50 border-t border-slate-100 px-5 py-8 pb-24 md:pb-8">
+    <footer className="bg-neutral-50 border-t border-neutral-100 px-5 py-8 pb-24 md:pb-8">
       {/* 로고 */}
       <div className="flex items-center gap-2 mb-5">
         <img src="/icons/mainLogo.png" alt="" className="w-7 h-7" />

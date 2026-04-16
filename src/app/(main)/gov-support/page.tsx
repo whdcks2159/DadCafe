@@ -75,7 +75,7 @@ export default function GovSupportPage() {
               className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${
                 activeStage === slug
                   ? 'bg-blue-600 text-white'
-                  : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                  : 'bg-neutral-100 text-neutral-500 hover:bg-neutral-200'
               }`}
             >
               {label}
@@ -88,7 +88,7 @@ export default function GovSupportPage() {
           <section className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <Zap size={14} className="text-red-500" />
-              <h2 className="text-sm font-black text-slate-800">지금 당장 신청해야 할 것</h2>
+              <h2 className="text-sm font-black text-neutral-900">지금 당장 신청해야 할 것</h2>
             </div>
             <div className="space-y-2">
               {urgent.map((item) => (
@@ -100,15 +100,15 @@ export default function GovSupportPage() {
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
-                      <p className="font-bold text-sm text-slate-800">{item.titleKo}</p>
+                      <p className="font-bold text-sm text-neutral-900">{item.titleKo}</p>
                       <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${GOV_CATEGORY_COLORS[item.category]}`}>
                         {GOV_CATEGORY_LABELS[item.category]}
                       </span>
                     </div>
                     <p className="text-xs text-red-600 font-medium">{item.summaryKo}</p>
-                    <p className="text-xs text-slate-500 mt-0.5">{item.amount}</p>
+                    <p className="text-xs text-neutral-500 mt-0.5">{item.amount}</p>
                   </div>
-                  <ChevronRight size={16} className="text-slate-400 flex-shrink-0" />
+                  <ChevronRight size={16} className="text-neutral-400 flex-shrink-0" />
                 </Link>
               ))}
             </div>
@@ -118,26 +118,26 @@ export default function GovSupportPage() {
         {/* 전체 지원 목록 */}
         {normal.length > 0 && (
           <section>
-            <h2 className="text-sm font-black text-slate-800 mb-3">전체 지원 목록</h2>
+            <h2 className="text-sm font-black text-neutral-900 mb-3">전체 지원 목록</h2>
             <div className="space-y-2">
               {normal.map((item) => (
                 <Link
                   key={item.slug}
                   href={`/gov-support/${item.slug}`}
-                  className="flex items-center gap-3 bg-white border border-slate-100 rounded-2xl px-4 py-3 hover:border-blue-200 hover:shadow-sm transition-all active:scale-[0.99]"
+                  className="flex items-center gap-3 bg-white border border-neutral-100 rounded-2xl px-4 py-3 hover:border-blue-200 hover:shadow-sm transition-all active:scale-[0.99]"
                 >
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
-                      <p className="font-bold text-sm text-slate-800">{item.titleKo}</p>
+                      <p className="font-bold text-sm text-neutral-900">{item.titleKo}</p>
                       <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${GOV_CATEGORY_COLORS[item.category]}`}>
                         {GOV_CATEGORY_LABELS[item.category]}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-500">{item.summaryKo}</p>
+                    <p className="text-xs text-neutral-500">{item.summaryKo}</p>
                     <p className="text-xs text-blue-600 font-medium mt-0.5">{item.amount}</p>
                   </div>
-                  <ChevronRight size={16} className="text-slate-400 flex-shrink-0" />
+                  <ChevronRight size={16} className="text-neutral-400 flex-shrink-0" />
                 </Link>
               ))}
             </div>
@@ -145,7 +145,7 @@ export default function GovSupportPage() {
         )}
 
         {filtered.length === 0 && (
-          <div className="text-center py-16 text-slate-400">
+          <div className="text-center py-16 text-neutral-400">
             <p className="text-sm">해당 단계의 지원 항목이 없습니다.</p>
           </div>
         )}

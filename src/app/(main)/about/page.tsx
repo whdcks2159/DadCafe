@@ -64,7 +64,7 @@ export default function AboutPage() {
       </section>
 
       {/* 미션 */}
-      <section className="px-6 py-8 border-b border-slate-100">
+      <section className="px-6 py-8 border-b border-neutral-100">
         <p className="text-xs font-bold text-brand-400 tracking-widest mb-2">MISSION</p>
         <h2 className="text-lg font-black text-neutral-900 mb-4">
           "아빠가 자신 있게<br />육아에 참여할 수 있도록"
@@ -77,7 +77,7 @@ export default function AboutPage() {
       </section>
 
       {/* 핵심 가치 */}
-      <section className="px-6 py-8 border-b border-slate-100">
+      <section className="px-6 py-8 border-b border-neutral-100">
         <p className="text-xs font-bold text-brand-400 tracking-widest mb-4">CORE VALUES</p>
         <div className="space-y-5">
           {VALUES.map((v) => (
@@ -90,14 +90,14 @@ export default function AboutPage() {
       </section>
 
       {/* 주요 기능 */}
-      <section className="px-6 py-8 border-b border-slate-100">
+      <section className="px-6 py-8 border-b border-neutral-100">
         <p className="text-xs font-bold text-brand-400 tracking-widest mb-4">FEATURES</p>
         <div className="space-y-3">
           {FEATURES.map((f) => (
             <Link
               key={f.title}
               href={f.href}
-              className="flex flex-col gap-0.5 p-4 rounded-2xl border border-slate-100 hover:border-brand-200 hover:bg-brand-50 transition-all active:scale-[0.98]"
+              className="flex flex-col gap-0.5 p-4 rounded-2xl border border-neutral-100 hover:border-brand-200 hover:bg-brand-50 transition-all active:scale-[0.98]"
             >
               <p className="font-bold text-sm text-neutral-900">{f.title}</p>
               <p className="text-xs text-neutral-500">{f.desc}</p>
@@ -107,7 +107,7 @@ export default function AboutPage() {
       </section>
 
       {/* 연락처 */}
-      <section className="px-6 py-8 border-b border-slate-100">
+      <section className="px-6 py-8 border-b border-neutral-100">
         <p className="text-xs font-bold text-brand-400 tracking-widest mb-3">CONTACT</p>
         <p className="text-sm text-neutral-600 leading-relaxed mb-2">
           서비스 관련 문의, 콘텐츠 제안, 오류 신고는 아래 이메일로 연락해 주세요.

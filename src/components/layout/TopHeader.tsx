@@ -37,24 +37,24 @@ export default function TopHeader({ title, showBack = false, right }: TopHeaderP
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white border-b border-slate-100 px-4 h-14 flex items-center justify-between">
+      <header className="sticky top-0 z-40 bg-white border-b border-neutral-100 px-4 h-14 flex items-center justify-between">
         {/* 왼쪽: 뒤로 + 홈 + 타이틀 */}
         <div className="flex items-center gap-1">
           {showBack && (
             <button
               onClick={() => router.back()}
-              className="p-1.5 -ml-1 rounded-lg hover:bg-slate-100 transition-colors"
+              className="p-1.5 -ml-1 rounded-lg hover:bg-neutral-100 transition-colors"
             >
-              <ArrowLeft size={20} className="text-slate-600" />
+              <ArrowLeft size={20} className="text-neutral-700" />
             </button>
           )}
           <Link
             href="/"
-            className="p-1.5 rounded-lg hover:bg-slate-100 transition-colors"
+            className="p-1.5 rounded-lg hover:bg-neutral-100 transition-colors"
           >
-            <Home size={18} className="text-slate-500" />
+            <Home size={18} className="text-neutral-500" />
           </Link>
-          <h1 className="text-base font-bold text-slate-800 ml-1">{title}</h1>
+          <h1 className="text-base font-bold text-neutral-900 ml-1">{title}</h1>
         </div>
 
         {/* 오른쪽: custom right + 검색 + 햄버거 */}
@@ -62,16 +62,16 @@ export default function TopHeader({ title, showBack = false, right }: TopHeaderP
           {right}
           <button
             onClick={() => setSearchOpen(true)}
-            className="p-1.5 rounded-lg hover:bg-slate-100 transition-colors"
+            className="p-1.5 rounded-lg hover:bg-neutral-100 transition-colors"
             aria-label="검색"
           >
-            <Search size={20} className="text-slate-600" />
+            <Search size={20} className="text-neutral-700" />
           </button>
           <button
             onClick={() => setMenuOpen(true)}
-            className="p-1.5 rounded-lg hover:bg-slate-100 transition-colors"
+            className="p-1.5 rounded-lg hover:bg-neutral-100 transition-colors"
           >
-            <Menu size={20} className="text-slate-600" />
+            <Menu size={20} className="text-neutral-700" />
           </button>
         </div>
       </header>
@@ -91,21 +91,21 @@ export default function TopHeader({ title, showBack = false, right }: TopHeaderP
           {/* 드로어 패널 */}
           <div className="absolute right-0 top-0 bottom-0 w-72 bg-white flex flex-col shadow-2xl">
             {/* 드로어 헤더 */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-100">
               <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2.5">
                 <div className="w-8 h-8 bg-brand-500 rounded-xl flex items-center justify-center">
                   <Baby size={18} className="text-white" />
                 </div>
                 <div>
-                  <p className="font-black text-sm text-slate-800 leading-tight">파파플랜</p>
-                  <p className="text-[10px] text-slate-400">아빠의 육아 플랜, 여기서 시작</p>
+                  <p className="font-black text-sm text-neutral-900 leading-tight">파파플랜</p>
+                  <p className="text-[10px] text-neutral-400">아빠의 육아 플랜, 여기서 시작</p>
                 </div>
               </Link>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="p-1.5 rounded-lg hover:bg-slate-100 transition-colors"
+                className="p-1.5 rounded-lg hover:bg-neutral-100 transition-colors"
               >
-                <X size={20} className="text-slate-500" />
+                <X size={20} className="text-neutral-500" />
               </button>
             </div>
 
@@ -121,7 +121,7 @@ export default function TopHeader({ title, showBack = false, right }: TopHeaderP
                     className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors ${
                       active
                         ? 'bg-brand-50 text-brand-600 font-bold'
-                        : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'
+                        : 'text-neutral-500 hover:bg-neutral-50 hover:text-neutral-700'
                     }`}
                   >
                     <Icon size={18} strokeWidth={active ? 2.5 : 1.8} />
@@ -138,8 +138,8 @@ export default function TopHeader({ title, showBack = false, right }: TopHeaderP
             </nav>
 
             {/* 드로어 푸터 */}
-            <div className="px-5 py-4 border-t border-slate-100">
-              <p className="text-[10px] text-slate-400">© 2026 파파플랜</p>
+            <div className="px-5 py-4 border-t border-neutral-100">
+              <p className="text-[10px] text-neutral-400">© 2026 파파플랜</p>
             </div>
           </div>
         </div>

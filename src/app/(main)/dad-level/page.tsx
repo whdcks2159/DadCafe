@@ -47,10 +47,10 @@ export default function DadLevelPage() {
         <TopHeader title="아빠 레벨 테스트" />
         <div className="px-5 py-10 flex flex-col items-center text-center">
           <img src="/icons/badge-beginner.svg" alt="아빠 레벨 테스트" className="w-20 h-20 mb-5 mx-auto" />
-          <h1 className="text-2xl font-black text-slate-800 mb-3">
+          <h1 className="text-2xl font-black text-neutral-900 mb-3">
             나는 어떤 아빠일까?
           </h1>
-          <p className="text-sm text-slate-500 leading-relaxed mb-8">
+          <p className="text-sm text-neutral-500 leading-relaxed mb-8">
             7가지 질문으로 현재 당신의 육아 준비 수준을 알아보세요.<br />
             솔직하게 답할수록 도움이 됩니다.
           </p>
@@ -60,9 +60,9 @@ export default function DadLevelPage() {
               { label: '준비된 아빠', icon: '/icons/ic-goal.png' },
               { label: '베테랑 아빠', icon: '/icons/ic-stats.png' },
             ].map(({ label, icon }) => (
-              <div key={label} className="flex items-center gap-3 bg-slate-50 rounded-2xl px-4 py-3">
+              <div key={label} className="flex items-center gap-3 bg-neutral-50 rounded-2xl px-4 py-3">
                 <img src={icon} alt={label} className="w-8 h-8 flex-shrink-0" />
-                <span className="text-sm font-bold text-slate-700">{label}</span>
+                <span className="text-sm font-bold text-neutral-700">{label}</span>
               </div>
             ))}
           </div>
@@ -83,7 +83,7 @@ export default function DadLevelPage() {
       <>
         <TopHeader title={`질문 ${currentQ + 1} / ${QUIZ_QUESTIONS.length}`} />
         {/* Progress */}
-        <div className="h-1.5 bg-slate-100">
+        <div className="h-1.5 bg-neutral-100">
           <div
             className="h-full bg-brand-500 transition-all duration-300"
             style={{ width: `${progress}%` }}
@@ -92,7 +92,7 @@ export default function DadLevelPage() {
 
         <div className="px-5 py-8">
           <p className="text-xs font-bold text-brand-500 mb-3">Q{currentQ + 1}</p>
-          <h2 className="text-lg font-black text-slate-800 mb-8 leading-snug">
+          <h2 className="text-lg font-black text-neutral-900 mb-8 leading-snug">
             {question.questionKo}
           </h2>
           <div className="space-y-3">
@@ -100,7 +100,7 @@ export default function DadLevelPage() {
               <button
                 key={option.id}
                 onClick={() => selectAnswer(question.id, option.score)}
-                className="w-full text-left bg-white border-2 border-slate-200 rounded-2xl px-4 py-4 text-sm font-medium text-slate-700 hover:border-brand-400 hover:bg-brand-50 transition-all active:scale-[0.98]"
+                className="w-full text-left bg-white border-2 border-neutral-200 rounded-2xl px-4 py-4 text-sm font-medium text-neutral-700 hover:border-brand-400 hover:bg-brand-50 transition-all active:scale-[0.98]"
               >
                 {option.textKo}
               </button>
@@ -121,16 +121,16 @@ export default function DadLevelPage() {
           <p className="text-xs font-bold text-brand-500 mb-2 uppercase tracking-wide">
             나의 아빠 레벨
           </p>
-          <h1 className="text-2xl font-black text-slate-800 mb-3">{res.titleKo}</h1>
-          <p className="text-sm text-slate-600 leading-relaxed mb-8 max-w-xs">
+          <h1 className="text-2xl font-black text-neutral-900 mb-3">{res.titleKo}</h1>
+          <p className="text-sm text-neutral-700 leading-relaxed mb-8 max-w-xs">
             {res.descriptionKo}
           </p>
 
-          <div className="w-full bg-slate-50 rounded-2xl p-4 mb-6 text-left">
-            <p className="text-xs font-bold text-slate-500 mb-3">추천 행동</p>
+          <div className="w-full bg-neutral-50 rounded-2xl p-4 mb-6 text-left">
+            <p className="text-xs font-bold text-neutral-500 mb-3">추천 행동</p>
             <ul className="space-y-2">
               {res.tips.map((tip, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-slate-700">
+                <li key={i} className="flex items-start gap-2 text-sm text-neutral-700">
                   <span className="text-brand-500 font-black">{i + 1}.</span>
                   {tip}
                 </li>
@@ -139,14 +139,14 @@ export default function DadLevelPage() {
           </div>
 
           {!user && (
-            <p className="text-xs text-slate-400 mb-4">
+            <p className="text-xs text-neutral-400 mb-4">
               로그인하면 결과가 프로필에 저장됩니다.
             </p>
           )}
 
           <button
             onClick={reset}
-            className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700"
+            className="flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-700"
           >
             <RotateCcw size={14} /> 다시 테스트하기
           </button>

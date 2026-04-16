@@ -21,9 +21,9 @@ export default function TopicPage({ params }: { params: { stage: string; topic: 
 
       {/* Meta */}
       <div className={`${stage.bgClass} border-b-2 px-5 py-4`}>
-        <p className="text-xs text-slate-500 mb-1">{stage.labelKo}</p>
-        <p className="font-black text-slate-800">{topic.titleKo}</p>
-        <div className="flex items-center gap-1.5 mt-2 text-xs text-slate-500">
+        <p className="text-xs text-neutral-500 mb-1">{stage.labelKo}</p>
+        <p className="font-black text-neutral-900">{topic.titleKo}</p>
+        <div className="flex items-center gap-1.5 mt-2 text-xs text-neutral-500">
           <Clock size={12} />
           <span>약 {topic.estimatedReadMin}분 읽기</span>
         </div>
@@ -31,7 +31,7 @@ export default function TopicPage({ params }: { params: { stage: string; topic: 
 
       {/* Summary */}
       <div className="px-5 pt-5 pb-3">
-        <p className="text-sm text-slate-600 leading-relaxed border-l-4 border-brand-400 pl-3">
+        <p className="text-sm text-neutral-700 leading-relaxed border-l-4 border-brand-400 pl-3">
           {topic.summaryKo}
         </p>
       </div>
@@ -40,14 +40,14 @@ export default function TopicPage({ params }: { params: { stage: string; topic: 
       <div className="px-5 pb-8 space-y-6">
         {topic.content.map((section, idx) => (
           <div key={idx}>
-            <h2 className="font-black text-slate-800 text-base mb-2">{section.headingKo}</h2>
-            <p className="text-sm text-slate-600 leading-relaxed mb-3">{section.bodyKo}</p>
+            <h2 className="font-black text-neutral-900 text-base mb-2">{section.headingKo}</h2>
+            <p className="text-sm text-neutral-700 leading-relaxed mb-3">{section.bodyKo}</p>
             {section.tips && section.tips.length > 0 && (
-              <div className="bg-slate-50 rounded-2xl p-4 space-y-2">
+              <div className="bg-neutral-50 rounded-2xl p-4 space-y-2">
                 {section.tips.map((tip, i) => (
                   <div key={i} className="flex items-start gap-2">
                     <CheckCircle2 size={15} className="text-brand-500 mt-0.5 flex-shrink-0" />
-                    <p className="text-sm text-slate-700">{tip}</p>
+                    <p className="text-sm text-neutral-700">{tip}</p>
                   </div>
                 ))}
               </div>

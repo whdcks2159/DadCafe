@@ -79,14 +79,14 @@ export default function BabyRegisterPage() {
             <Baby size={20} className="text-brand-500" />
           </div>
           <div>
-            <p className="font-bold text-sm text-slate-800">아이를 등록해요</p>
-            <p className="text-xs text-slate-500 mt-0.5">등록 후 맞춤 가이드와 D-day를 확인할 수 있어요.</p>
+            <p className="font-bold text-sm text-neutral-900">아이를 등록해요</p>
+            <p className="text-xs text-neutral-500 mt-0.5">등록 후 맞춤 가이드와 D-day를 확인할 수 있어요.</p>
           </div>
         </div>
 
         {/* STEP 1: 상태 선택 */}
         <div className="space-y-3">
-          <p className="text-xs font-bold text-slate-400 tracking-wide">STEP 1 · 현재 상태</p>
+          <p className="text-xs font-bold text-neutral-400 tracking-wide">STEP 1 · 현재 상태</p>
           <div className="grid grid-cols-2 gap-3">
             {([
               { value: 'pregnant', icon: Heart, label: '임신 중',  desc: '출산 예정일이 있어요' },
@@ -102,12 +102,12 @@ export default function BabyRegisterPage() {
                 }`}
               >
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${status === value ? 'bg-brand-100' : 'bg-warm-100'}`}>
-                  <Icon size={24} className={status === value ? 'text-brand-500' : 'text-slate-400'} />
+                  <Icon size={24} className={status === value ? 'text-brand-500' : 'text-neutral-400'} />
                 </div>
-                <p className={`font-bold text-sm ${status === value ? 'text-brand-600' : 'text-slate-700'}`}>
+                <p className={`font-bold text-sm ${status === value ? 'text-brand-600' : 'text-neutral-700'}`}>
                   {label}
                 </p>
-                <p className="text-[11px] text-slate-400 text-center leading-tight">{desc}</p>
+                <p className="text-[11px] text-neutral-400 text-center leading-tight">{desc}</p>
                 {status === value && (
                   <CircleDot size={16} className="text-brand-500" />
                 )}
@@ -119,11 +119,11 @@ export default function BabyRegisterPage() {
         {/* STEP 2: 날짜 입력 */}
         {status && (
           <div className="space-y-3 animate-fade-in-up">
-            <p className="text-xs font-bold text-slate-400 tracking-wide">
+            <p className="text-xs font-bold text-neutral-400 tracking-wide">
               STEP 2 · {status === 'pregnant' ? '출산 예정일' : '출생일'}
             </p>
             <div className="bg-white rounded-3xl border-2 border-warm-200 p-4">
-              <label className="block text-xs text-slate-400 mb-2 font-medium">
+              <label className="block text-xs text-neutral-400 mb-2 font-medium">
                 {status === 'pregnant' ? '예정일을 선택해주세요' : '태어난 날짜를 선택해주세요'}
               </label>
               <input
@@ -132,7 +132,7 @@ export default function BabyRegisterPage() {
                 min={status === 'born' ? twoYearsAgo : today}
                 max={status === 'pregnant' ? twoYearsLater : today}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full text-base font-bold text-slate-800 bg-transparent focus:outline-none"
+                className="w-full text-base font-bold text-neutral-900 bg-transparent focus:outline-none"
               />
             </div>
           </div>
@@ -141,8 +141,8 @@ export default function BabyRegisterPage() {
         {/* STEP 3: 이름 입력 (선택) */}
         {status && date && (
           <div className="space-y-3 animate-fade-in-up">
-            <p className="text-xs font-bold text-slate-400 tracking-wide">
-              STEP 3 · 아이 이름 <span className="font-normal text-slate-300">(선택)</span>
+            <p className="text-xs font-bold text-neutral-400 tracking-wide">
+              STEP 3 · 아이 이름 <span className="font-normal text-neutral-400">(선택)</span>
             </p>
             <div className="bg-white rounded-3xl border-2 border-warm-200 p-4 focus-within:border-brand-300 transition-colors">
               <input
@@ -151,10 +151,10 @@ export default function BabyRegisterPage() {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="우리 아기"
                 maxLength={10}
-                className="w-full text-base text-slate-800 bg-transparent focus:outline-none placeholder:text-slate-300"
+                className="w-full text-base text-neutral-900 bg-transparent focus:outline-none placeholder:text-neutral-400"
               />
             </div>
-            <p className="text-xs text-slate-400 px-1">
+            <p className="text-xs text-neutral-400 px-1">
               입력하지 않으면 "우리 아기"로 표시돼요.
             </p>
           </div>
@@ -172,7 +172,7 @@ export default function BabyRegisterPage() {
           className={`w-full py-4 rounded-3xl font-black text-base transition-all ${
             canSubmit && !saving
               ? 'bg-gradient-to-r from-brand-500 to-sky-400 text-white shadow-warm active:scale-[0.98]'
-              : 'bg-slate-100 text-slate-400 cursor-not-allowed'
+              : 'bg-neutral-100 text-neutral-400 cursor-not-allowed'
           }`}
         >
           {saving ? '등록 중...' : '아이 등록하기'}

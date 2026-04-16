@@ -45,8 +45,8 @@ export default function FcmPermissionModal({ uid, babyStatus = 'pregnant', onClo
             <div className="w-14 h-14 bg-brand-50 rounded-full flex items-center justify-center">
               <Bell size={28} className="text-brand-500" />
             </div>
-            <p className="font-black text-slate-800">알림 설정 완료!</p>
-            <p className="text-sm text-slate-500 text-center">
+            <p className="font-black text-neutral-900">알림 설정 완료!</p>
+            <p className="text-sm text-neutral-500 text-center">
               {babyStatus === 'born'
                 ? '예방접종·검진 일정을 놓치지 않도록 알림으로 알려드릴게요.'
                 : '매주 아빠가 해야 할 일을 알림으로 알려드릴게요.'}
@@ -58,15 +58,15 @@ export default function FcmPermissionModal({ uid, babyStatus = 'pregnant', onClo
               <div className="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center">
                 <Bell size={24} className="text-brand-500" />
               </div>
-              <button onClick={onClose} className="p-1 text-slate-300 hover:text-slate-500">
+              <button onClick={onClose} className="p-1 text-neutral-400 hover:text-neutral-500">
                 <X size={20} />
               </button>
             </div>
 
-            <h2 className="font-black text-lg text-slate-900 mb-1">
+            <h2 className="font-black text-lg text-neutral-900 mb-1">
               {babyStatus === 'born' ? '예방접종 알림 받기' : '주간 알림 받기'}
             </h2>
-            <p className="text-sm text-slate-500 mb-5 leading-relaxed">
+            <p className="text-sm text-neutral-500 mb-5 leading-relaxed">
               {babyStatus === 'born' ? (
                 <>예방접종·영유아 건강검진 일정을 매주 알림으로 보내드려요.<br />D+일차에 맞춰 딱 필요할 때만 알려드려요.</>
               ) : (
@@ -89,7 +89,7 @@ export default function FcmPermissionModal({ uid, babyStatus = 'pregnant', onClo
               </button>
               <button
                 onClick={onClose}
-                className="w-full py-3 rounded-2xl text-slate-400 text-sm font-medium flex items-center justify-center gap-1.5"
+                className="w-full py-3 rounded-2xl text-neutral-400 text-sm font-medium flex items-center justify-center gap-1.5"
               >
                 <BellOff size={14} />
                 나중에

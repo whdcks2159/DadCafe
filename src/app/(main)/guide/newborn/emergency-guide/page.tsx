@@ -145,13 +145,13 @@ function ScenarioCard({ scenario }: { scenario: typeof SCENARIOS[0] }) {
           </div>
           <div>
             <p className={`font-black text-base ${scenario.colorClass}`}>{scenario.titleKo}</p>
-            <p className="text-xs text-slate-500 mt-0.5">{scenario.subtitleKo}</p>
+            <p className="text-xs text-neutral-500 mt-0.5">{scenario.subtitleKo}</p>
           </div>
         </div>
         {open ? (
-          <ChevronUp size={18} className="text-slate-400 flex-shrink-0" />
+          <ChevronUp size={18} className="text-neutral-400 flex-shrink-0" />
         ) : (
-          <ChevronDown size={18} className="text-slate-400 flex-shrink-0" />
+          <ChevronDown size={18} className="text-neutral-400 flex-shrink-0" />
         )}
       </button>
 
@@ -167,7 +167,7 @@ function ScenarioCard({ scenario }: { scenario: typeof SCENARIOS[0] }) {
                 >
                   {step.label}
                 </span>
-                <p className="text-sm text-slate-800 font-medium leading-snug whitespace-pre-line">
+                <p className="text-sm text-neutral-900 font-medium leading-snug whitespace-pre-line">
                   {step.text}
                 </p>
               </div>
@@ -175,13 +175,13 @@ function ScenarioCard({ scenario }: { scenario: typeof SCENARIOS[0] }) {
           </div>
 
           {/* 병원 가야 할 기준 */}
-          <div className="bg-white rounded-xl p-3 border border-slate-100">
-            <p className="text-xs font-black text-slate-500 mb-2 uppercase tracking-wide">병원·119 가야 할 기준</p>
+          <div className="bg-white rounded-xl p-3 border border-neutral-100">
+            <p className="text-xs font-black text-neutral-500 mb-2 uppercase tracking-wide">병원·119 가야 할 기준</p>
             <ul className="space-y-1">
               {scenario.hospitalCriteria.map((c, i) => (
                 <li key={i} className="flex items-start gap-2">
                   <span className="text-red-500 font-black text-xs mt-0.5">!</span>
-                  <p className="text-xs text-slate-700">{c}</p>
+                  <p className="text-xs text-neutral-700">{c}</p>
                 </li>
               ))}
             </ul>
@@ -221,7 +221,7 @@ export default function EmergencyGuidePage() {
 
       {/* 안내 */}
       <div className="px-4 pt-4 pb-2">
-        <p className="text-xs text-slate-400 text-center">
+        <p className="text-xs text-neutral-400 text-center">
           아래 상황을 눌러 단계별 행동을 확인하세요
         </p>
       </div>
@@ -234,8 +234,8 @@ export default function EmergencyGuidePage() {
       </div>
 
       {/* 하단 면책 고지 */}
-      <div className="mx-4 mb-8 bg-slate-50 rounded-2xl p-4 border border-slate-100">
-        <p className="text-xs text-slate-400 leading-relaxed">
+      <div className="mx-4 mb-8 bg-neutral-50 rounded-2xl p-4 border border-neutral-100">
+        <p className="text-xs text-neutral-400 leading-relaxed">
           이 가이드는 일반 응급 참고 정보입니다. 응급 상황에서는 반드시 119 또는 가까운 응급실을 이용하세요. 의료 전문가의 진단과 치료를 대체하지 않습니다.
         </p>
       </div>

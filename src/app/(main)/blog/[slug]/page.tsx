@@ -105,7 +105,7 @@ export default function BlogPostPage({ params }: Props) {
         </h1>
 
         {/* 설명 */}
-        <p className="text-sm text-neutral-500 leading-relaxed mb-4 pb-4 border-b border-slate-100">
+        <p className="text-sm text-neutral-500 leading-relaxed mb-4 pb-4 border-b border-neutral-100">
           {post.description}
         </p>
 
@@ -118,7 +118,7 @@ export default function BlogPostPage({ params }: Props) {
         <div>{renderContent(post.content)}</div>
 
         {/* 면책 고지 */}
-        <div className="mt-10 p-4 bg-slate-50 rounded-2xl">
+        <div className="mt-10 p-4 bg-neutral-50 rounded-2xl">
           <p className="text-xs text-neutral-500 leading-relaxed">
             본 아티클은 일반적인 참고 정보를 제공하며 의학적 진단·처방을 대체하지 않습니다.
             건강 관련 문제는 반드시 전문 의료진과 상담하시기 바랍니다.
@@ -135,7 +135,7 @@ export default function BlogPostPage({ params }: Props) {
               <Link
                 key={p.slug}
                 href={`/blog/${p.slug}`}
-                className="flex flex-col gap-1 p-4 border border-slate-100 rounded-2xl hover:border-brand-200 hover:bg-brand-50/30 transition-all active:scale-[0.98]"
+                className="flex flex-col gap-1 p-4 border border-neutral-100 rounded-2xl hover:border-brand-200 hover:bg-brand-50/30 transition-all active:scale-[0.98]"
               >
                 <p className="font-bold text-sm text-neutral-900 leading-snug">{p.title}</p>
                 <p className="text-xs text-neutral-500 line-clamp-1">{p.description}</p>

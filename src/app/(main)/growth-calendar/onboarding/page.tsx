@@ -65,7 +65,7 @@ export default function GrowthCalendarOnboarding() {
               className={`h-1 flex-1 rounded-full transition-colors ${
                 ['name', 'status', 'date'].indexOf(step) >= i
                   ? 'bg-brand-500'
-                  : 'bg-slate-200'
+                  : 'bg-neutral-200'
               }`}
             />
           ))}
@@ -74,10 +74,10 @@ export default function GrowthCalendarOnboarding() {
         {/* Step 1: 아기 이름 (태명) */}
         {step === 'name' && (
           <div>
-            <div className="text-2xl font-black text-slate-900 mb-2">
+            <div className="text-2xl font-black text-neutral-900 mb-2">
               아기에게 태명이나 이름을 지어줄게요
             </div>
-            <div className="text-sm text-slate-500 mb-8">
+            <div className="text-sm text-neutral-500 mb-8">
               나중에 언제든 바꿀 수 있어요
             </div>
             <input
@@ -86,7 +86,7 @@ export default function GrowthCalendarOnboarding() {
               value={babyName}
               onChange={(e) => setBabyName(e.target.value)}
               maxLength={10}
-              className="w-full border-2 border-slate-200 focus:border-brand-500 rounded-2xl px-4 py-3.5 text-base outline-none mb-8"
+              className="w-full border-2 border-neutral-200 focus:border-brand-500 rounded-2xl px-4 py-3.5 text-base outline-none mb-8"
               autoFocus
             />
             <button
@@ -97,7 +97,7 @@ export default function GrowthCalendarOnboarding() {
             </button>
             <button
               onClick={() => setStep('status')}
-              className="w-full text-slate-400 text-sm py-3 mt-2"
+              className="w-full text-neutral-400 text-sm py-3 mt-2"
             >
               건너뛰기
             </button>
@@ -107,10 +107,10 @@ export default function GrowthCalendarOnboarding() {
         {/* Step 2: 임신 중 / 태어남 */}
         {step === 'status' && (
           <div>
-            <div className="text-2xl font-black text-slate-900 mb-2">
+            <div className="text-2xl font-black text-neutral-900 mb-2">
               {babyName ? `${babyName}는` : '아기는'} 지금 어디에 있나요?
             </div>
-            <div className="text-sm text-slate-500 mb-8">
+            <div className="text-sm text-neutral-500 mb-8">
               상황에 맞는 기록을 보여드릴게요
             </div>
 
@@ -120,22 +120,22 @@ export default function GrowthCalendarOnboarding() {
                 className={`w-full py-5 rounded-2xl border-2 text-left px-5 transition-colors ${
                   status === 'pregnant'
                     ? 'border-brand-500 bg-brand-50'
-                    : 'border-slate-200 bg-white'
+                    : 'border-neutral-200 bg-white'
                 }`}
               >
-                <div className="font-bold text-slate-900 text-base">아직 뱃속에 있어요</div>
-                <div className="text-sm text-slate-500 mt-0.5">임신 주차별 기록</div>
+                <div className="font-bold text-neutral-900 text-base">아직 뱃속에 있어요</div>
+                <div className="text-sm text-neutral-500 mt-0.5">임신 주차별 기록</div>
               </button>
               <button
                 onClick={() => setStatus('born')}
                 className={`w-full py-5 rounded-2xl border-2 text-left px-5 transition-colors ${
                   status === 'born'
                     ? 'border-brand-500 bg-brand-50'
-                    : 'border-slate-200 bg-white'
+                    : 'border-neutral-200 bg-white'
                 }`}
               >
-                <div className="font-bold text-slate-900 text-base">이미 태어났어요</div>
-                <div className="text-sm text-slate-500 mt-0.5">개월별 성장 기록</div>
+                <div className="font-bold text-neutral-900 text-base">이미 태어났어요</div>
+                <div className="text-sm text-neutral-500 mt-0.5">개월별 성장 기록</div>
               </button>
             </div>
 
@@ -152,17 +152,17 @@ export default function GrowthCalendarOnboarding() {
         {/* Step 3: 날짜 입력 */}
         {step === 'date' && (
           <div>
-            <div className="text-2xl font-black text-slate-900 mb-2">
+            <div className="text-2xl font-black text-neutral-900 mb-2">
               {status === 'pregnant' ? '출산 예정일을 알려주세요' : '생일을 알려주세요'}
             </div>
-            <div className="text-sm text-slate-500 mb-8">
+            <div className="text-sm text-neutral-500 mb-8">
               {status === 'pregnant'
                 ? '정확하지 않아도 괜찮아요. 나중에 수정할 수 있어요'
                 : '주수 대신 개월 수로 기록을 관리해요'}
             </div>
 
             <div className="mb-8">
-              <label className="text-xs font-medium text-slate-500 mb-2 block">
+              <label className="text-xs font-medium text-neutral-500 mb-2 block">
                 {status === 'pregnant' ? '출산 예정일' : '생일'}
               </label>
               <input
@@ -170,7 +170,7 @@ export default function GrowthCalendarOnboarding() {
                 value={dateValue || (status === 'pregnant' ? defaultDueDate : today)}
                 onChange={(e) => setDateValue(e.target.value)}
                 max={status === 'born' ? today : undefined}
-                className="w-full border-2 border-slate-200 focus:border-brand-500 rounded-2xl px-4 py-3.5 text-base outline-none"
+                className="w-full border-2 border-neutral-200 focus:border-brand-500 rounded-2xl px-4 py-3.5 text-base outline-none"
               />
             </div>
 
