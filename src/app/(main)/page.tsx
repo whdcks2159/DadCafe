@@ -51,21 +51,18 @@ export default function HomePage() {
         <BabyCard />
       </section>
 
-      {/* ── 정부 지원 배너 ───────────────────── */}
+      {/* ── 성장 캘린더 배너 ─────────────────── */}
       <section className="px-5 pb-4 bg-warm-50">
         <Link
-          href="/gov-support"
-          className="flex items-center gap-4 bg-indigo-100 border border-indigo-200 rounded-3xl p-4 hover:bg-indigo-200 transition-all active:scale-[0.98] shadow-card"
+          href="/growth-calendar"
+          className="flex items-center gap-4 bg-gradient-to-r from-brand-50 to-blue-50 border border-brand-100 rounded-3xl p-4 hover:shadow-card transition-all active:scale-[0.98]"
         >
-          <div className="w-11 h-11 bg-brand-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-            <Landmark size={20} className="text-brand-500" />
+          <div className="w-11 h-11 bg-brand-500 rounded-2xl flex items-center justify-center flex-shrink-0">
+            <CalendarDays size={20} className="text-white" />
           </div>
           <div className="flex-1">
-            <div className="flex items-center gap-2 mb-0.5">
-              <p className="font-black text-sm text-neutral-900">정부 지원 한눈에 보기</p>
-              <span className="text-[9px] font-black bg-brand-200 text-brand-700 px-1.5 py-0.5 rounded-full">2026</span>
-            </div>
-            <p className="text-xs text-neutral-500">신청하지 않으면 받을 수 없어요 — 지금 확인해보세요</p>
+            <p className="font-black text-sm text-neutral-900 mb-0.5">성장 캘린더</p>
+            <p className="text-xs text-neutral-500">임신 주차부터 출산 후까지 아이의 이야기를 기록해요</p>
           </div>
           <ArrowRight size={16} className="text-brand-400 flex-shrink-0" />
         </Link>
@@ -93,19 +90,21 @@ export default function HomePage() {
         </div>
       </section>
 
-
-      {/* ── 성장 캘린더 배너 ─────────────────── */}
+      {/* ── 정부 지원 배너 ───────────────────── */}
       <section className="px-5 pb-4 bg-warm-50">
         <Link
-          href="/growth-calendar"
-          className="flex items-center gap-4 bg-gradient-to-r from-brand-50 to-blue-50 border border-brand-100 rounded-3xl p-4 hover:shadow-card transition-all active:scale-[0.98]"
+          href="/gov-support"
+          className="flex items-center gap-4 bg-indigo-100 border border-indigo-200 rounded-3xl p-4 hover:bg-indigo-200 transition-all active:scale-[0.98] shadow-card"
         >
-          <div className="w-11 h-11 bg-brand-500 rounded-2xl flex items-center justify-center flex-shrink-0">
-            <CalendarDays size={20} className="text-white" />
+          <div className="w-11 h-11 bg-brand-100 rounded-2xl flex items-center justify-center flex-shrink-0">
+            <Landmark size={20} className="text-brand-500" />
           </div>
           <div className="flex-1">
-            <p className="font-black text-sm text-neutral-900 mb-0.5">성장 캘린더</p>
-            <p className="text-xs text-neutral-500">임신 주차부터 출산 후까지 아이의 이야기를 기록해요</p>
+            <div className="flex items-center gap-2 mb-0.5">
+              <p className="font-black text-sm text-neutral-900">정부 지원 한눈에 보기</p>
+              <span className="text-[9px] font-black bg-brand-200 text-brand-700 px-1.5 py-0.5 rounded-full">2026</span>
+            </div>
+            <p className="text-xs text-neutral-500">신청하지 않으면 받을 수 없어요 — 지금 확인해보세요</p>
           </div>
           <ArrowRight size={16} className="text-brand-400 flex-shrink-0" />
         </Link>
