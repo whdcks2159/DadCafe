@@ -250,6 +250,13 @@ SHA256 fingerprint를 받아서 `public/.well-known/assetlinks.json`의
 - [ ] 블로그에 Firebase 기반 CMS 또는 MDX 파일 방식 도입 검토
 - [ ] Google Search Console에서 sitemap.xml 재제출 (dadcafe.vercel.app 도메인으로 변경됨)
 
+## Design System
+
+UI나 시각적 결정을 내리기 전에 항상 `DESIGN.md`를 먼저 읽어라.
+색상, 폰트, 간격, 보더 반경, 컴포넌트 패턴이 모두 정의되어 있다.
+`DESIGN.md`에서 벗어나려면 사용자의 명시적 승인이 필요하다.
+`slate-*` 대신 `neutral-*` 사용. Hero 섹션에 장식용 blob 금지.
+
 ## gstack
 
 Use the `/browse` skill from gstack for all web browsing. Never use `mcp__claude-in-chrome__*` tools.
