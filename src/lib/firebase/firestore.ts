@@ -15,6 +15,7 @@ import {
   serverTimestamp,
   Timestamp,
   startAfter,
+  deleteField,
   type DocumentSnapshot,
   type QueryDocumentSnapshot,
 } from 'firebase/firestore';
@@ -323,6 +324,17 @@ export async function saveFcmToken(uid: string, token: string): Promise<void> {
     { fcmToken: token, fcmUpdatedAt: serverTimestamp() },
     { merge: true }
   );
+}
+
+export async function deleteFcmToken(uid: string): Promise<void> {
+  const d = requireDb();
+  await updateDoc(doc(d, 'users', uid), { fcmToken: deleteField() });
+}
+
+export async function hasFcmToken(uid: string): Promise<boolean> {
+  const d = requireDb();
+  const snap = await getDoc(doc(d, 'users', uid));
+  return !!snap.data()?.fcmToken;
 }
 
 // ── Growth Calendar ────────────────────────────────────────────

@@ -3,7 +3,8 @@
 import TopHeader from '@/components/layout/TopHeader';
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
-import { LogIn, LogOut, ChevronRight, Star, Trophy, BookOpen, BarChart2, User } from 'lucide-react';
+import { LogIn, LogOut, ChevronRight, Star, Trophy, BookOpen, BarChart2, User, Bell, BellOff } from 'lucide-react';
+import { useNotification } from '@/hooks/useNotification';
 
 const LEVEL_LABELS = {
   beginner:    { label: '준비 중인 아빠', emoji: '/icons/badge-beginner.svg',    color: 'text-green-600 bg-green-50' },
@@ -66,6 +67,7 @@ export default function ProfilePage() {
   const joinedDays = userProfile?.joinedAt
     ? Math.floor((Date.now() - new Date(userProfile.joinedAt).getTime()) / 86400000)
     : 0;
+  const { enabled: notifEnabled, toggling: notifToggling, toggle: toggleNotif } = useNotification(user.uid);
 
   return (
     <>
@@ -126,6 +128,32 @@ export default function ProfilePage() {
             <ChevronRight size={16} className="text-neutral-400" />
           </Link>
         ))}
+
+        {/* 알림 설정 */}
+        <button
+          onClick={toggleNotif}
+          disabled={notifToggling || notifEnabled === null}
+          className="w-full flex items-center justify-between bg-white border border-neutral-100 rounded-2xl px-4 py-3.5 hover:border-brand-200 transition-colors disabled:opacity-60"
+        >
+          <div className="flex items-center gap-3">
+            {notifEnabled
+              ? <Bell size={18} className="text-brand-500" />
+              : <BellOff size={18} className="text-neutral-400" />
+            }
+            <div className="text-left">
+              <span className="text-sm font-bold text-neutral-700">주간 알림</span>
+              <p className="text-[11px] text-neutral-400 mt-0.5">매주 월요일 임신·육아 팁</p>
+            </div>
+          </div>
+          {/* 토글 스위치 */}
+          <div className={`relative w-10 h-6 rounded-full transition-colors ${
+            notifEnabled ? 'bg-brand-500' : 'bg-neutral-200'
+          }`}>
+            <div className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow-sm transition-all ${
+              notifEnabled ? 'left-5' : 'left-1'
+            }`} />
+          </div>
+        </button>
       </div>
 
       {/* Logout */}

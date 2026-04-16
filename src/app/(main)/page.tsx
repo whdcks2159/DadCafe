@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, CheckSquare, Users, Landmark, BookHeart, BookOpen, Newspaper, CalendarDays } from 'lucide-react';
+import { ArrowRight, CheckSquare, Users, Landmark, BookHeart, BookOpen, Newspaper, CalendarDays, Bell, BellOff } from 'lucide-react';
 import BabyCard from '@/components/BabyCard';
 import { BLOG_POSTS } from '@/data/blogPosts';
 import { useAuth } from '@/context/AuthContext';
+import { useNotification } from '@/hooks/useNotification';
 
 const FEATURES = [
   { icon: BookOpen,    title: '가이드',       desc: '단계별·상황별\n모든 가이드 보기',         href: '/guide',      iconBg: 'bg-brand-400',   cardBg: 'bg-brand-50',        border: 'border-brand-100' },
@@ -17,6 +18,7 @@ const FEATURES = [
 export default function HomePage() {
   const { user, loading } = useAuth();
   const isLoggedIn = !loading && !!user;
+  const { enabled: notifEnabled, toggling: notifToggling, toggle: toggleNotif } = useNotification(user?.uid);
 
   return (
     <div className="min-h-screen flex flex-col bg-warm-50">
@@ -52,6 +54,17 @@ export default function HomePage() {
         <div className="px-5 pt-5 pb-1 flex items-center gap-2">
           <Image src="/icons/mainLogo.png" alt="파파플랜 로고" width={28} height={28} className="w-7 h-7" />
           <p className="font-black text-sm text-neutral-900">파파플랜</p>
+          <button
+            onClick={toggleNotif}
+            disabled={notifToggling || notifEnabled === null}
+            className="ml-auto p-1.5 rounded-xl transition-colors hover:bg-neutral-100 disabled:opacity-40"
+            aria-label={notifEnabled ? '알림 끄기' : '알림 켜기'}
+          >
+            {notifEnabled
+              ? <Bell size={18} className="text-brand-500" />
+              : <BellOff size={18} className="text-neutral-400" />
+            }
+          </button>
         </div>
       )}
 
