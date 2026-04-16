@@ -6,7 +6,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import {
   ArrowLeft, Home, Menu, X, Search,
   BookOpen, CheckSquare, Lightbulb, Users, User,
-  Landmark, Sparkles, Heart, Bot, BookHeart, Baby,
+  Landmark, Sparkles, Heart, BookHeart, Baby,
 } from 'lucide-react';
 import SearchOverlay from '@/components/SearchOverlay';
 
@@ -17,7 +17,6 @@ const NAV_ITEMS = [
   { href: '/fertility',   icon: Heart,       label: '난임 가이드' },
   { href: '/situations',  icon: Lightbulb,   label: '상황별 가이드' },
   { href: '/gov-support', icon: Landmark,    label: '정부 지원', badge: '2026' },
-  { href: '/ai-guide',    icon: Bot,         label: 'AI 맞춤 플랜', badge: 'AI' },
   { href: '/diary',       icon: BookHeart,   label: '육아일기' },
   { href: '/community',   icon: Users,       label: '커뮤니티' },
   { href: '/profile',     icon: User,        label: '내 정보' },

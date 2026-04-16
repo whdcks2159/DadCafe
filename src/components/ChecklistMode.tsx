@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import Link from 'next/link';
-import { Sparkles, RotateCcw, AlertTriangle } from 'lucide-react';
+import { RotateCcw, AlertTriangle } from 'lucide-react';
 import type { SituationStep } from '@/types';
 import { recordChecklistCompletion } from '@/lib/firebase/firestore';
 
@@ -91,14 +90,7 @@ export default function ChecklistMode({ steps, slug, uid }: Props) {
             </svg>
           </div>
           <p className="font-black text-green-700 text-base">잘 하셨어요.</p>
-          <p className="text-sm text-green-600">그래도 걱정되면 AI에게 물어보세요.</p>
-          <Link
-            href="/ai-guide"
-            className="inline-flex items-center gap-2 bg-brand-500 text-white px-5 py-2.5 rounded-full text-sm font-bold mt-1"
-          >
-            <Sparkles size={14} />
-            AI에게 물어보기
-          </Link>
+          <p className="text-sm text-green-600">잘 하셨어요. 궁금한 점은 가이드를 참고해보세요.</p>
         </div>
       )}
 

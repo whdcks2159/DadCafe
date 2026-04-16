@@ -84,7 +84,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/dad-level`,   lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/fertility`,   lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE_URL}/about`,       lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${BASE_URL}/ai-guide`,    lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE_URL}/community`,   lastModified: now, changeFrequency: 'daily',   priority: 0.6 },
     { url: `${BASE_URL}/diary`,       lastModified: now, changeFrequency: 'daily',   priority: 0.5 },
     { url: `${BASE_URL}/privacy`,        lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },

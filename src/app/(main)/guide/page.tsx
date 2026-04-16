@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import TopHeader from '@/components/layout/TopHeader';
 import { STAGES } from '@/data/stages';
-import { ChevronRight, Clock, Lightbulb, Heart, Bot, Sparkles } from 'lucide-react';
+import { ChevronRight, Clock, Lightbulb, Heart, Sparkles } from 'lucide-react';
 
 const EXTRA_GUIDES = [
   {
@@ -33,16 +33,6 @@ const EXTRA_GUIDES = [
     title: '난임 가이드',
     desc: '검사부터 치료까지, 남편이 도울 수 있어요',
     badge: null,
-  },
-  {
-    href: '/ai-guide',
-    icon: Bot,
-    iconBg: 'bg-brand-400',
-    cardBg: 'bg-brand-50',
-    border: 'border-brand-100',
-    title: 'AI 맞춤 플랜',
-    desc: '내 상황을 말하면 AI가 맞춤 가이드를 드려요',
-    badge: 'AI',
   },
 ];
 

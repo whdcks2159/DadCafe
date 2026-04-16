@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, X, ChevronRight, ArrowRight, Sparkles, Clock } from 'lucide-react';
+import { Search, X, ChevronRight, ArrowRight, Clock } from 'lucide-react';
 import Fuse from 'fuse.js';
 import {
   buildSearchIndex,
@@ -215,18 +215,6 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
               <SearchResultCard key={item.id} item={item} onClose={handleResultClick} />
             ))}
 
-            {/* 하단 AI 제안 */}
-            <div className="mt-2 pt-4 border-t border-neutral-100 text-center">
-              <p className="text-xs text-neutral-400 mb-3">더 자세한 답변이 필요하다면</p>
-              <Link
-                href="/ai-guide"
-                onClick={onClose}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-500 to-brand-400 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-sm"
-              >
-                <Sparkles size={14} />
-                AI에게 바로 물어보기
-              </Link>
-            </div>
           </div>
         )}
 
@@ -251,14 +239,6 @@ export default function SearchOverlay({ isOpen, onClose }: Props) {
               ))}
             </div>
 
-            <Link
-              href="/ai-guide"
-              onClick={onClose}
-              className="inline-flex items-center gap-2 bg-brand-500 text-white px-5 py-2.5 rounded-full text-sm font-bold"
-            >
-              AI에게 바로 물어보기
-              <ArrowRight size={14} />
-            </Link>
           </div>
         )}
       </div>

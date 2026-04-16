@@ -31,12 +31,6 @@ export default function FertilityPage() {
           >
             정부 지원금 확인 <ArrowRight size={12} />
           </Link>
-          <Link
-            href="/ai-guide"
-            className="flex items-center gap-1.5 bg-white text-brand-700 text-xs font-bold px-3 py-2 rounded-xl hover:opacity-90 transition-colors"
-          >
-            AI 맞춤 플랜 <ArrowRight size={12} />
-          </Link>
         </div>
       </div>
 

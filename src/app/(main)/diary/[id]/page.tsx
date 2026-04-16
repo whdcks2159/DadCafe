@@ -6,7 +6,7 @@ import TopHeader from '@/components/layout/TopHeader';
 import { useAuth } from '@/context/AuthContext';
 import { getDiaryEntry, deleteDiaryEntry } from '@/lib/firebase/firestore';
 import type { DiaryEntry } from '@/types';
-import { Trash2, Sparkles, ChevronLeft, ChevronRight, Video, Loader2 } from 'lucide-react';
+import { Trash2, ChevronLeft, ChevronRight, Video, Loader2 } from 'lucide-react';
 
 const EMOTION_LABELS: Record<string, string> = {
   love: '사랑스러워', proud: '뿌듯해', tired: '지쳐',
@@ -33,14 +33,10 @@ export default function DiaryDetailPage() {
   const [loading, setLoading] = useState(true);
   const [mediaIdx, setMediaIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
-  const [summarizing, setSummarizing] = useState(false);
-  const [summary, setSummary] = useState('');
-
   useEffect(() => {
     if (!user || !id) return;
     getDiaryEntry(user.uid, id).then((data) => {
       setEntry(data);
-      if (data?.aiSummary) setSummary(data.aiSummary);
       setLoading(false);
     }).catch(() => setLoading(false));
   }, [user, id]);
@@ -54,27 +50,6 @@ export default function DiaryDetailPage() {
     } catch {
       alert('삭제에 실패했습니다.');
       setDeleting(false);
-    }
-  };
-
-  const handleAiSummary = async () => {
-    if (!entry) return;
-    setSummarizing(true);
-    try {
-      const res = await fetch('/api/diary-summary', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          entries: [{ date: entry.date, text: entry.text, emotions: entry.emotions, actions: entry.actions }],
-          babyAgeMonths: entry.babyAgeMonths,
-        }),
-      });
-      const data = await res.json();
-      setSummary(data.summary ?? '');
-    } catch {
-      alert('AI 요약 생성에 실패했습니다.');
-    } finally {
-      setSummarizing(false);
     }
   };
 
@@ -198,29 +173,6 @@ export default function DiaryDetailPage() {
         {/* 본문 */}
         <p className="text-sm text-neutral-700 leading-relaxed whitespace-pre-wrap">{entry.text}</p>
 
-        {/* AI 요약 */}
-        {summary ? (
-          <div className="bg-gradient-to-br from-brand-50 to-blue-50 border border-brand-100 rounded-2xl p-4">
-            <div className="flex items-center gap-1.5 mb-2">
-              <Sparkles size={13} className="text-brand-500" />
-              <p className="text-xs font-black text-brand-600">AI 하루 요약</p>
-            </div>
-            <p className="text-sm text-neutral-700 leading-relaxed">{summary}</p>
-          </div>
-        ) : (
-          <button
-            onClick={handleAiSummary}
-            disabled={summarizing}
-            className="w-full flex items-center justify-center gap-2 bg-neutral-50 border border-neutral-100 rounded-2xl px-4 py-3 text-sm font-bold text-neutral-700 hover:border-brand-200 hover:bg-brand-50 hover:text-brand-600 transition-all disabled:opacity-50"
-          >
-            {summarizing ? (
-              <Loader2 size={15} className="animate-spin" />
-            ) : (
-              <Sparkles size={15} className="text-brand-400" />
-            )}
-            {summarizing ? 'AI가 요약 중...' : 'AI로 하루 요약하기'}
-          </button>
-        )}
       </div>
     </div>
   );

@@ -3,7 +3,6 @@ import Link from 'next/link';
 const NAV_LINKS = [
   { label: '가이드',      href: '/guide'      },
   { label: '상황별 가이드', href: '/situations' },
-  { label: 'AI 맞춤 플랜', href: '/ai-guide'  },
   { label: '정부 지원',   href: '/gov-support' },
   { label: '커뮤니티',    href: '/community'  },
   { label: '블로그',      href: '/blog'       },

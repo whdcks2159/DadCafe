@@ -33,7 +33,6 @@ const VALUES = [
 const FEATURES = [
   { title: '상황별 가이드',   desc: '신생아 황달·야간 칭얼거림·고열 등 60개+ 실전 상황 대응 가이드', href: '/situations' },
   { title: '단계별 가이드',   desc: '임신 준비부터 영아기까지 4단계 14토픽 체계적 가이드',          href: '/guide'      },
-  { title: 'AI 맞춤 플랜',   desc: '아이 나이와 상황을 입력하면 Claude AI가 맞춤 플랜을 제안',    href: '/ai-guide'  },
   { title: '정부 지원 정보',  desc: '2026년 기준 출산지원금·육아휴직·국가예방접종 총정리',          href: '/gov-support'},
   { title: '10초 체크리스트', desc: '응급 상황에서 단계별 체크리스트로 빠르게 행동',                href: '/checklist' },
   { title: '육아일기',        desc: 'AI 요약과 함께 소중한 순간을 기록하고 돌아보기',               href: '/diary'     },
