@@ -37,15 +37,20 @@ export default function GrowthCalendarRoot() {
           log={logsMap[currentPeriod]}
         />
 
-        {pastWeeks.length > 0 && (
+        {pastWeeks.length > 0 ? (
           <div className="relative">
             {/* 타임라인 선 */}
-            <div className="absolute left-[22px] top-0 bottom-0 w-px bg-slate-200 z-0" />
+            <div className="absolute left-[22px] top-0 bottom-0 w-px bg-neutral-200 z-0" />
 
-            <div className="text-xs font-medium text-slate-400 mb-3 pl-1">지난 기록</div>
+            <div className="text-xs font-medium text-neutral-400 mb-3 pl-1">지난 기록</div>
             {pastWeeks.map((week) => (
               <WeeklyCard key={week} weekNumber={week} log={logsMap[week]} />
             ))}
+          </div>
+        ) : (
+          <div className="mx-4 mt-4 p-4 bg-brand-50 rounded-2xl border border-brand-100 text-center">
+            <p className="text-sm font-bold text-brand-600 mb-1">아직 지난 기록이 없어요</p>
+            <p className="text-xs text-neutral-500">매주 기록을 쌓으면 여기에 타임라인이 생겨요.</p>
           </div>
         )}
       </div>
@@ -69,14 +74,19 @@ export default function GrowthCalendarRoot() {
 
         <GrowthMiniChart logs={monthlyLogs} currentMonth={currentPeriod} />
 
-        {pastMonths.length > 0 && (
+        {pastMonths.length > 0 ? (
           <div className="relative">
-            <div className="absolute left-[22px] top-0 bottom-0 w-px bg-slate-200 z-0" />
+            <div className="absolute left-[22px] top-0 bottom-0 w-px bg-neutral-200 z-0" />
 
-            <div className="text-xs font-medium text-slate-400 mb-3 pl-1">지난 기록</div>
+            <div className="text-xs font-medium text-neutral-400 mb-3 pl-1">지난 기록</div>
             {pastMonths.map((month) => (
               <MonthlyCard key={month} monthNumber={month} log={logsMap[month]} />
             ))}
+          </div>
+        ) : (
+          <div className="mx-4 mt-4 p-4 bg-brand-50 rounded-2xl border border-brand-100 text-center">
+            <p className="text-sm font-bold text-brand-600 mb-1">아직 지난 기록이 없어요</p>
+            <p className="text-xs text-neutral-500">매달 기록을 남기면 여기에 성장 타임라인이 생겨요.</p>
           </div>
         )}
       </div>

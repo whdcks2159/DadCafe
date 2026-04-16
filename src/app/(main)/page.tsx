@@ -18,15 +18,9 @@ export default function HomePage() {
     <div className="min-h-screen flex flex-col bg-warm-50">
 
       {/* ── Hero ──────────────────────────────── */}
-      <section className="relative bg-gradient-to-br from-brand-50 via-blue-50 to-pastel-lavender px-6 pt-14 pb-12 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-10 -right-10 w-52 h-52 bg-brand-100/60 rounded-full" />
-          <div className="absolute top-20 -right-4  w-28 h-28 bg-brand-100/40 rounded-full" />
-          <div className="absolute -bottom-8 -left-8 w-36 h-36 bg-pastel-lavender/80 rounded-full" />
-          <div className="absolute bottom-12 right-12 w-16 h-16 bg-brand-200/30 rounded-full" />
-        </div>
+      <section className="bg-gradient-to-br from-brand-50 via-blue-50 to-pastel-lavender px-6 pt-14 pb-12">
 
-        <div className="relative z-10">
+        <div>
           <div>
             {/* 로고 */}
             <div className="flex items-center gap-2.5 mb-8">

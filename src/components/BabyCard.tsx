@@ -208,7 +208,7 @@ function DefaultCard() {
         </div>
         <div>
           <p className="text-[10px] font-bold text-rose-400 tracking-wide mb-0.5">오늘 우리 아기</p>
-          <p className="text-sm text-slate-700 font-medium leading-snug">{msg}</p>
+          <p className="text-sm text-neutral-700 font-medium leading-snug">{msg}</p>
         </div>
       </div>
     </div>
@@ -225,10 +225,10 @@ function RegisterPromptCard() {
           </div>
           <div>
             <p className="text-[10px] font-bold text-brand-400 tracking-wide">오늘 우리 아기</p>
-            <p className="text-sm font-bold text-slate-800 mt-0.5">아이를 등록해보세요</p>
+            <p className="text-sm font-bold text-neutral-800 mt-0.5">아이를 등록해보세요</p>
           </div>
         </div>
-        <p className="text-xs text-slate-500 leading-relaxed mb-4">
+        <p className="text-xs text-neutral-500 leading-relaxed mb-4">
           출산 예정일이나 출생일을 등록하면<br />
           D-day와 맞춤 가이드를 바로 확인할 수 있어요.
         </p>
