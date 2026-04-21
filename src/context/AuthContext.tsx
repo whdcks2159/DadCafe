@@ -48,7 +48,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       setUser(firebaseUser);
       if (firebaseUser) {
-        await loadProfile(firebaseUser);
+        try {
+          await loadProfile(firebaseUser);
+        } catch {
+          // Firestore 권한 에러 등 — 프로필 없이도 앱은 정상 동작
+        }
       } else {
         setUserProfile(null);
       }
